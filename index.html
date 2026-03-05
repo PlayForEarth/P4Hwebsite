@@ -1,0 +1,1258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Play4Health — Adherence you can verify. Returns you can track.</title>
+<meta name="description" content="Play4Health turns daily medication routines into verified adherence proof, device return data, and EPR-ready compliance evidence. No sensors. No heavy training. Just proof from the field.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://www.play4health.org/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flag-icons@7.2.3/css/flag-icons.min.css">
+
+<style>
+:root {
+  --bg: #f7f8fc;
+  --bg2: #eef3fb;
+  --bg3: #ffffff;
+  --ink: #0e1b2e;
+  --ink-mid: #2d4263;
+  --ink-light: #5a7099;
+  --blue: #2563eb;
+  --blue-dark: #1d4ed8;
+  --blue-mid: #3b82f6;
+  --blue-pale: #dbeafe;
+  --blue-faint: #eff6ff;
+  --teal: #0d9488;
+  --teal-pale: #ccfbf1;
+  --sky: #38bdf8;
+  --sky-pale: #e0f2fe;
+  --green: #16a34a;
+  --green-pale: #dcfce7;
+  --amber: #d97706;
+  --amber-pale: #fef3c7;
+  --coral: #e11d48;
+  --white: #ffffff;
+  --border: rgba(37,99,235,0.1);
+  --border-dark: rgba(14,27,46,0.08);
+  --serif: 'Instrument Serif', Georgia, serif;
+  --sans: 'DM Sans', sans-serif;
+  --radius: 16px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 16px; }
+body { font-family: var(--sans); background: var(--bg); color: var(--ink); overflow-x: hidden; }
+
+/* ─── NAV ─── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 500;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 14px 5%;
+  background: rgba(247,248,252,0.94);
+  backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+  transition: background 0.3s;
+}
+.nav-logo {
+  font-family: var(--sans); font-size: 1.2rem; font-weight: 400;
+  color: var(--ink); text-decoration: none;
+  display: flex; align-items: center; gap: 10px; z-index: 501;
+}
+.nav-logo-mark {
+  width: 32px; height: 32px;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.nav-logo span { color: var(--blue); }
+
+.nav-links { display: flex; list-style: none; gap: 32px; align-items: center; }
+.nav-links a {
+  font-size: 0.875rem; font-weight: 500; color: var(--ink-light);
+  text-decoration: none; transition: color 0.2s; letter-spacing: 0.01em;
+}
+.nav-links a:hover { color: var(--blue); }
+.nav-cta {
+  background: var(--blue) !important; color: white !important;
+  padding: 9px 20px; border-radius: 24px; font-weight: 600 !important;
+  transition: background 0.2s, transform 0.2s !important;
+}
+.nav-cta:hover { background: var(--blue-dark) !important; transform: translateY(-1px); }
+
+/* Hamburger */
+.nav-hamburger {
+  display: none; flex-direction: column; gap: 5px; cursor: pointer;
+  padding: 6px; z-index: 501; background: none; border: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.nav-hamburger span { display: block; width: 22px; height: 2px; background: var(--ink); border-radius: 2px; transition: all 0.3s ease; transform-origin: center; }
+.nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav-hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+.nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* Mobile menu */
+.mobile-menu {
+  display: none; position: fixed; inset: 0; background: var(--bg); z-index: 499;
+  padding: 96px 6% 48px; flex-direction: column; gap: 0; overflow-y: auto;
+  transform: translateX(100%); transition: transform 0.35s cubic-bezier(0.4,0,0.2,1);
+}
+.mobile-menu.open { transform: translateX(0); }
+.mobile-menu-link {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 18px 0; font-family: var(--sans); font-size: 1.4rem; color: var(--ink);
+  text-decoration: none; border-bottom: 1px solid var(--border); transition: color 0.2s;
+}
+.mobile-menu-link:hover { color: var(--blue); }
+.mobile-menu-link .arrow { font-size: 1rem; color: var(--blue); opacity: 0.5; }
+.mobile-menu-cta {
+  margin-top: 32px; display: block; background: var(--blue); color: white;
+  text-align: center; padding: 18px 28px; border-radius: 40px;
+  font-size: 1rem; font-weight: 600; text-decoration: none; transition: background 0.2s;
+}
+.mobile-menu-cta:hover { background: var(--blue-dark); }
+
+/* ─── SECTIONS ─── */
+section { padding: 120px 5%; }
+
+.section-eyebrow {
+  font-size: 0.7rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--blue); margin-bottom: 16px; display: inline-flex; align-items: center; gap: 8px;
+  background: var(--blue-faint); padding: 5px 14px; border-radius: 20px;
+  border: 1px solid rgba(37,99,235,0.15);
+}
+.section-title {
+  font-family: var(--sans); font-size: clamp(2rem, 3.6vw, 3rem);
+  font-weight: 400; line-height: 1.12; letter-spacing: -0.02em;
+  margin-bottom: 20px; color: var(--ink);
+}
+.section-title em {  color: var(--blue); }
+.section-title strong { font-style: normal; color: var(--teal); font-weight: 400; }
+.section-sub { font-size: 1.05rem; color: var(--ink-light); line-height: 1.75; max-width: 560px; font-weight: 400; }
+
+@keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes blobFloat { 0%,100% { transform: translateY(0) scale(1); } 50% { transform: translateY(-18px) scale(1.04); } }
+@keyframes scanLine { 0% { left: -100%; } 100% { left: 100%; } }
+@keyframes pulse { 0%,100% { opacity: 0.6; } 50% { opacity: 1; } }
+
+/* ─── HERO ─── */
+.hero {
+  min-height: 100vh; display: flex; flex-direction: column;
+  justify-content: flex-end; padding: 0 5% 100px;
+  position: relative; overflow: hidden; background: var(--bg);
+}
+.hero-bg {
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 65% 55% at 72% 25%, rgba(37,99,235,0.1) 0%, transparent 60%),
+    radial-gradient(ellipse 45% 45% at 15% 75%, rgba(13,148,136,0.1) 0%, transparent 55%),
+    radial-gradient(ellipse 35% 35% at 85% 80%, rgba(56,189,248,0.08) 0%, transparent 50%),
+    var(--bg);
+}
+.hero-grid {
+  position: absolute; inset: 0;
+  background-image: linear-gradient(rgba(37,99,235,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(37,99,235,0.04) 1px, transparent 1px);
+  background-size: 56px 56px;
+}
+.hero-blob { position: absolute; border-radius: 50%; filter: blur(70px); pointer-events: none; animation: blobFloat 9s ease-in-out infinite; }
+.blob1 { width: 420px; height: 420px; background: rgba(37,99,235,0.09); top: 3%; right: 6%; animation-delay: 0s; }
+.blob2 { width: 260px; height: 260px; background: rgba(13,148,136,0.1); top: 45%; right: 32%; animation-delay: 2.5s; }
+.blob3 { width: 180px; height: 180px; background: rgba(56,189,248,0.09); bottom: 18%; right: 18%; animation-delay: 5s; }
+
+.hero-eyebrow {
+  font-size: 0.75rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--blue); position: relative; z-index: 2;
+  display: inline-flex; align-items: center; gap: 10px;
+  background: var(--blue-faint); padding: 6px 16px; border-radius: 24px;
+  border: 1px solid rgba(37,99,235,0.2); width: fit-content;
+  margin-bottom: 28px; animation: fadeUp 0.8s ease 0.2s both;
+}
+.hero-eyebrow-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--blue); animation: pulse 2s ease-in-out infinite; }
+
+.hero-headline {
+  font-family: var(--sans); font-size: clamp(2.4rem, 4.2vw, 3.9rem);
+  font-weight: 400; line-height: 1.1; letter-spacing: -0.025em;
+  position: relative; z-index: 2; max-width: 680px;
+  margin-bottom: 12px; color: var(--ink);
+  animation: fadeUp 0.8s ease 0.35s both;
+}
+.hero-headline em {  color: var(--blue); }
+
+.hero-tagline {
+  font-family: var(--sans); font-size: clamp(1.1rem, 2vw, 1.4rem);
+   color: var(--ink-mid); font-weight: 400; line-height: 1.4;
+  margin-bottom: 28px; position: relative; z-index: 2; max-width: 520px;
+  animation: fadeUp 0.8s ease 0.45s both;
+}
+
+.hero-sub {
+  font-size: 1.05rem; line-height: 1.75; color: var(--ink-light); max-width: 620px;
+  position: relative; z-index: 2; margin-bottom: 32px; font-weight: 400;
+  animation: fadeUp 0.8s ease 0.55s both;
+}
+
+.hero-pills {
+  display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 44px;
+  position: relative; z-index: 2; animation: fadeUp 0.8s ease 0.65s both;
+}
+.pill {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: white; border: 1px solid var(--border-dark);
+  border-radius: 24px; padding: 8px 16px;
+  font-size: 0.83rem; font-weight: 500; color: var(--ink-mid);
+  box-shadow: 0 1px 6px rgba(14,27,46,0.05);
+}
+.pill-icon { font-size: 0.9rem; }
+
+.hero-actions {
+  display: flex; gap: 16px; align-items: center;
+  position: relative; z-index: 2; flex-wrap: wrap;
+  animation: fadeUp 0.8s ease 0.75s both;
+}
+.btn-primary {
+  background: var(--blue); color: white; padding: 14px 32px; border-radius: 32px;
+  font-size: 0.95rem; font-weight: 600; text-decoration: none; letter-spacing: 0.01em;
+  transition: all 0.2s; display: inline-block;
+  box-shadow: 0 4px 20px rgba(37,99,235,0.3);
+  -webkit-tap-highlight-color: transparent;
+}
+.btn-primary:hover { background: var(--blue-dark); transform: translateY(-2px); box-shadow: 0 8px 28px rgba(37,99,235,0.35); }
+.btn-ghost {
+  color: var(--ink-light); padding: 14px 0; font-size: 0.9rem; font-weight: 500;
+  text-decoration: none; display: flex; align-items: center; gap: 8px; transition: color 0.2s;
+  -webkit-tap-highlight-color: transparent;
+}
+.btn-ghost:hover { color: var(--blue); }
+.btn-ghost .arrow { transition: transform 0.2s; }
+.btn-ghost:hover .arrow { transform: translateX(4px); }
+
+.hero-card {
+  position: absolute; right: 5%; top: 20%; z-index: 2;
+  width: 400px; background: white; border: 1px solid var(--border-dark);
+  border-radius: 20px; padding: 28px 28px 24px;
+  box-shadow: 0 16px 56px rgba(14,27,46,0.1);
+  animation: fadeUp 0.9s ease 0.9s both;
+}
+.hero-card-top {
+  display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px;
+}
+.hero-card-label { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-light); }
+.hero-card-badge { font-size: 0.68rem; font-weight: 600; background: var(--green-pale); color: var(--green); padding: 3px 10px; border-radius: 12px; border: 1px solid rgba(22,163,74,0.2); }
+.hero-card-name { font-family: var(--sans); font-size: 1.1rem; color: var(--ink); margin-bottom: 4px; }
+.hero-card-sub { font-size: 0.78rem; color: var(--ink-light); margin-bottom: 20px; }
+.action-row {
+  display: flex; align-items: center; gap: 14px; padding: 14px 0;
+  border-bottom: 1px solid rgba(14,27,46,0.06);
+}
+.action-row:last-child { border-bottom: none; padding-bottom: 0; }
+.action-dot {
+  width: 30px; height: 30px; border-radius: 50%; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center; font-size: 0.8rem;
+}
+.dot-done { background: var(--green-pale); }
+.dot-active { background: var(--blue-pale); animation: pulse 2s ease-in-out infinite; }
+.dot-pending { background: var(--bg); border: 1px dashed rgba(14,27,46,0.15); }
+.action-text strong { display: block; font-size: 0.83rem; font-weight: 600; color: var(--ink); }
+.action-text span { font-size: 0.74rem; color: var(--ink-light); }
+.action-status { margin-left: auto; font-size: 0.7rem; font-weight: 600; padding: 3px 9px; border-radius: 10px; white-space: nowrap; flex-shrink: 0; }
+.status-done { background: var(--green-pale); color: var(--green); }
+.status-active { background: var(--blue-pale); color: var(--blue); }
+.status-pending { color: var(--ink-light); }
+
+.hero-stats {
+  position: absolute; right: 5%; bottom: 100px; z-index: 2;
+  display: flex; flex-direction: column; gap: 12px; text-align: right;
+  animation: fadeUp 0.8s ease 1.1s both;
+}
+.stat-item {
+  background: white; border: 1px solid var(--border); border-radius: 12px;
+  padding: 14px 18px; text-align: right; box-shadow: 0 2px 12px rgba(37,99,235,0.06);
+}
+.stat-num { font-family: var(--sans); font-size: 1.9rem; font-weight: 400; color: var(--blue); line-height: 1; }
+.stat-label { font-size: 0.72rem; color: var(--ink-light); font-weight: 500; letter-spacing: 0.03em; margin-top: 2px; }
+
+.hero-scroll {
+  position: absolute; bottom: 36px; left: 5%; z-index: 2;
+  display: flex; align-items: center; gap: 10px;
+  font-size: 0.75rem; color: rgba(14,27,46,0.35); letter-spacing: 0.1em; text-transform: uppercase;
+}
+.scroll-line { width: 40px; height: 1px; background: rgba(37,99,235,0.15); position: relative; overflow: hidden; }
+.scroll-line::after {
+  content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%;
+  background: var(--blue); animation: scanLine 2s ease-in-out infinite;
+}
+
+/* ─── LOGOS ─── */
+.logos-strip {
+  background: white; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+  padding: 32px 5%; overflow: hidden;
+}
+.logos-inner { display: flex; align-items: center; gap: 44px; flex-wrap: wrap; justify-content: center; }
+.logos-label { font-size: 0.78rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(14,27,46,0.3); white-space: nowrap; }
+.logo-item { font-family: var(--sans); font-size: 1.1rem; color: rgba(14,27,46,0.5); white-space: nowrap; transition: color 0.2s; cursor: default; }
+.logo-item:hover { color: var(--blue); }
+.logo-item sup { font-size: 0.62rem; font-family: var(--sans); color: var(--blue); vertical-align: super; margin-left: 2px; font-weight: 600; }
+
+/* ─── WHAT WE DO ─── */
+#what { background: var(--bg3); }
+.what-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; margin-top: 64px; }
+.what-card {
+  background: var(--bg); border: 1px solid var(--border-dark); border-radius: var(--radius);
+  padding: 36px 30px; position: relative; overflow: hidden; transition: all 0.25s;
+  box-shadow: 0 2px 10px rgba(14,27,46,0.04);
+}
+.what-card:hover { transform: translateY(-3px); box-shadow: 0 8px 32px rgba(37,99,235,0.1); border-color: rgba(37,99,235,0.2); }
+.what-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; border-radius: var(--radius) var(--radius) 0 0; }
+.what-card.adherence::before { background: linear-gradient(90deg, var(--blue), var(--blue-mid)); }
+.what-card.returns::before { background: linear-gradient(90deg, var(--teal), #10b981); }
+.what-card.support::before { background: linear-gradient(90deg, var(--sky), var(--blue-mid)); }
+.what-card-icon { font-size: 1.8rem; margin-bottom: 18px; display: block; }
+.what-card-tag { display: inline-block; font-size: 0.67rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; padding: 3px 10px; border-radius: 16px; margin-bottom: 14px; }
+.tag-adherence { background: var(--blue-pale); color: var(--blue); border: 1px solid rgba(37,99,235,0.2); }
+.tag-returns { background: var(--teal-pale); color: var(--teal); border: 1px solid rgba(13,148,136,0.2); }
+.tag-support { background: var(--sky-pale); color: #0284c7; border: 1px solid rgba(56,189,248,0.2); }
+.what-card h4 { font-family: var(--sans); font-size: 0.72rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-light); margin-bottom: 8px; }
+.what-card p { font-family: var(--sans); font-size: 1.1rem; color: var(--ink); line-height: 1.6; }
+.what-card ul { list-style: none; margin-top: 14px; display: flex; flex-direction: column; gap: 6px; }
+.what-card ul li { font-size: 0.83rem; color: var(--ink-light); display: flex; gap: 8px; align-items: flex-start; }
+.what-card ul li::before { content: '→'; color: var(--blue); font-size: 0.75rem; flex-shrink: 0; margin-top: 1px; }
+.what-card.returns ul li::before { color: var(--teal); }
+.what-card.support ul li::before { color: #0284c7; }
+
+/* ─── HOW IT WORKS ─── */
+#how { background: var(--bg2); border-top: 1px solid var(--border); }
+.how-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; margin-top: 72px; align-items: start; }
+.how-step { display: flex; gap: 20px; padding: 20px 0; border-bottom: 1px solid rgba(14,27,46,0.07); transition: all 0.2s; }
+.how-step:first-child { border-top: 1px solid rgba(14,27,46,0.07); padding-top: 20px; }
+.how-step:hover { padding-left: 4px; }
+.step-num-badge {
+  width: 36px; height: 36px; border-radius: 10px; flex-shrink: 0;
+  background: linear-gradient(135deg, var(--blue) 0%, var(--teal) 100%);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.78rem; font-weight: 700; color: white; margin-top: 2px;
+}
+.step-content h4 { font-size: 0.95rem; font-weight: 600; margin-bottom: 5px; color: var(--ink); }
+.step-content p { font-size: 0.87rem; color: var(--ink-light); line-height: 1.65; }
+.how-visual {
+  background: white; border: 1px solid var(--border-dark); border-radius: 20px;
+  padding: 32px; box-shadow: 0 4px 24px rgba(14,27,46,0.06); position: relative; overflow: hidden;
+}
+.how-visual::before {
+  content: ''; position: absolute; top: -30px; right: -30px; width: 180px; height: 180px;
+  border-radius: 50%; background: radial-gradient(circle, rgba(37,99,235,0.06) 0%, transparent 70%);
+}
+.patient-header { display: flex; align-items: center; gap: 14px; margin-bottom: 22px; padding-bottom: 18px; border-bottom: 1px solid var(--border-dark); }
+.patient-avatar {
+  width: 44px; height: 44px; border-radius: 50%; flex-shrink: 0;
+  background: linear-gradient(135deg, var(--blue-pale) 0%, var(--teal-pale) 100%);
+  display: flex; align-items: center; justify-content: center; font-size: 1.2rem;
+  border: 2px solid white; box-shadow: 0 2px 8px rgba(37,99,235,0.15);
+}
+.patient-info strong { display: block; font-size: 0.88rem; font-weight: 600; color: var(--ink); }
+.patient-info span { font-size: 0.75rem; color: var(--ink-light); }
+.patient-status-badge { margin-left: auto; font-size: 0.68rem; font-weight: 600; background: var(--green-pale); color: var(--green); padding: 3px 10px; border-radius: 12px; }
+.journey-label { font-size: 0.68rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-light); margin-bottom: 14px; }
+.journey-step { display: flex; align-items: center; gap: 14px; padding: 14px 0; border-bottom: 1px solid rgba(14,27,46,0.06); position: relative; z-index: 1; }
+.journey-step:last-child { border-bottom: none; padding-bottom: 4px; }
+.j-dot { width: 30px; height: 30px; border-radius: 50%; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 0.72rem; font-weight: 700; color: white; position: relative; }
+.j-dot::after { content: ''; position: absolute; bottom: -14px; left: 50%; transform: translateX(-50%); width: 1px; height: 12px; background: rgba(37,99,235,0.2); }
+.journey-step:last-child .j-dot::after { display: none; }
+.j-dot-1 { background: var(--blue); }
+.j-dot-2 { background: #7c3aed; }
+.j-dot-3 { background: var(--teal); }
+.j-dot-4 { background: var(--green); }
+.j-text strong { display: block; font-size: 0.85rem; font-weight: 600; color: var(--ink); margin-bottom: 2px; }
+.j-text span { font-size: 0.77rem; color: var(--ink-light); }
+.j-tag { margin-left: auto; font-size: 0.67rem; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; padding: 3px 9px; border-radius: 10px; white-space: nowrap; flex-shrink: 0; }
+.j-tag-photo { background: var(--blue-pale); color: var(--blue); }
+.j-tag-reward { background: var(--amber-pale); color: var(--amber); }
+.j-tag-verified { background: var(--green-pale); color: var(--green); }
+.j-tag-data { background: var(--teal-pale); color: var(--teal); }
+
+/* ─── WHAT BECOMES MEASURABLE ─── */
+#measurable { background: var(--bg2); border-top: 1px solid var(--border); }
+#measurable .section-eyebrow { background: var(--blue-pale); color: var(--blue); border-color: rgba(37,99,235,0.2); }
+#measurable .section-title { color: var(--ink); }
+#measurable .section-title em { color: var(--blue); font-weight: 700; }
+.measurable-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px; margin-top: 64px; }
+.measure-card {
+  background: white; border: 1px solid var(--border-dark);
+  border-radius: var(--radius); padding: 28px 20px; text-align: center;
+  transition: all 0.25s; cursor: default;
+}
+.measure-card:hover { border-color: rgba(37,99,235,0.25); transform: translateY(-2px); box-shadow: 0 6px 24px rgba(37,99,235,0.08); }
+.measure-icon { font-size: 1.8rem; margin-bottom: 14px; display: block; }
+.measure-title { font-size: 0.9rem; font-weight: 600; color: var(--ink); margin-bottom: 8px; line-height: 1.3; }
+.measure-desc { font-size: 0.78rem; color: var(--ink-light); line-height: 1.6; }
+.measure-label {
+  display: inline-block; margin-top: 14px; font-size: 0.65rem; font-weight: 600;
+  letter-spacing: 0.06em; text-transform: uppercase; padding: 3px 8px; border-radius: 8px;
+}
+.ml-psp { background: var(--blue-pale); color: var(--blue); }
+.ml-epr { background: var(--teal-pale); color: var(--teal); }
+.ml-med { background: #ede9fe; color: #7c3aed; }
+
+/* ─── WHY IT WORKS ─── */
+#why { background: var(--bg3); border-top: 1px solid var(--border); }
+.why-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; margin-top: 64px; }
+.why-principles { display: flex; flex-direction: column; }
+.why-principle { padding: 24px 0; border-bottom: 1px solid rgba(14,27,46,0.07); display: flex; gap: 18px; cursor: default; transition: all 0.2s; }
+.why-principle:first-child { border-top: 1px solid rgba(14,27,46,0.07); padding-top: 24px; }
+.why-principle:hover { padding-left: 4px; }
+.why-icon { width: 38px; height: 38px; border-radius: 10px; background: var(--blue-faint); border: 1px solid rgba(37,99,235,0.15); display: flex; align-items: center; justify-content: center; font-size: 1rem; flex-shrink: 0; margin-top: 2px; transition: all 0.2s; }
+.why-principle:hover .why-icon { background: var(--blue-pale); border-color: rgba(37,99,235,0.3); }
+.why-principle h4 { font-size: 0.95rem; font-weight: 600; margin-bottom: 5px; color: var(--ink); }
+.why-principle p { font-size: 0.87rem; color: var(--ink-light); line-height: 1.65; }
+.who-card {
+  background: var(--bg); border: 1px solid var(--border-dark); border-radius: 20px;
+  padding: 36px 32px; box-shadow: 0 2px 12px rgba(37,99,235,0.05);
+}
+.who-title { font-family: var(--sans); font-size: 1.2rem; color: var(--ink); margin-bottom: 24px; }
+.who-item { display: flex; gap: 14px; padding: 14px 0; border-bottom: 1px solid rgba(14,27,46,0.06); align-items: flex-start; }
+.who-item:last-child { border-bottom: none; padding-bottom: 0; }
+.who-bullet { width: 8px; height: 8px; border-radius: 50%; background: var(--blue); flex-shrink: 0; margin-top: 6px; }
+.who-item-text h5 { font-size: 0.9rem; font-weight: 600; color: var(--ink); margin-bottom: 2px; }
+.who-item-text p { font-size: 0.81rem; color: var(--ink-light); line-height: 1.55; }
+
+/* ─── TRACTION ─── */
+#traction { background: var(--bg2); border-top: 1px solid var(--border); }
+.traction-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; margin-top: 64px; align-items: start; }
+.traction-nums { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.traction-card {
+  background: white; border: 1px solid var(--border-dark); border-radius: var(--radius);
+  padding: 28px 22px; transition: all 0.25s; box-shadow: 0 2px 10px rgba(14,27,46,0.04);
+}
+.traction-card:hover { transform: translateY(-2px); box-shadow: 0 6px 24px rgba(37,99,235,0.1); }
+.traction-num { font-family: var(--sans); font-size: 2.2rem; font-weight: 400; color: var(--blue); line-height: 1; margin-bottom: 6px; }
+.traction-desc { font-size: 0.8rem; color: var(--ink-light); line-height: 1.5; }
+.proof-item { display: flex; gap: 18px; padding: 22px 0; border-bottom: 1px solid rgba(14,27,46,0.07); align-items: flex-start; }
+.proof-item:last-child { border-bottom: none; }
+.proof-icon { font-size: 1.3rem; flex-shrink: 0; margin-top: 2px; }
+.proof-item h4 { font-size: 0.9rem; font-weight: 600; margin-bottom: 4px; color: var(--ink); }
+.proof-item p { font-size: 0.82rem; color: var(--ink-light); line-height: 1.6; }
+
+/* ─── SNAPSHOT CTA ─── */
+#snapshot { background: var(--bg3); border-top: 1px solid var(--border); }
+.snapshot-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+.snapshot-visual {
+  background: white; border: 1px solid var(--border-dark); border-radius: 20px;
+  padding: 36px; box-shadow: 0 8px 40px rgba(37,99,235,0.1); position: relative; overflow: hidden;
+}
+.snapshot-visual::after {
+  content: ''; position: absolute; bottom: -30px; right: -30px; width: 160px; height: 160px;
+  border-radius: 50%; background: radial-gradient(circle, rgba(13,148,136,0.08) 0%, transparent 70%);
+}
+.snapshot-header { margin-bottom: 24px; padding-bottom: 18px; border-bottom: 1px solid var(--border-dark); }
+.snapshot-header h3 { font-family: var(--sans); font-size: 1.1rem; color: var(--ink); margin-bottom: 4px; }
+.snapshot-header p { font-size: 0.78rem; color: var(--ink-light); }
+.snapshot-row { display: flex; align-items: center; justify-content: space-between; padding: 14px 0; border-bottom: 1px solid rgba(14,27,46,0.06); }
+.snapshot-row:last-child { border-bottom: none; padding-bottom: 0; }
+.snapshot-row-label { font-size: 0.83rem; color: var(--ink-mid); font-weight: 500; }
+.snapshot-row-value { font-family: var(--sans); font-size: 1.1rem; color: var(--blue); }
+.snapshot-row-teal { color: var(--teal) !important; }
+.snapshot-bar { width: 100px; height: 6px; background: var(--bg2); border-radius: 3px; overflow: hidden; }
+.snapshot-bar-fill { height: 100%; border-radius: 3px; background: linear-gradient(90deg, var(--blue), var(--teal)); }
+.snapshot-insight {
+  margin-top: 20px; padding: 14px 16px; background: var(--blue-faint); border-radius: 10px;
+  font-size: 0.8rem; color: var(--blue); font-weight: 500; display: flex; align-items: center; gap: 8px;
+}
+
+/* ─── CONTACT ─── */
+#contact {
+  background: linear-gradient(135deg, #0f1f3d 0%, #0e2a4a 50%, #0d2b2a 100%);
+  border-top: 1px solid rgba(37,99,235,0.2); text-align: center; padding: 160px 5%;
+  position: relative; overflow: hidden;
+}
+#contact::before {
+  content: ''; position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
+  width: 700px; height: 700px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(37,99,235,0.12) 0%, transparent 65%);
+}
+#contact .section-eyebrow { background: rgba(37,99,235,0.15); color: #93c5fd; border-color: rgba(37,99,235,0.25); display: inline-flex; margin: 0 auto 16px; }
+#contact .section-title { color: white; max-width: 640px; margin: 0 auto 20px; position: relative; z-index: 1; }
+#contact .section-title em { color: #93c5fd; }
+#contact .section-sub { color: rgba(255,255,255,0.6); margin: 0 auto 48px; text-align: center; position: relative; z-index: 1; }
+.cta-buttons { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; position: relative; z-index: 1; }
+.btn-large { padding: 16px 40px; font-size: 1rem; font-weight: 600; border-radius: 40px; }
+.btn-outline {
+  color: rgba(255,255,255,0.75); border: 1px solid rgba(255,255,255,0.2);
+  padding: 16px 40px; border-radius: 40px; font-size: 0.95rem; font-weight: 500;
+  text-decoration: none; display: inline-block; transition: all 0.2s;
+}
+.btn-outline:hover { border-color: #93c5fd; color: #93c5fd; }
+.trust-badges { display: flex; justify-content: center; gap: 24px; flex-wrap: wrap; margin-top: 48px; position: relative; z-index: 1; }
+.trust-badge {
+  background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 12px; padding: 10px 18px; font-size: 0.78rem; color: rgba(255,255,255,0.55);
+  display: flex; align-items: center; gap: 8px;
+}
+.trust-badge-dot { width: 6px; height: 6px; border-radius: 50%; background: #5eead4; flex-shrink: 0; }
+
+/* ─── FOOTER ─── */
+footer {
+  background: #0a1628; border-top: 1px solid rgba(255,255,255,0.06);
+  padding: 64px 5% 40px;
+}
+.footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 60px; }
+.footer-logo { font-family: var(--sans); font-size: 1.15rem; display: flex; align-items: center; gap: 10px; color: white; text-decoration: none; margin-bottom: 14px; }
+.footer-logo-mark { width: 28px; height: 28px; border-radius: 8px; background: linear-gradient(135deg, var(--blue) 0%, var(--teal) 100%); display: flex; align-items: center; justify-content: center; font-size: 0.85rem; }
+.footer-logo span { color: #93c5fd; }
+.footer-tagline { font-size: 0.84rem; color: rgba(255,255,255,0.4); line-height: 1.65; margin-bottom: 22px; max-width: 280px; }
+.footer-social { display: flex; gap: 10px; }
+.social-btn { width: 34px; height: 34px; border: 1px solid rgba(255,255,255,0.12); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.78rem; font-weight: 700; transition: all 0.2s; }
+.social-btn:hover { border-color: #93c5fd; color: #93c5fd; }
+.footer-col h5 { font-size: 0.68rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.3); margin-bottom: 18px; }
+.footer-col ul { list-style: none; }
+.footer-col ul li { margin-bottom: 10px; }
+.footer-col ul li a { font-size: 0.86rem; color: rgba(255,255,255,0.5); text-decoration: none; transition: color 0.2s; }
+.footer-col ul li a:hover { color: #93c5fd; }
+.footer-bottom { border-top: 1px solid rgba(255,255,255,0.07); padding-top: 26px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+.footer-copy { font-size: 0.78rem; color: rgba(255,255,255,0.25); }
+.footer-legal { display: flex; gap: 20px; }
+.footer-legal a { font-size: 0.75rem; color: rgba(255,255,255,0.25); text-decoration: none; transition: color 0.2s; }
+.footer-legal a:hover { color: rgba(255,255,255,0.5); }
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 1100px) {
+  .measurable-grid { grid-template-columns: repeat(3, 1fr); }
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: 36px; }
+}
+@media (max-width: 900px) {
+  .nav-links { display: none; }
+  .nav-hamburger { display: flex; }
+  .mobile-menu { display: flex; }
+  nav { padding: 12px 5%; }
+  section { padding: 72px 5%; }
+  #contact { padding: 100px 5%; }
+  .hero { min-height: 100svh; padding: 92px 5% 72px; justify-content: center; }
+  .hero-card, .hero-stats, .hero-scroll { display: none; }
+  .hero-headline { font-size: clamp(2rem, 6.5vw, 2.8rem); max-width: 100%; }
+  .hero-tagline { font-size: 1.05rem; max-width: 100%; }
+  .hero-pills { gap: 8px; }
+  .pill { font-size: 0.78rem; padding: 7px 13px; }
+  .hero-actions { flex-direction: column; align-items: stretch; }
+  .btn-primary.btn-large { text-align: center; padding: 16px 24px; }
+  .what-grid { grid-template-columns: 1fr; gap: 14px; margin-top: 44px; }
+  .how-layout { grid-template-columns: 1fr; gap: 40px; margin-top: 44px; }
+  #forpharma > div:last-child { grid-template-columns: 1fr !important; }
+  #pricing > div:nth-of-type(1) { grid-template-columns: 1fr !important; }
+  .measurable-grid { grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 44px; }
+  .why-layout { grid-template-columns: 1fr; gap: 40px; margin-top: 44px; }
+  .traction-layout { grid-template-columns: 1fr; gap: 40px; margin-top: 44px; }
+  .traction-nums { grid-template-columns: 1fr 1fr; gap: 12px; }
+  .snapshot-layout { grid-template-columns: 1fr; gap: 40px; }
+  .cta-buttons { flex-direction: column; align-items: center; gap: 12px; }
+  .btn-outline, .btn-primary.btn-large { width: 100%; max-width: 320px; text-align: center; }
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: 28px; margin-bottom: 40px; }
+  .footer-grid > div:first-child { grid-column: 1 / -1; }
+  .footer-bottom { flex-direction: column; align-items: flex-start; gap: 12px; }
+  .section-title { font-size: clamp(1.8rem, 5.5vw, 2.6rem); }
+  .logos-inner { gap: 20px; row-gap: 14px; }
+  .logos-label { width: 100%; text-align: center; }
+}
+@media (max-width: 480px) {
+  section { padding: 60px 5%; }
+  .hero-headline { font-size: clamp(1.8rem, 7.5vw, 2.3rem); }
+  #forpharma > div:last-child { grid-template-columns: 1fr !important; }
+  .what-card { padding: 26px 20px; }
+  .measurable-grid { grid-template-columns: 1fr; gap: 10px; }
+  .traction-nums { grid-template-columns: 1fr 1fr; gap: 10px; }
+  .traction-card { padding: 20px 14px; }
+  .footer-grid { grid-template-columns: 1fr; gap: 24px; }
+  .trust-badges { flex-direction: column; align-items: center; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="mainNav">
+  <a href="/" class="nav-logo">
+    <img src="logo.png" alt="Play4Health" style="width:32px; height:32px; object-fit:contain;">
+    Play4<span>Health</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#forpharma">For Pharma</a></li>
+    <li><a href="#pillars">Our Approach</a></li>
+    <li><a href="#traction">Traction</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+    <li><a href="#snapshot" class="nav-cta">Get Impact Snapshot</a></li>
+  </ul>
+  <button class="nav-hamburger" id="hamburger" aria-label="Toggle menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- MOBILE MENU -->
+<nav class="mobile-menu" id="mobileMenu">
+  <a href="#what" class="mobile-menu-link">What We Do <span class="arrow">→</span></a>
+  <a href="#how" class="mobile-menu-link">How It Works <span class="arrow">→</span></a>
+  <a href="#measurable" class="mobile-menu-link">What's Measurable <span class="arrow">→</span></a>
+  <a href="#why" class="mobile-menu-link">Why It Works <span class="arrow">→</span></a>
+  <a href="#traction" class="mobile-menu-link">Traction <span class="arrow">→</span></a>
+  <a href="#snapshot" class="mobile-menu-cta">Get Your Impact Snapshot →</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-blob blob1"></div>
+  <div class="hero-blob blob2"></div>
+  <div class="hero-blob blob3"></div>
+
+  <div class="hero-eyebrow">
+    <span class="hero-eyebrow-dot"></span>
+    Patient Support · No App · No Hardware
+  </div>
+
+  <h1 class="hero-headline">
+    Turn every dose and device return<br>into <em>proof that care happened.</em>
+  </h1>
+
+  <p class="hero-tagline">Adherence. Device returns. Patient support. All from one photo.</p>
+
+  <p class="hero-sub">
+    Turn daily care into verified actions — captured where care actually happens. No app, just a link.
+  </p>
+
+  <div class="hero-actions">
+    <a href="#how" class="btn-primary btn-large">See how it works</a>
+    <a href="#contact" class="btn-ghost">Start a pilot <span class="arrow">→</span></a>
+  </div>
+
+  <!-- Floating platform card -->
+  <div class="hero-card">
+    <div class="hero-card-top">
+      <span class="hero-card-label">One account. Whole family.</span>
+      <span class="hero-card-badge">No app</span>
+    </div>
+    <div style="display:flex; flex-direction:column; gap:14px; margin-top:4px;">
+      <div style="display:flex; gap:14px; align-items:flex-start;">
+        <div style="width:34px; height:34px; border-radius:9px; background:var(--blue-pale); display:flex; align-items:center; justify-content:center; font-size:0.95rem; flex-shrink:0;">👧</div>
+        <div><div style="font-size:0.85rem; font-weight:600; color:var(--ink); margin-bottom:2px;">Patient logs a dose</div><div style="font-size:0.76rem; color:var(--ink-light);">One photo — timestamped, verified</div></div>
+      </div>
+      <div style="display:flex; gap:14px; align-items:flex-start;">
+        <div style="width:34px; height:34px; border-radius:9px; background:var(--amber-pale); display:flex; align-items:center; justify-content:center; font-size:0.95rem; flex-shrink:0;">👨‍👩‍👧</div>
+        <div><div style="font-size:0.85rem; font-weight:600; color:var(--ink); margin-bottom:2px;">Family sees it instantly</div><div style="font-size:0.76rem; color:var(--ink-light);">Same account — no extra setup</div></div>
+      </div>
+      <div style="display:flex; gap:14px; align-items:flex-start;">
+        <div style="width:34px; height:34px; border-radius:9px; background:var(--teal-pale); display:flex; align-items:center; justify-content:center; font-size:0.95rem; flex-shrink:0;">♻️</div>
+        <div><div style="font-size:0.85rem; font-weight:600; color:var(--ink); margin-bottom:2px;">Device return tracked</div><div style="font-size:0.76rem; color:var(--ink-light);">Inhalers, pens — EPR & ESG ready</div></div>
+      </div>
+      <div style="display:flex; gap:14px; align-items:flex-start;">
+        <div style="width:34px; height:34px; border-radius:9px; background:var(--green-pale); display:flex; align-items:center; justify-content:center; font-size:0.95rem; flex-shrink:0;">📊</div>
+        <div><div style="font-size:0.85rem; font-weight:600; color:var(--ink); margin-bottom:2px;">Data flows to your dashboard</div><div style="font-size:0.76rem; color:var(--ink-light);">PSP, market access, ESG — export-ready</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-scroll"><span class="scroll-line"></span> Scroll to explore</div>
+</section>
+
+<!-- LOGOS -->
+<div class="logos-strip">
+  <div class="logos-inner">
+    <span class="logos-label">Recognised by</span>
+    <span class="logo-item">ERIA <sup>HITS4KIDS Finalist</sup></span>
+    <span class="logo-item">MDX <sup>Nature Positive Accelerator</sup></span>
+    <span class="logo-item">L'Oréal <sup>Big Bang SAPMENA Finalist</sup></span>
+    <span class="logo-item">AIC <sup>African Impact Challenge Cohort 6</sup></span>
+  </div>
+</div>
+
+<!-- WHAT WE DO -->
+<section id="what">
+  <div class="section-eyebrow">What We Do</div>
+  <h2 class="section-title">Turn daily care into <em>verified actions</em></h2>
+  <p class="section-sub">We focus on what clinicians and regulators care about most — where care actually happens. No sensors, no app to download, no new infrastructure.</p>
+  <div class="what-grid">
+    <div class="what-card adherence">
+      <span class="what-card-icon">💊</span>
+      <span class="what-card-tag tag-adherence">Adherence</span>
+      <h4>Dose confirmation, verified</h4>
+      <p>Photo-proven. Timestamped. 90-day persistence tracked automatically.</p>
+    </div>
+    <div class="what-card returns">
+      <span class="what-card-icon">♻️</span>
+      <span class="what-card-tag tag-returns">Device Return</span>
+      <h4>Returns tracked from the field</h4>
+      <p>Inhalers and pens — verified at point of return. EPR and ESG-ready, no new infrastructure.</p>
+    </div>
+    <div class="what-card support">
+      <span class="what-card-icon">👨‍👩‍👧</span>
+      <span class="what-card-tag tag-support">Family & Caregiver</span>
+      <h4>Families stay in the loop</h4>
+      <p>The same account. Parents track their child's adherence in real time — no extra setup.</p>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section id="how">
+  <div class="section-eyebrow">How It Works</div>
+  <h2 class="section-title">One photo. <em>Four outcomes.</em></h2>
+  <p class="section-sub">Simple. Repeatable. Scalable. Works through existing pharmacy networks — no hardware required.</p>
+  <div class="how-layout">
+    <div>
+      <div class="how-step">
+        <div class="step-num-badge">1</div>
+        <div class="step-content">
+          <h4>Patient takes a photo with the device</h4>
+          <p>Dose confirmed or return initiated. No app — just a link.</p>
+        </div>
+      </div>
+      <div class="how-step">
+        <div class="step-num-badge">2</div>
+        <div class="step-content">
+          <h4>Verification rules run automatically</h4>
+          <p>Timeframe limits, duplicate control, photo context — no manual review needed.</p>
+        </div>
+      </div>
+      <div class="how-step">
+        <div class="step-num-badge">3</div>
+        <div class="step-content">
+          <h4>Gamification keeps patients engaged</h4>
+          <p>Points, streaks, Lucky Spin. Habits form over weeks, not days.</p>
+        </div>
+      </div>
+      <div class="how-step">
+        <div class="step-num-badge">4</div>
+        <div class="step-content">
+          <h4>Data flows to your dashboard</h4>
+          <p>Adherence, device returns, patient activation — export-ready for PSP, ESG, and medical teams.</p>
+        </div>
+      </div>
+    </div>
+    <div class="how-visual">
+      <div class="patient-header">
+        <div class="patient-avatar">🧒</div>
+        <div class="patient-info">
+          <strong>Bilal's treatment journey</strong>
+          <span>Asthma · Ventolin + Daily ICS</span>
+        </div>
+        <span class="patient-status-badge">Active</span>
+      </div>
+      <div class="journey-label">Today's verified actions</div>
+      <div class="journey-step">
+        <div class="j-dot j-dot-1">1</div>
+        <div class="j-text"><strong>Morning inhaler — dose confirmed</strong><span>Photo submitted · 7:14 AM · Verified</span></div>
+        <span class="j-tag j-tag-photo">📸 Photo</span>
+      </div>
+      <div class="journey-step">
+        <div class="j-dot j-dot-2">2</div>
+        <div class="j-text"><strong>Correct technique checked</strong><span>Spacer in photo · Good form</span></div>
+        <span class="j-tag j-tag-verified">✓ Verified</span>
+      </div>
+      <div class="journey-step">
+        <div class="j-dot j-dot-3">3</div>
+        <div class="j-text"><strong>Points added · streak +7 days</strong><span>80 pts earned · Lucky Spin unlocked</span></div>
+        <span class="j-tag j-tag-reward">🎰 Reward</span>
+      </div>
+      <div class="journey-step">
+        <div class="j-dot j-dot-4">4</div>
+        <div class="j-text"><strong>Data logged to brand dashboard</strong><span>EPR, PSP, and ESG evidence updated</span></div>
+        <span class="j-tag j-tag-data">📊 Data</span>
+      </div>
+      <div style="margin-top:20px; padding:14px; background:var(--blue-faint); border-radius:10px; font-size:0.78rem; color:var(--blue); font-weight:500; display:flex; align-items:center; gap:8px;">
+        💡 Behind every data point is a family that felt less alone and a planet that got a little cleaner.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT BECOMES MEASURABLE -->
+<section id="measurable">
+  <div class="section-eyebrow">What Becomes Measurable</div>
+  <h2 class="section-title">Outcomes no longer <em>assumed</em></h2>
+  <p class="section-sub" style="max-width:540px;">With Play4Health, all verified in real life — not modelled, not estimated.</p>
+  <div class="measurable-grid">
+    <div class="measure-card">
+      <span class="measure-icon">💊</span>
+      <div class="measure-title">Verified Adherence</div>
+      <div class="measure-desc">Photo-proven dose confirmations — not self-reported data</div>
+      <span class="measure-label ml-psp">PSP</span>
+    </div>
+    <div class="measure-card">
+      <span class="measure-icon">📅</span>
+      <div class="measure-title">90-Day Treatment Persistence</div>
+      <div class="measure-desc">Continuous adherence streaks over clinically meaningful periods</div>
+      <span class="measure-label ml-med">Medical</span>
+    </div>
+    <div class="measure-card">
+      <span class="measure-icon">♻️</span>
+      <div class="measure-title">Device Return Rate</div>
+      <div class="measure-desc">Inhalers, pens, and packaging recovered and tracked field-level</div>
+      <span class="measure-label ml-epr">EPR</span>
+    </div>
+    <div class="measure-card">
+      <span class="measure-icon">⚡</span>
+      <div class="measure-title">Patient Activation</div>
+      <div class="measure-desc">Engagement scores, streaks, and re-engagement signals</div>
+      <span class="measure-label ml-psp">PSP</span>
+    </div>
+    <div class="measure-card">
+      <span class="measure-icon">🌍</span>
+      <div class="measure-title">ESG & EPR Impact</div>
+      <div class="measure-desc">Scope 3 mapping, CSRD-ready reports, verified waste reduction</div>
+      <span class="measure-label ml-epr">ESG</span>
+    </div>
+  </div>
+</section>
+
+<!-- WHY IT WORKS -->
+<section id="why">
+  <div class="section-eyebrow">Why It Works</div>
+  <h2 class="section-title">Simple. Repeatable. <em>Scalable.</em></h2>
+  <p class="section-sub">No sensors. No heavy training. Just proof from the field — powered by the same gamification engine that drove 22,000+ verified actions across Southeast Asia.</p>
+  <div class="why-layout">
+    <div class="why-principles">
+      <div class="why-principle">
+        <div class="why-icon">🎮</div>
+        <div>
+          <h4>Gamification builds habits</h4>
+          <p>Points, streaks, and the Lucky Spin turn daily routines into something patients want to repeat.</p>
+        </div>
+      </div>
+      <div class="why-principle">
+        <div class="why-icon">📸</div>
+        <div>
+          <h4>Photo-proof is the verification layer</h4>
+          <p>Every action requires a photo. Timeframe rules and duplicate controls run automatically.</p>
+        </div>
+      </div>
+      <div class="why-principle">
+        <div class="why-icon">🤝</div>
+        <div>
+          <h4>Independent — avoids greenwashing risk</h4>
+          <p>Audit-ready outputs built for regulators, ESG auditors, and payers.</p>
+        </div>
+      </div>
+      <div class="why-principle">
+        <div class="why-icon">⚙️</div>
+        <div>
+          <h4>Plug-and-play across conditions and markets</h4>
+          <p>Asthma, diabetes, any prescribed device. Works through existing pharmacy networks.</p>
+        </div>
+      </div>
+    </div>
+    <div class="who-card">
+      <div class="who-title">Who it's for</div>
+      <div class="who-item">
+        <div class="who-bullet"></div>
+        <div class="who-item-text"><h5>Pharma & Biotech PSP Teams</h5></div>
+      </div>
+      <div class="who-item">
+        <div class="who-bullet"></div>
+        <div class="who-item-text"><h5>Patient Support Programmes</h5></div>
+      </div>
+      <div class="who-item">
+        <div class="who-bullet"></div>
+        <div class="who-item-text"><h5>NGOs & Foundations</h5></div>
+      </div>
+      <div class="who-item">
+        <div class="who-bullet"></div>
+        <div class="who-item-text"><h5>Pharmacy Networks</h5></div>
+      </div>
+      <div class="who-item">
+        <div class="who-bullet"></div>
+        <div class="who-item-text"><h5>Public Health Programmes</h5></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOR PHARMA -->
+<section id="forpharma" style="background:var(--bg2); border-top:1px solid var(--border);">
+  <div class="section-eyebrow">What This Means for Your Organisation</div>
+  <h2 class="section-title">Built for the conversations<br>that <em>matter most</em></h2>
+  <p class="section-sub">PSP budgets. Market access. ESG obligations. Play4Health fits inside frameworks you already have.</p>
+  <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; margin-top:56px;">
+
+    <div style="background:white; border:1px solid var(--border-dark); border-radius:var(--radius); padding:28px;">
+      <div style="display:flex; align-items:center; gap:12px; margin-bottom:16px;">
+        <div style="width:36px; height:36px; background:var(--blue-pale); border-radius:9px; display:flex; align-items:center; justify-content:center; font-size:0.95rem; flex-shrink:0;">🏛️</div>
+        <h3 style="font-family:var(--sans); font-size:0.95rem; font-weight:600; color:var(--ink);">Market Access & MoH</h3>
+      </div>
+      <p style="font-size:0.85rem; color:var(--ink-light); line-height:1.7;">Real-world adherence data that strengthens payer submissions and MoH conversations — verified, structured, field-level.</p>
+    </div>
+
+    <div style="background:white; border:1px solid var(--border-dark); border-radius:var(--radius); padding:28px;">
+      <div style="display:flex; align-items:center; gap:12px; margin-bottom:16px;">
+        <div style="width:36px; height:36px; background:var(--teal-pale); border-radius:9px; display:flex; align-items:center; justify-content:center; font-size:0.95rem; flex-shrink:0;">📋</div>
+        <h3 style="font-family:var(--sans); font-size:0.95rem; font-weight:600; color:var(--ink);">PSP Budget Justification</h3>
+      </div>
+      <p style="font-size:0.85rem; color:var(--ink-light); line-height:1.7;">Verified adherence rates, 90-day persistence, and caregiver engagement — all export-ready. Pay only for verified actions.</p>
+    </div>
+
+    <div style="background:white; border:1px solid var(--border-dark); border-radius:var(--radius); padding:28px;">
+      <div style="display:flex; align-items:center; gap:12px; margin-bottom:16px;">
+        <div style="width:36px; height:36px; background:var(--green-pale); border-radius:9px; display:flex; align-items:center; justify-content:center; font-size:0.95rem; flex-shrink:0;">🌍</div>
+        <h3 style="font-family:var(--sans); font-size:0.95rem; font-weight:600; color:var(--ink);">ESG & Device Stewardship</h3>
+      </div>
+      <p style="font-size:0.85rem; color:var(--ink-light); line-height:1.7;">Photo-verified inhaler and pen returns. CSRD, EPR, and Scope 3 ready — independent, audit-proof, no new infrastructure.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- TRACTION -->
+<section id="traction">
+  <div class="section-eyebrow">Traction & Validation</div>
+  <h2 class="section-title">Real data. Real markets.<br><em>Real proof.</em></h2>
+  <div class="traction-layout">
+    <div class="traction-nums">
+      <div class="traction-card">
+        <div class="traction-num">22K+</div>
+        <div class="traction-desc">Verified actions across Southeast Asia</div>
+      </div>
+      <div class="traction-card">
+        <div class="traction-num">+0.46</div>
+        <div class="traction-desc">Adherence improvement SMD — Khan et al., 2021</div>
+      </div>
+      <div class="traction-card">
+        <div class="traction-num">TRL 7</div>
+        <div class="traction-desc">Proven in operational field environment</div>
+      </div>
+      <div class="traction-card">
+        <div class="traction-num">0</div>
+        <div class="traction-desc">New hardware or headcount required</div>
+      </div>
+    </div>
+    <div>
+      <div style="font-size:0.72rem; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:var(--ink-light); margin-bottom:12px;">External Validation</div>
+      <div class="proof-item">
+        <span class="proof-icon">🌍</span>
+        <div>
+          <h4>African Impact Challenge — Cohort 6 (2026)</h4>
+        </div>
+      </div>
+      <div class="proof-item">
+        <span class="proof-icon">⭐</span>
+        <div>
+          <h4>L'Oréal Big Bang — SAPMENA Finalist</h4>
+        </div>
+      </div>
+      <div class="proof-item">
+        <span class="proof-icon">🏅</span>
+        <div>
+          <h4>ERIA HITS4KIDS — Finalist</h4>
+        </div>
+      </div>
+      <div class="proof-item">
+        <span class="proof-icon">🌱</span>
+        <div>
+          <h4>MDX Nature Positive Accelerator</h4>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SNAPSHOT CTA -->
+<section id="snapshot">
+  <div class="section-eyebrow">Health Impact Snapshot</div>
+  <h2 class="section-title">See what your programme<br>could <em>actually</em> measure</h2>
+  <p class="section-sub">No commitment. We model what's achievable in your geography, condition area, and distribution network — in days, not weeks.</p>
+  <div class="snapshot-layout" style="margin-top:64px;">
+    <div>
+      <p style="font-size:1rem; line-height:1.75; color:var(--ink-light); margin-bottom:32px;">Your Health Impact Snapshot shows you where adherence breaks in your target population, how many devices could be recovered through your existing pharmacy or distributor network, and what can be verified today — in the field, without new infrastructure.</p>
+      <div style="display:flex; flex-direction:column; gap:16px; margin-bottom:40px;">
+        <div style="display:flex; gap:16px; align-items:flex-start;">
+          <div style="width:36px; height:36px; border-radius:10px; background:var(--blue-pale); display:flex; align-items:center; justify-content:center; font-size:1rem; flex-shrink:0;">📍</div>
+          <div><strong style="display:block; font-size:0.9rem; font-weight:600; color:var(--ink); margin-bottom:3px;">Where adherence breaks</strong><span style="font-size:0.83rem; color:var(--ink-light);">Identify the drop-off points in your specific disease area and market</span></div>
+        </div>
+        <div style="display:flex; gap:16px; align-items:flex-start;">
+          <div style="width:36px; height:36px; border-radius:10px; background:var(--teal-pale); display:flex; align-items:center; justify-content:center; font-size:1rem; flex-shrink:0;">♻️</div>
+          <div><strong style="display:block; font-size:0.9rem; font-weight:600; color:var(--ink); margin-bottom:3px;">Devices that could be recovered</strong><span style="font-size:0.83rem; color:var(--ink-light);">Estimated return volumes from your existing pharmacy or distributor network</span></div>
+        </div>
+        <div style="display:flex; gap:16px; align-items:flex-start;">
+          <div style="width:36px; height:36px; border-radius:10px; background:var(--green-pale); display:flex; align-items:center; justify-content:center; font-size:1rem; flex-shrink:0;">✅</div>
+          <div><strong style="display:block; font-size:0.9rem; font-weight:600; color:var(--ink); margin-bottom:3px;">What can be verified today</strong><span style="font-size:0.83rem; color:var(--ink-light);">Actionable pilot scope with clear metrics, timelines, and cost model</span></div>
+        </div>
+      </div>
+      <a href="/cdn-cgi/l/email-protection#4f3f232e366129203d612a2e3d3b2761262129200f28222e2623612c2022703c3a2d252a2c3b72072a2e233b276f06223f2e2c3b6f1c212e3f3c27203b6f1d2a3e3a2a3c3b" class="btn-primary btn-large" style="display:inline-block;">Request Your Health Impact Snapshot →</a>
+    </div>
+    <div class="snapshot-visual">
+      <div class="snapshot-header">
+        <h3>Sample Impact Snapshot</h3>
+        <p>Asthma programme · 30 pharmacies · 3 cities</p>
+      </div>
+      <div class="snapshot-row">
+        <span class="snapshot-row-label">Est. verified adherence rate</span>
+        <div style="display:flex; align-items:center; gap:12px;">
+          <div class="snapshot-bar"><div class="snapshot-bar-fill" style="width:72%"></div></div>
+          <span class="snapshot-row-value">72%</span>
+        </div>
+      </div>
+      <div class="snapshot-row">
+        <span class="snapshot-row-label">Devices recoverable / month</span>
+        <span class="snapshot-row-value snapshot-row-teal">~1,400</span>
+      </div>
+      <div class="snapshot-row">
+        <span class="snapshot-row-label">EPR evidence actions</span>
+        <div style="display:flex; align-items:center; gap:12px;">
+          <div class="snapshot-bar"><div class="snapshot-bar-fill" style="width:58%; background:linear-gradient(90deg, var(--teal), #10b981)"></div></div>
+          <span class="snapshot-row-value snapshot-row-teal">10K</span>
+        </div>
+      </div>
+      <div class="snapshot-row">
+        <span class="snapshot-row-label">Patient activation rate</span>
+        <div style="display:flex; align-items:center; gap:12px;">
+          <div class="snapshot-bar"><div class="snapshot-bar-fill" style="width:84%"></div></div>
+          <span class="snapshot-row-value">84%</span>
+        </div>
+      </div>
+      <div class="snapshot-row">
+        <span class="snapshot-row-label">Pilot setup</span>
+        <span style="font-size:0.83rem; color:var(--ink-light);">USD 5–10K one-time</span>
+      </div>
+      <div class="snapshot-row" style="border-bottom:none;">
+        <span class="snapshot-row-label">Pay-per-impact cap</span>
+        <span style="font-size:0.83rem; color:var(--ink-light);">USD 25–40K / pilot</span>
+      </div>
+      <div class="snapshot-insight">
+        💡 These numbers are modelled for your specific programme and market — not generic estimates.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section id="pricing" style="background:var(--bg3); border-top:1px solid var(--border);">
+  <div class="section-eyebrow">Pricing</div>
+  <h2 class="section-title">Scale with <em>confidence</em></h2>
+  <p class="section-sub">All tiers include the full behavioral platform — verified adherence, device returns, gamification, and dashboard. You pay for what gets verified.</p>
+
+  <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:20px; margin-top:56px; align-items:start;">
+
+    <!-- Starter -->
+    <div style="background:var(--bg); border:1px solid var(--border-dark); border-radius:var(--radius); padding:36px 30px;">
+      <div style="font-size:0.7rem; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:var(--ink-light); margin-bottom:12px;">Care Proof Starter</div>
+      <div style="font-size:1.6rem; font-weight:700; color:var(--ink); line-height:1.1; margin-bottom:4px;">From €50,000<span style="font-size:0.85rem; font-weight:400; color:var(--ink-light);"> / year</span></div>
+      <div style="font-size:0.8rem; color:var(--ink-light); margin-bottom:24px;">+ €10,000 one-time setup</div>
+      <div style="font-size:0.78rem; font-weight:600; color:var(--teal); background:var(--teal-pale); display:inline-block; padding:4px 12px; border-radius:20px; margin-bottom:24px;">Pilot & early programmes</div>
+      <div style="height:1px; background:var(--border-dark); margin-bottom:24px;"></div>
+      <div style="display:flex; flex-direction:column; gap:12px;">
+        <div style="display:flex; gap:10px; font-size:0.85rem; color:var(--ink-mid);"><span style="color:var(--blue); flex-shrink:0; font-weight:600;">✓</span> 1 brand · 1 country</div>
+        <div style="display:flex; gap:10px; font-size:0.85rem; color:var(--ink-mid);"><span style="color:var(--blue); flex-shrink:0; font-weight:600;">✓</span> Verified adherence + device returns</div>
+        <div style="display:flex; gap:10px; font-size:0.85rem; color:var(--ink-mid);"><span style="color:var(--blue); flex-shrink:0; font-weight:600;">✓</span> Health & ESG dashboard</div>
+        <div style="display:flex; gap:10px; font-size:0.85rem; color:var(--ink-mid);"><span style="color:var(--blue); flex-shrink:0; font-weight:600;">✓</span> Data export</div>
+        <div style="display:flex; gap:10px; font-size:0.85rem; color:var(--ink-mid);"><span style="color:var(--blue); flex-shrink:0; font-weight:600;">✓</span> Capped spend</div>
+      </div>
+      <a href="#contact" style="display:block; margin-top:28px; text-align:center; border:1.5px solid var(--blue); color:var(--blue); padding:11px 20px; border-radius:24px; font-size:0.88rem; font-weight:600; text-decoration:none; transition:all 0.2s;" onmouseover="this.style.background='var(--blue)';this.style.color='white'" onmouseout="this.style.background='transparent';this.style.color='var(--blue)'">Start a pilot →</a>
+    </div>
+
+    <!-- Growth -->
+    <div style="background:var(--ink); border:1px solid transparent; border-radius:var(--radius); padding:36px 30px; position:relative; overflow:hidden; box-shadow:0 8px 40px rgba(37,99,235,0.2);">
+      <div style="position:absolute; top:-30px; right:-30px; width:160px; height:160px; border-radius:50%; background:radial-gradient(circle, rgba(37,99,235,0.25) 0%, transparent 70%);"></div>
+      <div style="position:absolute; top:16px; right:16px; font-size:0.68rem; font-weight:700; letter-spacing:0.08em; background:var(--blue); color:white; padding:4px 10px; border-radius:20px;">Most popular</div>
+      <div style="font-size:0.7rem; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:rgba(255,255,255,0.4); margin-bottom:12px;">Care Proof Growth</div>
+      <div style="font-size:1.6rem; font-weight:700; color:white; line-height:1.1; margin-bottom:4px;">From €120,000<span style="font-size:0.85rem; font-weight:400; color:rgba(255,255,255,0.5);"> / year</span></div>
+      <div style="font-size:0.8rem; color:rgba(255,255,255,0.45); margin-bottom:24px;">+ €15,000 one-time setup</div>
+      <div style="font-size:0.78rem; font-weight:600; color:#93c5fd; background:rgba(37,99,235,0.2); display:inline-block; padding:4px 12px; border-radius:20px; margin-bottom:24px;">National patient programmes</div>
+      <div style="height:1px; background:rgba(255,255,255,0.08); margin-bottom:24px;"></div>
+      <div style="display:flex; flex-direction:column; gap:12px;">
+        <div style="display:flex; gap:10px; font-size:0.85rem; color:rgba(255,255,255,0.75);"><span style="color:#93c5fd; flex-shrink:0; font-weight:600;">✓</span> Everything in Starter</div>
+        <div style="display:flex; gap:10px; font-size:0.85rem; color:rgba(255,255,255,0.75);"><span style="color:#93c5fd; flex-shrink:0; font-weight:600;">✓</span> Higher action volumes</div>
+        <div style="display:flex; gap:10px; font-size:0.85rem; color:rgba(255,255,255,0.75);"><span style="color:#93c5fd; flex-shrink:0; font-weight:600;">✓</span> Pharmacy or caregiver networks</div>
+        <div style="display:flex; gap:10px; font-size:0.85rem; color:rgba(255,255,255,0.75);"><span style="color:#93c5fd; flex-shrink:0; font-weight:600;">✓</span> Monthly summary reports</div>
+        <div style="display:flex; gap:10px; font-size:0.85rem; color:rgba(255,255,255,0.75);"><span style="color:#93c5fd; flex-shrink:0; font-weight:600;">✓</span> Priority support</div>
+      </div>
+      <a href="#contact" style="display:block; margin-top:28px; text-align:center; background:var(--blue); color:white; padding:11px 20px; border-radius:24px; font-size:0.88rem; font-weight:600; text-decoration:none;">Talk to us →</a>
+    </div>
+
+    <!-- Enterprise -->
+    <div style="background:var(--bg); border:1px solid var(--border-dark); border-radius:var(--radius); padding:36px 30px;">
+      <div style="font-size:0.7rem; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:var(--ink-light); margin-bottom:12px;">Care Proof Enterprise</div>
+      <div style="font-size:1.6rem; font-weight:700; color:var(--ink); line-height:1.1; margin-bottom:4px;">From €250,000<span style="font-size:0.85rem; font-weight:400; color:var(--ink-light);"> / year</span></div>
+      <div style="font-size:0.8rem; color:var(--ink-light); margin-bottom:24px;">Custom setup & integration</div>
+      <div style="font-size:0.78rem; font-weight:600; color:#7c3aed; background:#ede9fe; display:inline-block; padding:4px 12px; border-radius:20px; margin-bottom:24px;">Multi-market programmes</div>
+      <div style="height:1px; background:var(--border-dark); margin-bottom:24px;"></div>
+      <div style="display:flex; flex-direction:column; gap:12px;">
+        <div style="display:flex; gap:10px; font-size:0.85rem; color:var(--ink-mid);"><span style="color:var(--blue); flex-shrink:0; font-weight:600;">✓</span> Everything in Growth</div>
+        <div style="display:flex; gap:10px; font-size:0.85rem; color:var(--ink-mid);"><span style="color:var(--blue); flex-shrink:0; font-weight:600;">✓</span> Multi-country deployment</div>
+        <div style="display:flex; gap:10px; font-size:0.85rem; color:var(--ink-mid);"><span style="color:var(--blue); flex-shrink:0; font-weight:600;">✓</span> Audit-ready RWE methodology</div>
+        <div style="display:flex; gap:10px; font-size:0.85rem; color:var(--ink-mid);"><span style="color:var(--blue); flex-shrink:0; font-weight:600;">✓</span> Dedicated support</div>
+      </div>
+      <a href="#contact" style="display:block; margin-top:28px; text-align:center; border:1.5px solid var(--blue); color:var(--blue); padding:11px 20px; border-radius:24px; font-size:0.88rem; font-weight:600; text-decoration:none; transition:all 0.2s;" onmouseover="this.style.background='var(--blue)';this.style.color='white'" onmouseout="this.style.background='transparent';this.style.color='var(--blue)'">Get in touch →</a>
+    </div>
+
+  </div>
+
+  <p style="text-align:center; font-size:0.8rem; color:var(--ink-light); margin-top:32px;">All plans include the full behavioral engine. Pricing scales with verified action volume, not headcount.</p>
+
+  <!-- What's included -->
+  <div style="margin-top:56px; display:grid; grid-template-columns:1fr 1fr; gap:20px;">
+
+    <div style="background:var(--bg2); border:1px solid var(--border-dark); border-radius:var(--radius); padding:32px;">
+      <div style="font-size:0.7rem; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:var(--ink-light); margin-bottom:6px;">All plans</div>
+      <h3 style="font-size:1rem; font-weight:700; color:var(--ink); margin-bottom:20px;">What's included</h3>
+      <div style="display:flex; flex-direction:column; gap:10px;">
+        <div style="font-size:0.85rem; color:var(--ink-mid); display:flex; gap:10px;"><span style="color:var(--green); flex-shrink:0;">✓</span> Verified adherence + device return tracking</div>
+        <div style="font-size:0.85rem; color:var(--ink-mid); display:flex; gap:10px;"><span style="color:var(--green); flex-shrink:0;">✓</span> Photo confirmation — timestamped & audit-ready</div>
+        <div style="font-size:0.85rem; color:var(--ink-mid); display:flex; gap:10px;"><span style="color:var(--green); flex-shrink:0;">✓</span> Gamification for patients and caregivers</div>
+        <div style="font-size:0.85rem; color:var(--ink-mid); display:flex; gap:10px;"><span style="color:var(--green); flex-shrink:0;">✓</span> Dashboard + data export for health, ESG & EPR teams</div>
+      </div>
+      <p style="font-size:0.78rem; color:var(--ink-light); margin-top:20px; padding-top:16px; border-top:1px solid var(--border-dark);">Same core system for everyone. Only scale, volume, and support change.</p>
+    </div>
+
+    <div style="background:var(--bg2); border:1px solid var(--border-dark); border-radius:var(--radius); padding:32px;">
+      <div style="font-size:0.7rem; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:var(--ink-light); margin-bottom:6px;">All plans</div>
+      <h3 style="font-size:1rem; font-weight:700; color:var(--ink); margin-bottom:20px;">What's not included</h3>
+      <div style="display:flex; flex-direction:column; gap:10px;">
+        <div style="font-size:0.85rem; color:var(--ink-light); display:flex; gap:10px;"><span style="color:var(--coral); flex-shrink:0;">✕</span> Clinical decision or treatment tools</div>
+        <div style="font-size:0.85rem; color:var(--ink-light); display:flex; gap:10px;"><span style="color:var(--coral); flex-shrink:0;">✕</span> Medical advice or diagnosis</div>
+        <div style="font-size:0.85rem; color:var(--ink-light); display:flex; gap:10px;"><span style="color:var(--coral); flex-shrink:0;">✕</span> Self-reporting without verification</div>
+        <div style="font-size:0.85rem; color:var(--ink-light); display:flex; gap:10px;"><span style="color:var(--coral); flex-shrink:0;">✕</span> Hardware or sensors</div>
+        <div style="font-size:0.85rem; color:var(--ink-light); display:flex; gap:10px;"><span style="color:var(--coral); flex-shrink:0;">✕</span> Consulting-heavy programmes</div>
+      </div>
+      <p style="font-size:0.78rem; color:var(--ink-light); margin-top:20px; padding-top:16px; border-top:1px solid var(--border-dark);">Play4Health focuses on verified execution — not medical judgment or theory.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- 3 PILLARS -->
+<section id="pillars" style="background:var(--bg3); border-top:1px solid var(--border);">
+  <div class="section-eyebrow">Why It Matters</div>
+  <h2 class="section-title">Three pillars. <em>One system.</em></h2>
+  <p class="section-sub">Play4Health turns everyday care routines into verified actions that improve treatment adherence and safely return medical devices.</p>
+
+  <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:20px; margin-top:56px;">
+
+    <!-- Pillar 1 -->
+    <div style="background:var(--bg2); border:1px solid var(--border-dark); border-radius:var(--radius); padding:36px 30px; position:relative; overflow:hidden;">
+      <div style="width:44px; height:44px; background:var(--blue-pale); border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:1.3rem; margin-bottom:20px;">💊</div>
+      <div style="font-size:0.7rem; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:var(--blue); margin-bottom:8px;">Pillar 1</div>
+      <h3 style="font-size:1.05rem; font-weight:700; color:var(--ink); margin-bottom:12px;">Better Patient Outcomes</h3>
+      <p style="font-size:0.85rem; color:var(--ink-light); line-height:1.75; margin-bottom:20px;">Better adherence reduces hospital visits and complications. Play4Health makes healthy habits simple and engaging — for patients, children, and caregivers.</p>
+      <div style="display:flex; flex-direction:column; gap:8px;">
+        <div style="font-size:0.82rem; color:var(--ink-mid); display:flex; gap:8px;"><span style="color:var(--blue); flex-shrink:0;">→</span> Daily photo confirmation of doses</div>
+        <div style="font-size:0.82rem; color:var(--ink-mid); display:flex; gap:8px;"><span style="color:var(--blue); flex-shrink:0;">→</span> Caregiver visibility in the same account</div>
+        <div style="font-size:0.82rem; color:var(--ink-mid); display:flex; gap:8px;"><span style="color:var(--blue); flex-shrink:0;">→</span> Gamified motivation — streaks, rewards, Lucky Spin</div>
+      </div>
+    </div>
+
+    <!-- Pillar 2 -->
+    <div style="background:var(--bg2); border:1px solid var(--border-dark); border-radius:var(--radius); padding:36px 30px; position:relative; overflow:hidden;">
+      <div style="width:44px; height:44px; background:var(--teal-pale); border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:1.3rem; margin-bottom:20px;">♻️</div>
+      <div style="font-size:0.7rem; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:var(--teal); margin-bottom:8px;">Pillar 2</div>
+      <h3 style="font-size:1.05rem; font-weight:700; color:var(--ink); margin-bottom:12px;">Healthcare Without Waste</h3>
+      <p style="font-size:0.85rem; color:var(--ink-light); line-height:1.75; margin-bottom:20px;">Inhalers and insulin pens often end up in landfills. Play4Health creates a simple return loop — patients return devices, returns are verified, devices enter safe recycling streams.</p>
+      <div style="display:flex; flex-direction:column; gap:8px;">
+        <div style="font-size:0.82rem; color:var(--ink-mid); display:flex; gap:8px;"><span style="color:var(--teal); flex-shrink:0;">→</span> Verified device return at the pharmacy</div>
+        <div style="font-size:0.82rem; color:var(--ink-mid); display:flex; gap:8px;"><span style="color:var(--teal); flex-shrink:0;">→</span> Cleaner communities, safer disposal</div>
+        <div style="font-size:0.82rem; color:var(--ink-mid); display:flex; gap:8px;"><span style="color:var(--teal); flex-shrink:0;">→</span> Measurable EPR and ESG impact</div>
+      </div>
+    </div>
+
+    <!-- Pillar 3 -->
+    <div style="background:var(--bg2); border:1px solid var(--border-dark); border-radius:var(--radius); padding:36px 30px; position:relative; overflow:hidden;">
+      <div style="width:44px; height:44px; background:var(--green-pale); border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:1.3rem; margin-bottom:20px;">📊</div>
+      <div style="font-size:0.7rem; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:var(--green); margin-bottom:8px;">Pillar 3</div>
+      <h3 style="font-size:1.05rem; font-weight:700; color:var(--ink); margin-bottom:12px;">Verified Impact for Health Systems</h3>
+      <p style="font-size:0.85rem; color:var(--ink-light); line-height:1.75; margin-bottom:20px;">Most health programmes struggle to prove real-world impact. Every Play4Health action generates photo proof, timestamp, and location — turning claims into evidence.</p>
+      <div style="display:flex; flex-direction:column; gap:8px;">
+        <div style="font-size:0.82rem; color:var(--ink-mid); display:flex; gap:8px;"><span style="color:var(--green); flex-shrink:0;">→</span> For pharma: measurable PSP results</div>
+        <div style="font-size:0.82rem; color:var(--ink-mid); display:flex; gap:8px;"><span style="color:var(--green); flex-shrink:0;">→</span> For governments & NGOs: real-world health data</div>
+        <div style="font-size:0.82rem; color:var(--ink-mid); display:flex; gap:8px;"><span style="color:var(--green); flex-shrink:0;">→</span> For ESG reporting: verified environmental impact</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="contact" style="background: linear-gradient(135deg, #0e1b2e 0%, #1a2f52 100%); text-align:center;">
+  <div style="display:inline-flex; align-items:center; gap:8px; background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.12); border-radius:24px; padding:6px 16px; font-size:0.7rem; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:rgba(255,255,255,0.5); margin-bottom:36px;">Work with us</div>
+  <h2 style="font-size:clamp(2rem, 4vw, 3.2rem); font-weight:700; color:white; line-height:1.2; margin-bottom:24px; max-width:640px; margin-left:auto; margin-right:auto;">Your patients are taking their meds.<br><span style="color:#93c5fd;">Can you prove it?</span></h2>
+  <p style="font-size:1rem; color:rgba(255,255,255,0.55); line-height:1.8; max-width:480px; margin:0 auto 40px;">Let's run a pilot. Activate existing pharmacy networks, verify every dose and return, and generate the first real-world adherence dataset your programme has ever had.</p>
+  <div class="cta-buttons">
+    <a href="mailto:clement@playforearth.org" class="btn-primary btn-large">Request a Pilot</a>
+    <a href="https://www.linkedin.com/company/playforearth" target="_blank" class="btn-outline" style="color:white; border-color:rgba(255,255,255,0.3);">Connect on LinkedIn</a>
+  </div>
+  <div class="trust-badges" style="margin-top:40px;">
+    <span class="trust-badge" style="background:rgba(255,255,255,0.06); border-color:rgba(255,255,255,0.12); color:rgba(255,255,255,0.5);"><span class="trust-badge-dot"></span>Asthma · Diabetes · Chronic care</span>
+    <span class="trust-badge" style="background:rgba(255,255,255,0.06); border-color:rgba(255,255,255,0.12); color:rgba(255,255,255,0.5);"><span class="trust-badge-dot"></span>No hardware required</span>
+    <span class="trust-badge" style="background:rgba(255,255,255,0.06); border-color:rgba(255,255,255,0.12); color:rgba(255,255,255,0.5);"><span class="trust-badge-dot"></span>Southeast Asia · Africa · Global-ready</span>
+  </div>
+</section>
+
+<!-- NORTH STAR -->
+<section id="northstar" style="background:var(--ink); border-top:1px solid rgba(255,255,255,0.06); text-align:center;">
+  <div style="display:inline-flex; align-items:center; gap:8px; background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.12); border-radius:24px; padding:6px 16px; font-size:0.7rem; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:rgba(255,255,255,0.5); margin-bottom:32px;">Our North Star</div>
+  <h2 style="font-size:clamp(1.8rem, 3.5vw, 2.8rem); font-weight:700; color:white; line-height:1.25; margin-bottom:24px; max-width:640px; margin-left:auto; margin-right:auto;">Healthcare without waste.<br><span style="color:#93c5fd;">Better outcomes for patients.<br>Better outcomes for the planet.</span></h2>
+  <p style="font-size:1rem; color:rgba(255,255,255,0.55); line-height:1.8; max-width:520px; margin:0 auto 40px;">Play4Health turns everyday care routines into verified actions that improve treatment adherence and safely return medical devices.</p>
+  <div style="display:inline-flex; align-items:center; gap:10px; background:rgba(37,99,235,0.2); border:1px solid rgba(37,99,235,0.3); border-radius:32px; padding:10px 24px; font-size:0.78rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:#93c5fd;">⭐ Small actions. Real health impact. Less waste.</div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div>
+      <a href="/" class="footer-logo">
+        <img src="logo.png" alt="Play4Health" style="width:28px; height:28px; object-fit:contain; filter:brightness(0) invert(1);">
+        Play4<span>Health</span>
+      </a>
+      <p class="footer-tagline">Adherence you can verify. Returns you can track. One action. One photo. One proof — for pharma PSP teams, ESG functions, and market access.</p>
+      <div class="footer-social">
+        <a href="https://www.linkedin.com/company/playforearth" target="_blank" class="social-btn">in</a>
+        <a href="/cdn-cgi/l/email-protection#cabaa6abb3e4aca5b8e4afabb8bea2e4a3a4aca58aada7aba3a6e4a9a5a7" class="social-btn">✉</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h5>Platform</h5>
+      <ul>
+        <li><a href="#what">What We Do</a></li>
+        <li><a href="#how">How It Works</a></li>
+        <li><a href="#measurable">What's Measurable</a></li>
+        <li><a href="#snapshot">Impact Snapshot</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Conditions</h5>
+      <ul>
+        <li><a href="#what">Asthma</a></li>
+        <li><a href="#what">Diabetes</a></li>
+        <li><a href="#what">Chronic Care</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Company</h5>
+      <ul>
+        <li><a href="#traction">Traction</a></li>
+        <li><a href="https://www.playforearth.org">Play for Earth</a></li>
+        <li><a href="/cdn-cgi/l/email-protection#26564a475f0840495408434754524e084f48404966414b474f4a0845494b">Contact</a></li>
+        <li><a href="/terms">Terms</a></li>
+        <li><a href="/privacy">Privacy</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span class="footer-copy">© 2025 Play4Health / Play for Earth. All rights reserved.</span>
+    <div class="footer-legal"><a href="/terms">Terms</a><a href="/privacy">Privacy</a></div>
+  </div>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+// Nav scroll
+window.addEventListener('scroll', () => {
+  document.getElementById('mainNav').style.background =
+    window.scrollY > 60 ? 'rgba(247,248,252,0.98)' : 'rgba(247,248,252,0.94)';
+});
+
+// Hamburger
+const hamburger = document.getElementById('hamburger');
+const mobileMenu = document.getElementById('mobileMenu');
+hamburger.addEventListener('click', () => {
+  const open = hamburger.classList.toggle('open');
+  mobileMenu.classList.toggle('open', open);
+  document.body.style.overflow = open ? 'hidden' : '';
+});
+mobileMenu.querySelectorAll('a').forEach(link => {
+  link.addEventListener('click', () => {
+    hamburger.classList.remove('open');
+    mobileMenu.classList.remove('open');
+    document.body.style.overflow = 
