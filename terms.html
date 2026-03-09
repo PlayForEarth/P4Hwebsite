@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Terms of Use — Play4Health</title>
+<meta name="description" content="Terms of Use for Play4Health — the verified adherence and device return platform for pharma and patient support programmes.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://www.play4health.org/terms">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #f7f8fc;
+  --bg2: #eef3fb;
+  --ink: #0e1b2e;
+  --ink-mid: #2d4263;
+  --ink-light: #5a7099;
+  --blue: #2563eb;
+  --blue-dark: #1d4ed8;
+  --blue-pale: #dbeafe;
+  --blue-faint: #eff6ff;
+  --teal: #0d9488;
+  --teal-pale: #ccfbf1;
+  --border: rgba(37,99,235,0.1);
+  --border-dark: rgba(14,27,46,0.08);
+  --sans: 'DM Sans', sans-serif;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: var(--sans); background: var(--bg); color: var(--ink); overflow-x: hidden; }
+
+.page-bg {
+  position: fixed; inset: 0; z-index: -2;
+  background:
+    radial-gradient(ellipse 70% 60% at 80% 20%, rgba(37,99,235,0.08) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 50% at 10% 80%, rgba(13,148,136,0.07) 0%, transparent 50%),
+    var(--bg);
+}
+.page-grid {
+  position: fixed; inset: 0; z-index: -1; pointer-events: none;
+  background-image: linear-gradient(rgba(37,99,235,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(37,99,235,0.04) 1px, transparent 1px);
+  background-size: 56px 56px;
+}
+
+/* ─── NAV ─── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 500;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 14px 5%;
+  background: rgba(247,248,252,0.94);
+  backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+  transition: background 0.3s;
+}
+.nav-logo {
+  font-family: var(--sans); font-size: 1.2rem; font-weight: 400;
+  color: var(--ink); text-decoration: none;
+  display: flex; align-items: center; gap: 10px;
+}
+.nav-logo img { width: 32px; height: 32px; object-fit: contain; }
+.nav-logo span { color: var(--blue); }
+.nav-links { display: flex; list-style: none; gap: 32px; align-items: center; }
+.nav-links a {
+  font-size: 0.875rem; font-weight: 500; color: var(--ink-light);
+  text-decoration: none; transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--blue); }
+.nav-cta {
+  background: var(--blue) !important; color: white !important;
+  padding: 9px 20px; border-radius: 24px; font-weight: 600 !important;
+  transition: background 0.2s !important;
+}
+.nav-cta:hover { background: var(--blue-dark) !important; }
+@media (max-width: 900px) { .nav-links { display: none; } }
+
+/* ─── CONTENT ─── */
+.page-wrapper { padding-top: 88px; }
+
+.page-hero {
+  padding: 72px 5% 48px; max-width: 760px;
+}
+.page-eyebrow {
+  display: inline-flex; align-items: center;
+  font-size: 0.72rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--blue); background: var(--blue-faint); padding: 5px 14px;
+  border-radius: 24px; border: 1px solid rgba(37,99,235,0.2); margin-bottom: 24px;
+}
+.page-hero h1 {
+  font-family: var(--sans); font-size: clamp(2rem, 3.5vw, 3rem);
+  font-weight: 400; line-height: 1.1; letter-spacing: -0.025em; margin-bottom: 12px;
+  color: var(--ink);
+}
+.page-hero .meta { font-size: 0.85rem; color: var(--ink-light); }
+
+.legal-content { max-width: 760px; padding: 0 5% 100px; }
+
+.legal-section { margin-bottom: 40px; }
+.legal-section h2 {
+  font-family: var(--sans); font-size: 1.1rem; font-weight: 600;
+  color: var(--ink); margin-bottom: 12px; padding-bottom: 10px;
+  border-bottom: 1px solid var(--border);
+}
+.legal-section p, .legal-section li {
+  font-size: 0.9rem; color: var(--ink-light); line-height: 1.8; margin-bottom: 10px;
+}
+.legal-section ul { padding-left: 20px; }
+.legal-section a { color: var(--blue); text-decoration: none; }
+.legal-section a:hover { text-decoration: underline; }
+
+/* ─── FOOTER ─── */
+footer {
+  background: #0a1628; border-top: 1px solid rgba(255,255,255,0.06);
+  padding: 48px 5% 32px;
+}
+.footer-inner {
+  display: flex; justify-content: space-between; align-items: flex-start;
+  flex-wrap: wrap; gap: 32px; margin-bottom: 32px;
+}
+.footer-brand a {
+  font-family: var(--sans); font-size: 1.1rem; font-weight: 400;
+  color: white; text-decoration: none; display: block; margin-bottom: 8px;
+}
+.footer-brand a span { color: #93c5fd; }
+.footer-brand p { font-size: 0.82rem; color: rgba(255,255,255,0.4); max-width: 240px; line-height: 1.6; }
+.footer-links { display: flex; gap: 40px; flex-wrap: wrap; }
+.footer-col h5 {
+  font-size: 0.68rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase;
+  color: rgba(255,255,255,0.3); margin-bottom: 16px;
+}
+.footer-col ul { list-style: none; }
+.footer-col li { margin-bottom: 10px; }
+.footer-col a { font-size: 0.86rem; color: rgba(255,255,255,0.5); text-decoration: none; transition: color 0.2s; }
+.footer-col a:hover { color: #93c5fd; }
+.footer-bottom {
+  border-top: 1px solid rgba(255,255,255,0.07); padding-top: 24px;
+  display: flex; justify-content: space-between; align-items: center;
+  flex-wrap: wrap; gap: 12px;
+}
+.footer-copy { font-size: 0.78rem; color: rgba(255,255,255,0.25); }
+.footer-legal { display: flex; gap: 20px; }
+.footer-legal a { font-size: 0.75rem; color: rgba(255,255,255,0.25); text-decoration: none; transition: color 0.2s; }
+.footer-legal a:hover { color: rgba(255,255,255,0.5); }
+
+@media (max-width: 600px) {
+  .page-hero { padding: 56px 5% 32px; }
+  .legal-content { padding: 0 5% 64px; }
+  .footer-inner { flex-direction: column; gap: 24px; }
+  .footer-bottom { flex-direction: column; align-items: flex-start; }
+}
+</style>
+</head>
+<body>
+<div class="page-bg"></div>
+<div class="page-grid"></div>
+
+<nav id="mainNav">
+  <a href="/" class="nav-logo">
+    <img src="/logo.png" alt="Play4Health" onerror="this.style.display='none'">
+    Play4<span>Health</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="/#how">How It Works</a></li>
+    <li><a href="/#hai">HAI Index</a></li>
+    <li><a href="/#snapshot">Impact Snapshot</a></li>
+    <li><a href="/#contact" class="nav-cta">Request a Pilot</a></li>
+  </ul>
+</nav>
+
+<div class="page-wrapper">
+  <div class="page-hero">
+    <div class="page-eyebrow">Legal</div>
+    <h1>Terms of Use</h1>
+    <p class="meta">Last updated: January 2025 · Governed by the laws of Kenya</p>
+  </div>
+
+  <div class="legal-content">
+
+    <div class="legal-section">
+      <h2>1. Acceptance of Terms</h2>
+      <p>By accessing or using the Play4Health platform, website, or any associated services (collectively, "Services"), you agree to be bound by these Terms of Use. If you do not agree, do not use the Services.</p>
+    </div>
+
+    <div class="legal-section">
+      <h2>2. Eligibility</h2>
+      <p>You must be at least 18 years old and have the authority to enter into a binding agreement on behalf of yourself or the organisation you represent. Access by minors may be permitted solely where Play4Health is used as part of a paediatric patient support programme operated by an authorised healthcare or pharmaceutical organisation. In such cases, the organisation assumes full responsibility for appropriate oversight and data handling on behalf of the minor.</p>
+    </div>
+
+    <div class="legal-section">
+      <h2>3. Description of Services</h2>
+      <p>Play4Health provides a behavioral field execution platform that enables pharmaceutical companies, patient support programme operators, pharmacy networks, and caregivers to capture, verify, and analyse adherence actions and medical device returns. Services include photo-based dose confirmation, gamified engagement mechanics, device return tracking, and export-ready compliance dashboards for PSP, ESG, and EPR reporting.</p>
+      <p>Play4Health is a compliance and engagement platform. It does not provide medical advice, clinical decision support, or treatment recommendations. Nothing within the Services constitutes a substitute for professional medical guidance.</p>
+    </div>
+
+    <div class="legal-section">
+      <h2>4. Acceptable Use</h2>
+      <p>You agree not to:</p>
+      <ul>
+        <li>Submit false, fabricated, or misleading adherence data, including staged photographs or manipulated timestamps</li>
+        <li>Use the Services to make clinical treatment decisions or provide medical advice to patients</li>
+        <li>Attempt to reverse-engineer, copy, or redistribute any part of the platform or its underlying methodology</li>
+        <li>Use the Services for any unlawful purpose or in violation of applicable healthcare, data protection, or EPR regulations</li>
+        <li>Interfere with or disrupt the integrity or performance of the Services</li>
+        <li>Share access credentials with unauthorised third parties</li>
+        <li>Use verified data outputs in marketing materials without clearly noting their source and methodology</li>
+      </ul>
+    </div>
+
+    <div class="legal-section">
+      <h2>5. Data Integrity and Verification</h2>
+      <p>The accuracy and integrity of adherence data and device return records submitted through the platform is the responsibility of the submitting organisation and its enrolled patients, caregivers, or field agents. Play4Health provides technical verification mechanisms — including photo timestamping, duplicate controls, and timeframe rules — but does not independently audit all submitted records.</p>
+      <p>Organisations are responsible for ensuring that patients and caregivers are properly onboarded and submit accurate, truthful records. Verified data outputs should not be presented as independently audited without appropriate qualification.</p>
+    </div>
+
+    <div class="legal-section">
+      <h2>6. Healthcare Compliance</h2>
+      <p>Organisations deploying Play4Health as part of a patient support programme are solely responsible for ensuring compliance with applicable healthcare regulations, including but not limited to national medicines advertising codes, patient data protection laws, and EPR or device stewardship obligations in their operating markets. Play4Health provides tools and data infrastructure — regulatory compliance obligations rest with the deploying organisation.</p>
+    </div>
+
+    <div class="legal-section">
+      <h2>7. Intellectual Property</h2>
+      <p>All platform technology, software, algorithms, HAI methodology, design systems, and content are the proprietary property of Play4Health / Play for Earth. Nothing in these Terms grants you any ownership rights in the platform or its underlying methods. Patient and programme data submitted by client organisations remains the property of the submitting organisation, subject to Play4Health's right to use aggregated, anonymised data for platform improvement, benchmarking, and research purposes.</p>
+    </div>
+
+    <div class="legal-section">
+      <h2>8. Limitation of Liability</h2>
+      <p>To the maximum extent permitted by applicable law, Play4Health shall not be liable for any indirect, incidental, consequential, or punitive damages arising from your use of the Services, including any clinical outcomes associated with patient adherence or non-adherence. Our total liability for any claim shall not exceed the fees paid by you in the 12 months preceding the claim.</p>
+    </div>
+
+    <div class="legal-section">
+      <h2>9. Termination</h2>
+      <p>Either party may terminate access to the Services with 30 days written notice. Play4Health reserves the right to suspend or terminate access immediately in cases of material breach, including submission of fraudulent adherence data or use of the platform in a manner that endangers patient safety or violates applicable law.</p>
+    </div>
+
+    <div class="legal-section">
+      <h2>10. Governing Law</h2>
+      <p>These Terms are governed by the laws of Kenya. Any disputes shall be subject to the exclusive jurisdiction of the courts of Nairobi, Kenya.</p>
+    </div>
+
+    <div class="legal-section">
+      <h2>11. Changes to These Terms</h2>
+      <p>We may update these Terms from time to time. Continued use of the Services after changes constitutes acceptance of the revised Terms. Material changes will be communicated via email or platform notification.</p>
+    </div>
+
+    <div class="legal-section">
+      <h2>12. Contact</h2>
+      <p>For questions about these Terms, contact us at <a href="mailto:hello@play4health.org">hello@play4health.org</a> or visit <a href="https://www.playforearth.org">playforearth.org</a>.</p>
+    </div>
+
+  </div>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <a href="/">Play4<span>Health</span></a>
+        <p>Adherence you can verify. Returns you can track.</p>
+      </div>
+      <div class="footer-links">
+        <div class="footer-col">
+          <h5>Platform</h5>
+          <ul>
+            <li><a href="/#how">How It Works</a></li>
+            <li><a href="/#pricing">Pricing</a></li>
+            <li><a href="/#snapshot">Impact Snapshot</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h5>Company</h5>
+          <ul>
+            <li><a href="mailto:hello@play4health.org">Contact</a></li>
+            <li><a href="https://www.playforearth.org">Play for Earth</a></li>
+            <li><a href="/terms">Terms</a></li>
+            <li><a href="/privacy">Privacy</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span class="footer-copy">© 2025 Play4Health / Play for Earth. All rights reserved.</span>
+      <div class="footer-legal">
+        <a href="/terms">Terms</a>
+        <a href="/privacy">Privacy</a>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<script>
+window.addEventListener('scroll', () => {
+  document.getElementById('mainNav').style.background =
+    window.scrollY > 60 ? 'rgba(247,248,252,0.98)' : 'rgba(247,248,252,0.94)';
+});
+</script>
+</body>
+</html>

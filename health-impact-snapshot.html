@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free Health Impact Snapshot — Play4Health</title>
+<meta name="description" content="Get a free Health Impact Snapshot from Play4Health — see exactly what verified adherence data and device return volumes you could capture from your existing pharmacy or distributor network.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://www.play4health.org/health-impact-snapshot">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #f7f8fc;
+  --bg2: #eef3fb;
+  --ink: #0e1b2e;
+  --ink-mid: #2d4263;
+  --ink-light: #5a7099;
+  --blue: #2563eb;
+  --blue-dark: #1d4ed8;
+  --blue-pale: #dbeafe;
+  --blue-faint: #eff6ff;
+  --teal: #0d9488;
+  --teal-pale: #ccfbf1;
+  --green: #16a34a;
+  --green-pale: #dcfce7;
+  --amber: #d97706;
+  --amber-pale: #fef3c7;
+  --border: rgba(37,99,235,0.1);
+  --border-dark: rgba(14,27,46,0.08);
+  --sans: 'DM Sans', sans-serif;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: var(--sans); background: var(--bg); color: var(--ink); overflow-x: hidden; }
+
+.page-bg {
+  position: fixed; inset: 0; z-index: -2;
+  background:
+    radial-gradient(ellipse 70% 60% at 80% 20%, rgba(37,99,235,0.08) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 50% at 10% 80%, rgba(13,148,136,0.07) 0%, transparent 50%),
+    var(--bg);
+}
+.page-grid {
+  position: fixed; inset: 0; z-index: -1; pointer-events: none;
+  background-image: linear-gradient(rgba(37,99,235,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(37,99,235,0.04) 1px, transparent 1px);
+  background-size: 56px 56px;
+}
+
+/* ─── NAV ─── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 500;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 14px 5%;
+  background: rgba(247,248,252,0.94);
+  backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+  transition: background 0.3s;
+}
+.nav-logo {
+  font-family: var(--sans); font-size: 1.2rem; font-weight: 400;
+  color: var(--ink); text-decoration: none;
+  display: flex; align-items: center; gap: 10px;
+}
+.nav-logo img { width: 32px; height: 32px; object-fit: contain; }
+.nav-logo span { color: var(--blue); }
+.nav-links { display: flex; list-style: none; gap: 32px; align-items: center; }
+.nav-links a {
+  font-size: 0.875rem; font-weight: 500; color: var(--ink-light);
+  text-decoration: none; transition: color 0.2s;
+}
+.nav-links a:hover, .nav-links a.active { color: var(--blue); }
+.nav-cta {
+  background: var(--blue) !important; color: white !important;
+  padding: 9px 20px; border-radius: 24px; font-weight: 600 !important;
+  transition: background 0.2s !important;
+}
+.nav-cta:hover { background: var(--blue-dark) !important; }
+@media (max-width: 900px) { .nav-links { display: none; } }
+
+/* ─── PAGE ─── */
+.page-wrapper { padding-top: 88px; }
+
+.page-hero { padding: 72px 5% 56px; max-width: 960px; }
+.page-eyebrow {
+  display: inline-flex; align-items: center;
+  font-size: 0.72rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--blue); background: var(--blue-faint); padding: 5px 14px;
+  border-radius: 24px; border: 1px solid rgba(37,99,235,0.2); margin-bottom: 24px;
+}
+.page-hero h1 {
+  font-family: var(--sans); font-size: clamp(2.4rem, 4vw, 3.6rem);
+  font-weight: 400; line-height: 1.08; letter-spacing: -0.03em; margin-bottom: 16px;
+}
+.page-hero h1 em { color: var(--blue); font-style: normal; }
+.page-hero p { font-size: 1.05rem; color: var(--ink-light); line-height: 1.7; max-width: 580px; }
+
+/* ─── PROOF STRIP ─── */
+.proof-strip {
+  max-width: 960px; padding: 0 5% 56px;
+  display: flex; gap: 16px; flex-wrap: wrap;
+}
+.proof-chip {
+  background: white; border: 1px solid var(--border-dark); border-radius: 12px;
+  padding: 14px 20px; display: flex; align-items: center; gap: 12px;
+  box-shadow: 0 2px 8px rgba(14,27,46,0.05);
+}
+.chip-num {
+  font-family: var(--sans); font-size: 1.5rem; font-weight: 400;
+  color: var(--blue); line-height: 1;
+}
+.chip-label { font-size: 0.78rem; color: var(--ink-light); line-height: 1.4; }
+
+/* ─── SNAPSHOT LAYOUT ─── */
+.snapshot-layout {
+  max-width: 960px; padding: 0 5% 80px;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: start;
+}
+@media (max-width: 700px) {
+  .snapshot-layout { grid-template-columns: 1fr; gap: 40px; }
+}
+
+/* Steps */
+.steps-list { display: flex; flex-direction: column; }
+.steps-eyebrow {
+  font-size: 0.7rem; font-weight: 600; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--blue); margin-bottom: 16px;
+}
+.step-row {
+  display: flex; gap: 20px; padding: 24px 0;
+  border-bottom: 1px solid var(--border-dark);
+}
+.step-row:last-child { border-bottom: none; }
+.step-circle {
+  width: 38px; height: 38px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--blue), var(--teal));
+  color: white; font-size: 0.85rem; font-weight: 700;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0; margin-top: 2px;
+}
+.step-body h3 { font-size: 0.95rem; font-weight: 600; color: var(--ink); margin-bottom: 5px; }
+.step-body p { font-size: 0.85rem; color: var(--ink-light); line-height: 1.65; }
+
+/* For whom */
+.for-whom h3 {
+  font-family: var(--sans); font-size: 1.1rem; font-weight: 400;
+  margin-bottom: 20px; color: var(--ink); letter-spacing: -0.01em;
+}
+.for-item {
+  display: flex; gap: 14px; align-items: flex-start;
+  padding: 16px 0; border-bottom: 1px solid var(--border-dark);
+}
+.for-item:last-child { border-bottom: none; }
+.for-icon { font-size: 1.2rem; flex-shrink: 0; margin-top: 2px; }
+.for-item strong { display: block; font-size: 0.88rem; font-weight: 600; color: var(--ink); margin-bottom: 3px; }
+.for-item span { font-size: 0.82rem; color: var(--ink-light); line-height: 1.55; }
+
+/* ─── FORM SECTION ─── */
+.form-section { max-width: 960px; padding: 0 5% 80px; }
+.form-card {
+  background: white; border: 1px solid var(--border-dark); border-radius: 20px;
+  padding: 48px 44px; box-shadow: 0 4px 24px rgba(14,27,46,0.07);
+  position: relative; overflow: hidden;
+}
+.form-card::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 5px;
+  background: linear-gradient(90deg, var(--blue), var(--teal));
+}
+.form-card h2 {
+  font-family: var(--sans); font-size: 1.6rem; font-weight: 400;
+  letter-spacing: -0.02em; margin-bottom: 8px; color: var(--ink);
+}
+.form-sub { font-size: 0.9rem; color: var(--ink-light); margin-bottom: 32px; line-height: 1.6; }
+.form-embed { width: 100%; min-height: 600px; border: none; }
+
+/* ─── FOOTER ─── */
+footer {
+  background: #0a1628; border-top: 1px solid rgba(255,255,255,0.06);
+  padding: 48px 5% 32px;
+}
+.footer-inner {
+  display: flex; justify-content: space-between; align-items: flex-start;
+  flex-wrap: wrap; gap: 32px; margin-bottom: 32px;
+}
+.footer-brand a {
+  font-family: var(--sans); font-size: 1.1rem; font-weight: 400;
+  color: white; text-decoration: none; display: block; margin-bottom: 8px;
+}
+.footer-brand a span { color: #93c5fd; }
+.footer-brand p { font-size: 0.82rem; color: rgba(255,255,255,0.4); max-width: 240px; line-height: 1.6; }
+.footer-links { display: flex; gap: 40px; flex-wrap: wrap; }
+.footer-col h5 {
+  font-size: 0.68rem; font-weight: 600; letter-spacing: 0.12em;
+  text-transform: uppercase; color: rgba(255,255,255,0.3); margin-bottom: 16px;
+}
+.footer-col ul { list-style: none; }
+.footer-col li { margin-bottom: 10px; }
+.footer-col a { font-size: 0.86rem; color: rgba(255,255,255,0.5); text-decoration: none; transition: color 0.2s; }
+.footer-col a:hover { color: #93c5fd; }
+.footer-bottom {
+  border-top: 1px solid rgba(255,255,255,0.07); padding-top: 24px;
+  display: flex; justify-content: space-between; align-items: center;
+  flex-wrap: wrap; gap: 12px;
+}
+.footer-copy { font-size: 0.78rem; color: rgba(255,255,255,0.25); }
+.footer-legal { display: flex; gap: 20px; }
+.footer-legal a { font-size: 0.75rem; color: rgba(255,255,255,0.25); text-decoration: none; transition: color 0.2s; }
+.footer-legal a:hover { color: rgba(255,255,255,0.5); }
+
+@media (max-width: 600px) {
+  .page-hero { padding: 56px 5% 36px; }
+  .form-card { padding: 32px 24px; }
+  .footer-inner { flex-direction: column; gap: 24px; }
+  .footer-bottom { flex-direction: column; align-items: flex-start; }
+}
+</style>
+</head>
+<body>
+<div class="page-bg"></div>
+<div class="page-grid"></div>
+
+<nav id="mainNav">
+  <a href="/" class="nav-logo">
+    <img src="/logo.png" alt="Play4Health" onerror="this.style.display='none'">
+    Play4<span>Health</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="/#how">How It Works</a></li>
+    <li><a href="/#hai">HAI Index</a></li>
+    <li><a href="/health-impact-snapshot" class="active">Health Snapshot</a></li>
+    <li><a href="/contact" class="nav-cta">Request a Pilot</a></li>
+  </ul>
+</nav>
+
+<div class="page-wrapper">
+
+  <div class="page-hero">
+    <div class="page-eyebrow">Free · No commitment · Delivered in 1 week</div>
+    <h1>Know exactly what <em>verified adherence proof</em> you can generate</h1>
+    <p>We map your existing pharmacy or distributor network against a patient adherence use case and show you — with real numbers — what verified data you could capture, how fast, and what it means for PSP ROI and EPR compliance.</p>
+  </div>
+
+  <div class="proof-strip">
+    <div class="proof-chip">
+      <span class="chip-num">22K+</span>
+      <span class="chip-label">Verified actions<br>in Southeast Asia</span>
+    </div>
+    <div class="proof-chip">
+      <span class="chip-num">TRL 7</span>
+      <span class="chip-label">Operational<br>prototype proven</span>
+    </div>
+    <div class="proof-chip">
+      <span class="chip-num">2–4wk</span>
+      <span class="chip-label">Average time to<br>first verified actions</span>
+    </div>
+    <div class="proof-chip">
+      <span class="chip-num">0</span>
+      <span class="chip-label">New hardware or<br>headcount required</span>
+    </div>
+  </div>
+
+  <div class="snapshot-layout">
+    <div class="steps-list">
+      <div class="steps-eyebrow">What happens after you apply</div>
+      <div class="step-row">
+        <div class="step-circle">1</div>
+        <div class="step-body">
+          <h3>We review your programme context</h3>
+          <p>We read your submission and identify the most relevant use case — adherence verification, device return tracking, caregiver engagement, or a combined model.</p>
+        </div>
+      </div>
+      <div class="step-row">
+        <div class="step-circle">2</div>
+        <div class="step-body">
+          <h3>We scope the opportunity</h3>
+          <p>We estimate the verified action volume your network could generate, the HAI baseline you'd start from, and what a 90-day pilot would look like in practice.</p>
+        </div>
+      </div>
+      <div class="step-row">
+        <div class="step-circle">3</div>
+        <div class="step-body">
+          <h3>We deliver a one-page snapshot</h3>
+          <p>Within one week you receive a concise assessment: use case, data estimate, pilot outline, and cost model. No pitch deck, no commitment required.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="for-whom">
+      <h3>Who this is for</h3>
+      <div class="for-item">
+        <span class="for-icon">💊</span>
+        <div>
+          <strong>Pharma & Biotech PSP Teams</strong>
+          <span>Needing verified adherence data to justify programme spend, satisfy medical affairs, or support market access submissions</span>
+        </div>
+      </div>
+      <div class="for-item">
+        <span class="for-icon">🏥</span>
+        <div>
+          <strong>Patient Support Programmes</strong>
+          <span>Running existing programmes with self-reported data and wanting to move to photo-verified field evidence</span>
+        </div>
+      </div>
+      <div class="for-item">
+        <span class="for-icon">♻️</span>
+        <div>
+          <strong>ESG & Device Stewardship Teams</strong>
+          <span>Responsible for inhaler, pen, or medical device returns and needing field-level EPR and Scope 3 evidence</span>
+        </div>
+      </div>
+      <div class="for-item">
+        <span class="for-icon">🌱</span>
+        <div>
+          <strong>NGOs & Global Health Programmes</strong>
+          <span>Running adherence or chronic disease programmes that need verified behavioral data for donors, governments, or impact investors</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-section">
+    <div class="form-card">
+      <h2>Request your free Health Impact Snapshot</h2>
+      <p class="form-sub">Takes 3 minutes. We'll be in touch within 2 business days to confirm receipt and timeline.</p>
+      <iframe
+        class="form-embed"
+        src="https://docs.google.com/forms/d/e/1FAIpQLSeNuDIgv3AJNCxPj8gy32y_A8NpZWNZebQ81_VCTat_Kagtvg/viewform?embedded=true"
+        frameborder="0"
+        marginheight="0"
+        marginwidth="0"
+        title="Health Impact Snapshot Request Form">
+        Loading form…
+      </iframe>
+      <p style="font-size:0.8rem; color:var(--ink-light); margin-top:16px; text-align:center;">
+        Or email us directly at <a href="mailto:hello@play4health.org" style="color:var(--blue); font-weight:600;">hello@play4health.org</a>
+      </p>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <a href="/">Play4<span>Health</span></a>
+        <p>Adherence you can verify. Returns you can track.</p>
+      </div>
+      <div class="footer-links">
+        <div class="footer-col">
+          <h5>Platform</h5>
+          <ul>
+            <li><a href="/#how">How It Works</a></li>
+            <li><a href="/#pricing">Pricing</a></li>
+            <li><a href="/health-impact-snapshot">Health Snapshot</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h5>Company</h5>
+          <ul>
+            <li><a href="/contact">Contact</a></li>
+            <li><a href="https://www.playforearth.org">Play for Earth</a></li>
+            <li><a href="/terms">Terms</a></li>
+            <li><a href="/privacy">Privacy</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span class="footer-copy">© 2025 Play4Health / Play for Earth. All rights reserved.</span>
+      <div class="footer-legal">
+        <a href="/terms">Terms</a>
+        <a href="/privacy">Privacy</a>
+      </div>
+    </div>
+  </footer>
+
+</div>
+
+<script>
+window.addEventListener('scroll', () => {
+  document.getElementById('mainNav').style.background =
+    window.scrollY > 60 ? 'rgba(247,248,252,0.98)' : 'rgba(247,248,252,0.94)';
+});
+</script>
+</body>
+</html>
