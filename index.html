@@ -36,7 +36,6 @@
   --white: #ffffff;
   --border: rgba(37,99,235,0.1);
   --border-dark: rgba(14,27,46,0.08);
-  --serif: 'Instrument Serif', Georgia, serif;
   --sans: 'DM Sans', sans-serif;
   --radius: 16px;
 }
@@ -126,7 +125,7 @@ section { padding: 120px 5%; }
   font-weight: 400; line-height: 1.12; letter-spacing: -0.02em;
   margin-bottom: 20px; color: var(--ink);
 }
-.section-title em {  color: var(--blue); }
+.section-title em { color: var(--blue); }
 .section-title strong { font-style: normal; color: var(--teal); font-weight: 400; }
 .section-sub { font-size: 1.05rem; color: var(--ink-light); line-height: 1.75; max-width: 560px; font-weight: 400; }
 
@@ -137,7 +136,7 @@ section { padding: 120px 5%; }
 
 /* ─── HERO ─── */
 .hero {
-  min-height: 100vh; display: flex; flex-direction: column;
+  min-height: 100svh; display: flex; flex-direction: column;
   justify-content: flex-end; padding: 0 5% 100px;
   position: relative; overflow: hidden; background: var(--bg);
 }
@@ -181,7 +180,7 @@ section { padding: 120px 5%; }
 
 .hero-tagline {
   font-family: var(--sans); font-size: clamp(1.1rem, 2vw, 1.4rem);
-   color: var(--ink-mid); font-weight: 400; line-height: 1.4;
+  color: var(--ink-mid); font-weight: 400; line-height: 1.4;
   margin-bottom: 28px; position: relative; z-index: 2; max-width: 520px;
   animation: fadeUp 0.8s ease 0.45s both;
 }
@@ -191,19 +190,6 @@ section { padding: 120px 5%; }
   position: relative; z-index: 2; margin-bottom: 32px; font-weight: 400;
   animation: fadeUp 0.8s ease 0.55s both;
 }
-
-.hero-pills {
-  display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 44px;
-  position: relative; z-index: 2; animation: fadeUp 0.8s ease 0.65s both;
-}
-.pill {
-  display: inline-flex; align-items: center; gap: 8px;
-  background: white; border: 1px solid var(--border-dark);
-  border-radius: 24px; padding: 8px 16px;
-  font-size: 0.83rem; font-weight: 500; color: var(--ink-mid);
-  box-shadow: 0 1px 6px rgba(14,27,46,0.05);
-}
-.pill-icon { font-size: 0.9rem; }
 
 .hero-actions {
   display: flex; gap: 16px; align-items: center;
@@ -409,11 +395,67 @@ section { padding: 120px 5%; }
   padding: 36px 32px; box-shadow: 0 2px 12px rgba(37,99,235,0.05);
 }
 .who-title { font-family: var(--sans); font-size: 1.2rem; color: var(--ink); margin-bottom: 24px; }
-.who-item { display: flex; gap: 14px; padding: 14px 0; border-bottom: 1px solid rgba(14,27,46,0.06); align-items: flex-start; }
+.who-item { display: flex; gap: 14px; padding: 16px 0; border-bottom: 1px solid rgba(14,27,46,0.06); align-items: flex-start; }
 .who-item:last-child { border-bottom: none; padding-bottom: 0; }
 .who-bullet { width: 8px; height: 8px; border-radius: 50%; background: var(--blue); flex-shrink: 0; margin-top: 6px; }
-.who-item-text h5 { font-size: 0.9rem; font-weight: 600; color: var(--ink); margin-bottom: 2px; }
-.who-item-text p { font-size: 0.81rem; color: var(--ink-light); line-height: 1.55; }
+.who-item-text h5 { font-size: 0.9rem; font-weight: 600; color: var(--ink); margin-bottom: 3px; }
+.who-item-text p { font-size: 0.8rem; color: var(--ink-light); line-height: 1.55; }
+
+/* ─── HAI SECTION ─── */
+#hai { background: var(--bg2); border-top: 1px solid var(--border); }
+#hai .hai-pill { display: inline-block; font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--blue); border: 1.5px solid rgba(37,99,235,0.3); border-radius: 999px; padding: 5px 14px; margin-bottom: 28px; background: var(--blue-faint); }
+#hai .hai-headline { font-family: var(--sans); font-size: clamp(2.2rem, 4.5vw, 3.4rem); line-height: 1.08; font-weight: 400; color: var(--ink); margin-bottom: 24px; letter-spacing: -0.025em; }
+#hai .hai-headline em { color: var(--blue); }
+#hai .hai-intro { font-size: 1.05rem; line-height: 1.7; color: var(--ink-light); max-width: 560px; margin-bottom: 56px; font-weight: 400; }
+#hai .hai-intro strong { font-weight: 600; color: var(--ink); }
+#hai .hai-body { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; }
+
+#hai .formula-card {
+  background: #0e1b2e;
+  border-radius: 12px;
+  padding: 36px;
+  color: #93c5fd;
+  font-family: monospace;
+  border: 1px solid rgba(37,99,235,0.25);
+}
+#hai .formula-main {
+  font-size: 17px;
+  font-weight: 600;
+  color: #dbeafe;
+  margin-bottom: 28px;
+  line-height: 1.6;
+}
+#hai .formula-vars { display: flex; flex-direction: column; gap: 12px; margin-bottom: 28px; }
+#hai .var-row {
+  display: grid;
+  grid-template-columns: 20px 1fr 40px;
+  gap: 12px;
+  font-size: 14px;
+  align-items: center;
+}
+#hai .var-letter { color: #dbeafe; font-weight: 600; font-size: 15px; }
+#hai .var-label { color: #93c5fd; font-size: 13px; }
+#hai .var-weight { color: #60a5fa; font-size: 12px; text-align: right; }
+#hai .formula-footer {
+  font-size: 12px;
+  color: #60a5fa;
+  line-height: 1.6;
+  border-top: 1px solid rgba(37,99,235,0.2);
+  padding-top: 20px;
+}
+
+#hai .hai-stages-label { font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--blue); margin-bottom: 20px; }
+#hai .hai-stages-list { display: flex; flex-direction: column; }
+#hai .hai-stage-row { display: grid; grid-template-columns: 44px 1fr auto; gap: 14px; align-items: center; padding: 16px 0; border-bottom: 1px solid rgba(37,99,235,0.1); }
+#hai .hai-stage-row:last-child { border-bottom: none; }
+#hai .stage-num { width: 36px; height: 36px; border-radius: 50%; background: var(--blue-pale); color: var(--blue); font-size: 13px; font-weight: 600; display: flex; align-items: center; justify-content: center; font-family: monospace; flex-shrink: 0; }
+#hai .stage-num.active { background: var(--blue); color: white; }
+#hai .stage-num.target { background: var(--ink); color: #93c5fd; }
+#hai .stage-name { font-size: 14px; font-weight: 600; color: var(--ink); margin-bottom: 2px; }
+#hai .stage-desc { font-size: 12px; color: var(--ink-light); }
+#hai .hai-badge { font-size: 10px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 10px; border-radius: 4px; white-space: nowrap; }
+#hai .hai-badge-proof { background: var(--amber-pale); color: var(--amber); border: 1px solid rgba(217,119,6,0.3); }
+#hai .hai-badge-roadmap { background: transparent; color: var(--blue); border: 1px solid rgba(37,99,235,0.3); }
 
 /* ─── TRACTION ─── */
 #traction { background: var(--bg2); border-top: 1px solid var(--border); }
@@ -513,68 +555,163 @@ footer {
 .footer-legal a { font-size: 0.75rem; color: rgba(255,255,255,0.25); text-decoration: none; transition: color 0.2s; }
 .footer-legal a:hover { color: rgba(255,255,255,0.5); }
 
-/* ─── RESPONSIVE ─── */
-@media (max-width: 1100px) {
-  .measurable-grid { grid-template-columns: repeat(3, 1fr); }
-  .footer-grid { grid-template-columns: 1fr 1fr; gap: 36px; }
-}
-@media (max-width: 900px) {
-  .nav-links { display: none; }
-  .nav-hamburger { display: flex; }
-  .mobile-menu { display: flex; }
-  nav { padding: 12px 5%; }
-  section { padding: 72px 5%; }
-  #contact { padding: 100px 5%; }
-  .hero { min-height: 100svh; padding: 92px 5% 72px; justify-content: center; }
-  .hero-card, .hero-stats, .hero-scroll { display: none; }
-  .hero-headline { font-size: clamp(2rem, 6.5vw, 2.8rem); max-width: 100%; }
-  .hero-tagline { font-size: 1.05rem; max-width: 100%; }
-  .hero-pills { gap: 8px; }
-  .pill { font-size: 0.78rem; padding: 7px 13px; }
-  .hero-actions { flex-direction: column; align-items: stretch; }
-  .btn-primary.btn-large { text-align: center; padding: 16px 24px; }
-  .what-grid { grid-template-columns: 1fr; gap: 14px; margin-top: 44px; }
-  .how-layout { grid-template-columns: 1fr; gap: 40px; margin-top: 44px; }
-  #forpharma > div:last-child { grid-template-columns: 1fr !important; }
-  #pricing > div:nth-of-type(1) { grid-template-columns: 1fr !important; }
-  .measurable-grid { grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 44px; }
-  .why-layout { grid-template-columns: 1fr; gap: 40px; margin-top: 44px; }
-  .traction-layout { grid-template-columns: 1fr; gap: 40px; margin-top: 44px; }
-  .traction-nums { grid-template-columns: 1fr 1fr; gap: 12px; }
-  .snapshot-layout { grid-template-columns: 1fr; gap: 40px; }
-  .cta-buttons { flex-direction: column; align-items: center; gap: 12px; }
-  .btn-outline, .btn-primary.btn-large { width: 100%; max-width: 320px; text-align: center; }
-  .footer-grid { grid-template-columns: 1fr 1fr; gap: 28px; margin-bottom: 40px; }
-  .footer-grid > div:first-child { grid-column: 1 / -1; }
-  .footer-bottom { flex-direction: column; align-items: flex-start; gap: 12px; }
-  .section-title { font-size: clamp(1.8rem, 5.5vw, 2.6rem); }
-  .logos-inner { gap: 20px; row-gap: 14px; }
-  .logos-label { width: 100%; text-align: center; }
-}
-/* ─── NAMED GRID CLASSES for inline sections ─── */
+/* ─── NAMED GRID CLASSES ─── */
 .inline-grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; margin-top: 56px; }
 .inline-grid-3-narrow { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; margin-top: 56px; }
 .inline-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 56px; }
 .pricing-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; margin-top: 56px; align-items: start; }
 
+/* ═══════════════════════════════════════
+   TABLET: 901–1100px
+   ═══════════════════════════════════════ */
+@media (max-width: 1100px) {
+  .measurable-grid { grid-template-columns: repeat(3, 1fr); }
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: 36px; }
+}
+
+/* ═══════════════════════════════════════
+   MOBILE: ≤ 900px
+   ═══════════════════════════════════════ */
 @media (max-width: 900px) {
+
+  /* ── Nav ── */
+  .nav-links { display: none; }
+  .nav-hamburger { display: flex; }
+  .mobile-menu { display: flex; }
+  nav { padding: 12px 5%; }
+
+  /* ── Sections ── */
+  section { padding: 72px 5%; }
+  #contact { padding: 100px 5%; }
+
+  /* ── Hero ── */
+  .hero {
+    min-height: 100svh;
+    padding: 92px 5% 56px;
+    justify-content: center;
+  }
+  .hero-card,
+  .hero-stats,
+  .hero-scroll { display: none; }
+
+  .hero-headline {
+    font-size: clamp(2.2rem, 7vw, 3rem);
+    max-width: 100%;
+    margin-bottom: 16px;
+  }
+  .hero-tagline {
+    font-size: 1.05rem;
+    max-width: 100%;
+    margin-bottom: 20px;
+  }
+  .hero-sub {
+    font-size: 0.95rem;
+    margin-bottom: 28px;
+    max-width: 100%;
+    line-height: 1.7;
+  }
+  .hero-actions {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+    width: 100%;
+  }
+  .btn-primary.btn-large {
+    text-align: center;
+    padding: 16px 24px;
+    font-size: 1rem;
+  }
+  .btn-ghost { justify-content: center; }
+
+  /* ── Logos ── */
+  .logos-inner { gap: 20px; row-gap: 14px; }
+  .logos-label { width: 100%; text-align: center; }
+
+  /* ── What grid ── */
+  .what-grid { grid-template-columns: 1fr; gap: 14px; margin-top: 44px; }
+
+  /* ── How it works ── */
+  .how-layout { grid-template-columns: 1fr; gap: 40px; margin-top: 44px; }
+  .j-tag { display: none; }
+
+  /* ── Measurable grid ── */
+  .measurable-grid { grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 44px; }
+
+  /* ── Why layout ── */
+  .why-layout { grid-template-columns: 1fr; gap: 40px; margin-top: 44px; }
+
+  /* ── HAI section ── */
+  #hai { padding: 72px 5%; }
+  #hai .hai-intro { font-size: 0.95rem; margin-bottom: 36px; }
+  #hai .hai-body { grid-template-columns: 1fr; gap: 28px; }
+  #hai .formula-card { padding: 28px 22px; }
+  #hai .formula-main { font-size: 15px; }
+  #hai .var-row { font-size: 13px; }
+  #hai .var-label { font-size: 12px; }
+  #hai .hai-stage-row { grid-template-columns: 40px 1fr; gap: 10px; }
+  #hai .hai-badge { display: none; }
+
+  /* ── Traction ── */
+  .traction-layout { grid-template-columns: 1fr; gap: 40px; margin-top: 44px; }
+  .traction-nums { grid-template-columns: 1fr 1fr; gap: 12px; }
+  .traction-card { padding: 20px 14px; }
+
+  /* ── Snapshot ── */
+  .snapshot-layout { grid-template-columns: 1fr; gap: 40px; }
+  .snapshot-visual { order: -1; }
+
+  /* ── For pharma section ── */
+  #forpharma > div:last-child { grid-template-columns: 1fr !important; }
+
+  /* ── Pricing ── */
+  .pricing-grid { grid-template-columns: 1fr; gap: 16px; }
+
+  /* ── Named grids ── */
   .inline-grid-3 { grid-template-columns: 1fr; gap: 14px; }
   .inline-grid-3-narrow { grid-template-columns: 1fr; gap: 14px; }
   .inline-grid-2 { grid-template-columns: 1fr; gap: 14px; }
-  .pricing-grid { grid-template-columns: 1fr; gap: 16px; }
+
+  /* ── CTA buttons ── */
+  .cta-buttons { flex-direction: column; align-items: center; gap: 12px; }
+  .btn-outline, .btn-primary.btn-large { width: 100%; max-width: 320px; text-align: center; }
+
+  /* ── Trust badges ── */
+  .trust-badges { flex-direction: column; align-items: center; }
+
+  /* ── Footer ── */
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: 28px; margin-bottom: 40px; }
+  .footer-grid > div:first-child { grid-column: 1 / -1; }
+  .footer-bottom { flex-direction: column; align-items: flex-start; gap: 12px; }
+
+  .section-title { font-size: clamp(1.8rem, 5.5vw, 2.6rem); }
 }
 
+/* ═══════════════════════════════════════
+   SMALL MOBILE: ≤ 480px
+   ═══════════════════════════════════════ */
 @media (max-width: 480px) {
   section { padding: 60px 5%; }
-  .hero-headline { font-size: clamp(1.8rem, 7.5vw, 2.3rem); }
-  .what-card { padding: 26px 20px; }
+  .hero-headline { font-size: clamp(1.9rem, 8vw, 2.4rem); }
+  .hero-sub { font-size: 0.9rem; }
+
   .measurable-grid { grid-template-columns: 1fr; gap: 10px; }
   .traction-nums { grid-template-columns: 1fr 1fr; gap: 10px; }
-  .traction-card { padding: 20px 14px; }
+  .traction-card { padding: 18px 12px; }
+  .traction-num { font-size: 1.8rem; }
+
   .footer-grid { grid-template-columns: 1fr; gap: 24px; }
-  .trust-badges { flex-direction: column; align-items: center; }
-  .inline-grid-3, .inline-grid-3-narrow, .pricing-grid { grid-template-columns: 1fr; gap: 12px; }
-  .inline-grid-2 { grid-template-columns: 1fr; gap: 12px; }
+
+  #hai .formula-card { padding: 20px 16px; }
+  #hai .formula-main { font-size: 13px; }
+  #hai .var-row { font-size: 12px; gap: 8px; }
+  #hai .var-label { font-size: 11px; }
+
+  .logos-inner { gap: 16px; }
+  .logo-item { font-size: 0.9rem; }
+  .logo-item sup { display: none; }
+
+  .what-card { padding: 24px 18px; }
+  .snapshot-visual { padding: 24px 18px; }
 }
 </style>
 </head>
@@ -588,7 +725,7 @@ footer {
   </a>
   <ul class="nav-links">
     <li><a href="#forpharma">For Pharma</a></li>
-    <li><a href="#pillars">Our Approach</a></li>
+    <li><a href="#hai">HAI Index</a></li>
     <li><a href="#traction">Traction</a></li>
     <li><a href="#pricing">Pricing</a></li>
     <li><a href="#snapshot" class="nav-cta">Get Impact Snapshot</a></li>
@@ -603,8 +740,9 @@ footer {
   <a href="#what" class="mobile-menu-link">What We Do <span class="arrow">→</span></a>
   <a href="#how" class="mobile-menu-link">How It Works <span class="arrow">→</span></a>
   <a href="#measurable" class="mobile-menu-link">What's Measurable <span class="arrow">→</span></a>
-  <a href="#why" class="mobile-menu-link">Why It Works <span class="arrow">→</span></a>
+  <a href="#hai" class="mobile-menu-link">HAI Index <span class="arrow">→</span></a>
   <a href="#traction" class="mobile-menu-link">Traction <span class="arrow">→</span></a>
+  <a href="#pricing" class="mobile-menu-link">Pricing <span class="arrow">→</span></a>
   <a href="#snapshot" class="mobile-menu-cta">Get Your Impact Snapshot →</a>
 </nav>
 
@@ -830,23 +968,38 @@ footer {
       <div class="who-title">Who it's for</div>
       <div class="who-item">
         <div class="who-bullet"></div>
-        <div class="who-item-text"><h5>Pharma & Biotech PSP Teams</h5></div>
+        <div class="who-item-text">
+          <h5>Pharma & Biotech PSP Teams</h5>
+          <p>Verify adherence, justify programme spend, and generate RWE-grade evidence.</p>
+        </div>
       </div>
       <div class="who-item">
         <div class="who-bullet"></div>
-        <div class="who-item-text"><h5>Patient Support Programmes</h5></div>
+        <div class="who-item-text">
+          <h5>Patient Support Programmes</h5>
+          <p>Move from self-reported to photo-verified patient engagement data.</p>
+        </div>
       </div>
       <div class="who-item">
         <div class="who-bullet"></div>
-        <div class="who-item-text"><h5>NGOs & Foundations</h5></div>
+        <div class="who-item-text">
+          <h5>NGOs & Foundations</h5>
+          <p>Proven impact at field level — for donors, health ministries, and impact investors.</p>
+        </div>
       </div>
       <div class="who-item">
         <div class="who-bullet"></div>
-        <div class="who-item-text"><h5>Pharmacy Networks</h5></div>
+        <div class="who-item-text">
+          <h5>Pharmacy Networks</h5>
+          <p>Activate pharmacists as verified adherence touchpoints without new systems.</p>
+        </div>
       </div>
       <div class="who-item">
         <div class="who-bullet"></div>
-        <div class="who-item-text"><h5>Public Health Programmes</h5></div>
+        <div class="who-item-text">
+          <h5>Public Health Programmes</h5>
+          <p>Scale adherence tracking across dispersed populations with no infrastructure.</p>
+        </div>
       </div>
     </div>
   </div>
@@ -883,6 +1036,56 @@ footer {
       <p style="font-size:0.85rem; color:var(--ink-light); line-height:1.7;">Photo-verified inhaler and pen returns. CSRD, EPR, and Scope 3 ready — independent, audit-proof, no new infrastructure.</p>
     </div>
 
+  </div>
+</section>
+
+<!-- HAI — HEALTH ADHERENCE INDEX -->
+<section id="hai">
+  <div class="hai-pill">The Measurement Standard</div>
+  <h2 class="hai-headline">Health Adherence<br><em>Index</em></h2>
+  <p class="hai-intro">Most PSP tools measure <strong>what patients say they do</strong>.<br>HAI measures <strong>what actually happens</strong> — and whether it persists when the programme steps back.</p>
+  <div class="hai-body">
+    <div class="formula-card">
+      <div class="formula-main">HAI = (F × 0.30) + (P × 0.25) + (C × 0.20)<br>+ (E × 0.15) + (R × 0.10)</div>
+      <div class="formula-vars">
+        <div class="var-row"><span class="var-letter">F</span><span class="var-label">How consistently doses are confirmed</span><span class="var-weight">30%</span></div>
+        <div class="var-row"><span class="var-letter">P</span><span class="var-label">90-day persistence without dropout</span><span class="var-weight">25%</span></div>
+        <div class="var-row"><span class="var-letter">C</span><span class="var-label">Technique correctness — photo-verified</span><span class="var-weight">20%</span></div>
+        <div class="var-row"><span class="var-letter">E</span><span class="var-label">Caregiver or family engagement signal</span><span class="var-weight">15%</span></div>
+        <div class="var-row"><span class="var-letter">R</span><span class="var-label">Device return rate at programme close</span><span class="var-weight">10%</span></div>
+      </div>
+      <div class="formula-footer">Photo-verified · PSP-ready · CSRD and EPR exportable</div>
+    </div>
+    <div>
+      <div class="hai-stages-label">Adherence Stages</div>
+      <div class="hai-stages-list">
+        <div class="hai-stage-row">
+          <div class="stage-num">0</div>
+          <div><div class="stage-name">Inactive</div><div class="stage-desc">No actions recorded — patient not engaged</div></div>
+          <div></div>
+        </div>
+        <div class="hai-stage-row">
+          <div class="stage-num">1</div>
+          <div><div class="stage-name">Enrolled</div><div class="stage-desc">Registered but not yet verified</div></div>
+          <div></div>
+        </div>
+        <div class="hai-stage-row">
+          <div class="stage-num active">2</div>
+          <div><div class="stage-name">Confirmed</div><div class="stage-desc">Recurring photo-verified dose confirmations</div></div>
+          <span class="hai-badge hai-badge-proof">Current proof</span>
+        </div>
+        <div class="hai-stage-row">
+          <div class="stage-num target">3</div>
+          <div><div class="stage-name">Persistent</div><div class="stage-desc">90-day streak without dropout or prompting</div></div>
+          <span class="hai-badge hai-badge-roadmap">Roadmap target</span>
+        </div>
+        <div class="hai-stage-row">
+          <div class="stage-num">4</div>
+          <div><div class="stage-name">Internalized</div><div class="stage-desc">Habit sustained after programme scaffolding removed</div></div>
+          <div></div>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -961,7 +1164,7 @@ footer {
           <div><strong style="display:block; font-size:0.9rem; font-weight:600; color:var(--ink); margin-bottom:3px;">What can be verified today</strong><span style="font-size:0.83rem; color:var(--ink-light);">Actionable pilot scope with clear metrics, timelines, and cost model</span></div>
         </div>
       </div>
-      <a href="/cdn-cgi/l/email-protection#4f3f232e366129203d612a2e3d3b2761262129200f28222e2623612c2022703c3a2d252a2c3b72072a2e233b276f06223f2e2c3b6f1c212e3f3c27203b6f1d2a3e3a2a3c3b" class="btn-primary btn-large" style="display:inline-block;">Request Your Health Impact Snapshot →</a>
+      <a href="mailto:hello@play4health.org" class="btn-primary btn-large" style="display:inline-block;">Request Your Health Impact Snapshot →</a>
     </div>
     <div class="snapshot-visual">
       <div class="snapshot-header">
@@ -1072,9 +1275,8 @@ footer {
 
   <p style="text-align:center; font-size:0.8rem; color:var(--ink-light); margin-top:32px;">All plans include the full behavioral engine. Pricing scales with verified action volume, not headcount.</p>
 
-  <!-- What's included -->
+  <!-- What's included / excluded -->
   <div class="inline-grid-2" style="margin-top:56px;">
-
     <div style="background:var(--bg2); border:1px solid var(--border-dark); border-radius:var(--radius); padding:32px;">
       <div style="font-size:0.7rem; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:var(--ink-light); margin-bottom:6px;">All plans</div>
       <h3 style="font-size:1rem; font-weight:700; color:var(--ink); margin-bottom:20px;">What's included</h3>
@@ -1086,7 +1288,6 @@ footer {
       </div>
       <p style="font-size:0.78rem; color:var(--ink-light); margin-top:20px; padding-top:16px; border-top:1px solid var(--border-dark);">Same core system for everyone. Only scale, volume, and support change.</p>
     </div>
-
     <div style="background:var(--bg2); border:1px solid var(--border-dark); border-radius:var(--radius); padding:32px;">
       <div style="font-size:0.7rem; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:var(--ink-light); margin-bottom:6px;">All plans</div>
       <h3 style="font-size:1rem; font-weight:700; color:var(--ink); margin-bottom:20px;">What's not included</h3>
@@ -1099,7 +1300,6 @@ footer {
       </div>
       <p style="font-size:0.78rem; color:var(--ink-light); margin-top:20px; padding-top:16px; border-top:1px solid var(--border-dark);">Play4Health focuses on verified execution — not medical judgment or theory.</p>
     </div>
-
   </div>
 </section>
 
@@ -1111,7 +1311,6 @@ footer {
 
   <div class="inline-grid-3" style="margin-top:56px;">
 
-    <!-- Pillar 1 -->
     <div style="background:var(--bg2); border:1px solid var(--border-dark); border-radius:var(--radius); padding:36px 30px; position:relative; overflow:hidden;">
       <div style="width:44px; height:44px; background:var(--blue-pale); border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:1.3rem; margin-bottom:20px;">💊</div>
       <div style="font-size:0.7rem; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:var(--blue); margin-bottom:8px;">Pillar 1</div>
@@ -1124,7 +1323,6 @@ footer {
       </div>
     </div>
 
-    <!-- Pillar 2 -->
     <div style="background:var(--bg2); border:1px solid var(--border-dark); border-radius:var(--radius); padding:36px 30px; position:relative; overflow:hidden;">
       <div style="width:44px; height:44px; background:var(--teal-pale); border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:1.3rem; margin-bottom:20px;">♻️</div>
       <div style="font-size:0.7rem; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:var(--teal); margin-bottom:8px;">Pillar 2</div>
@@ -1137,7 +1335,6 @@ footer {
       </div>
     </div>
 
-    <!-- Pillar 3 -->
     <div style="background:var(--bg2); border:1px solid var(--border-dark); border-radius:var(--radius); padding:36px 30px; position:relative; overflow:hidden;">
       <div style="width:44px; height:44px; background:var(--green-pale); border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:1.3rem; margin-bottom:20px;">📊</div>
       <div style="font-size:0.7rem; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:var(--green); margin-bottom:8px;">Pillar 3</div>
@@ -1153,13 +1350,13 @@ footer {
   </div>
 </section>
 
-<!-- CTA -->
-<section id="contact" style="background: linear-gradient(135deg, #0e1b2e 0%, #1a2f52 100%); text-align:center;">
+<!-- CTA / CONTACT -->
+<section id="contact" style="background:linear-gradient(135deg, #0e1b2e 0%, #1a2f52 100%); text-align:center;">
   <div style="display:inline-flex; align-items:center; gap:8px; background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.12); border-radius:24px; padding:6px 16px; font-size:0.7rem; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:rgba(255,255,255,0.5); margin-bottom:36px;">Work with us</div>
   <h2 style="font-size:clamp(2rem, 4vw, 3.2rem); font-weight:700; color:white; line-height:1.2; margin-bottom:24px; max-width:640px; margin-left:auto; margin-right:auto;">Your patients are taking their meds.<br><span style="color:#93c5fd;">Can you prove it?</span></h2>
   <p style="font-size:1rem; color:rgba(255,255,255,0.55); line-height:1.8; max-width:480px; margin:0 auto 40px;">Let's run a pilot. Activate existing pharmacy networks, verify every dose and return, and generate the first real-world adherence dataset your programme has ever had.</p>
   <div class="cta-buttons">
-    <a href="/cdn-cgi/l/email-protection#66050a030b03081226160a071f000914030714120e48091401" class="btn-primary btn-large">Request a Pilot</a>
+    <a href="mailto:hello@play4health.org" class="btn-primary btn-large">Request a Pilot</a>
     <a href="https://www.linkedin.com/company/playforearth" target="_blank" class="btn-outline" style="color:white; border-color:rgba(255,255,255,0.3);">Connect on LinkedIn</a>
   </div>
   <div class="trust-badges" style="margin-top:40px;">
@@ -1170,7 +1367,7 @@ footer {
 </section>
 
 <!-- NORTH STAR -->
-<section id="northstar" style="background:var(--ink); border-top:1px solid rgba(255,255,255,0.06); text-align:center;">
+<section id="northstar" style="background:var(--ink); border-top:1px solid rgba(255,255,255,0.06); text-align:center; padding:100px 5%;">
   <div style="display:inline-flex; align-items:center; gap:8px; background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.12); border-radius:24px; padding:6px 16px; font-size:0.7rem; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:rgba(255,255,255,0.5); margin-bottom:32px;">Our North Star</div>
   <h2 style="font-size:clamp(1.8rem, 3.5vw, 2.8rem); font-weight:700; color:white; line-height:1.25; margin-bottom:24px; max-width:640px; margin-left:auto; margin-right:auto;">Healthcare without waste.<br><span style="color:#93c5fd;">Better outcomes for patients.<br>Better outcomes for the planet.</span></h2>
   <p style="font-size:1rem; color:rgba(255,255,255,0.55); line-height:1.8; max-width:520px; margin:0 auto 40px;">Play4Health turns everyday care routines into verified actions that improve treatment adherence and safely return medical devices.</p>
@@ -1188,7 +1385,7 @@ footer {
       <p class="footer-tagline">Adherence you can verify. Returns you can track. One action. One photo. One proof — for pharma PSP teams, ESG functions, and market access.</p>
       <div class="footer-social">
         <a href="https://www.linkedin.com/company/playforearth" target="_blank" class="social-btn">in</a>
-        <a href="/cdn-cgi/l/email-protection#cabaa6abb3e4aca5b8e4afabb8bea2e4a3a4aca58aada7aba3a6e4a9a5a7" class="social-btn">✉</a>
+        <a href="mailto:hello@play4health.org" class="social-btn">✉</a>
       </div>
     </div>
     <div class="footer-col">
@@ -1213,7 +1410,7 @@ footer {
       <ul>
         <li><a href="#traction">Traction</a></li>
         <li><a href="https://www.playforearth.org">Play for Earth</a></li>
-        <li><a href="/cdn-cgi/l/email-protection#26564a475f0840495408434754524e084f48404966414b474f4a0845494b">Contact</a></li>
+        <li><a href="mailto:hello@play4health.org">Contact</a></li>
         <li><a href="/terms">Terms</a></li>
         <li><a href="/privacy">Privacy</a></li>
       </ul>
@@ -1225,7 +1422,7 @@ footer {
   </div>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
 // Nav scroll
 window.addEventListener('scroll', () => {
   document.getElementById('mainNav').style.background =
