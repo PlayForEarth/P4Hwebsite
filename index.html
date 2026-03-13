@@ -52,13 +52,16 @@ nav{position:fixed;top:0;left:0;right:0;z-index:500;display:flex;align-items:cen
 .blob1{width:420px;height:420px;background:rgba(37,99,235,0.09);top:3%;right:6%;}
 .blob2{width:260px;height:260px;background:rgba(13,148,136,0.1);top:45%;right:32%;animation-delay:2.5s;}
 .blob3{width:180px;height:180px;background:rgba(56,189,248,0.09);bottom:18%;right:18%;animation-delay:5s;}
-.hero-eyebrow,.hero h1,.hero-sub,.hero-actions,.hero-proof{position:relative;z-index:2;}
+.hero-eyebrow,.hero h1,.hero-lines,.hero-sub,.hero-actions,.hero-proof{position:relative;z-index:2;}
 .hero-eyebrow{font-size:0.75rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--blue);display:inline-flex;align-items:center;gap:10px;background:var(--blue-faint);padding:6px 16px;border-radius:24px;border:1px solid rgba(37,99,235,0.2);width:fit-content;margin-bottom:28px;animation:fadeUp 0.8s ease 0.2s both;}
 .eyebrow-dot{width:7px;height:7px;border-radius:50%;background:var(--blue);animation:pulse 2s ease-in-out infinite;}
-.hero h1{font-size:clamp(1.9rem,3.6vw,3.4rem);font-weight:400;line-height:1.12;letter-spacing:-0.025em;max-width:900px;margin-bottom:20px;color:var(--ink);animation:fadeUp 0.8s ease 0.35s both;}
+.hero h1{font-size:clamp(1.9rem,3.6vw,3.4rem);font-weight:400;line-height:1.12;letter-spacing:-0.025em;max-width:900px;margin-bottom:24px;color:var(--ink);animation:fadeUp 0.8s ease 0.35s both;}
 .hero h1 em{color:var(--blue);font-style:normal;}
-.hero-sub{font-size:1.1rem;line-height:1.75;color:var(--ink-light);max-width:560px;margin-bottom:32px;font-weight:400;animation:fadeUp 0.8s ease 0.5s both;}
-.hero-sub strong{color:var(--ink);font-weight:600;}
+.hero-lines{font-size:1.1rem;line-height:1.75;color:var(--ink-mid);max-width:580px;margin-bottom:8px;font-weight:400;animation:fadeUp 0.8s ease 0.5s both;position:relative;z-index:2;}
+.hero-lines strong{color:var(--ink);font-weight:600;}
+.hero-lines .liability{color:var(--ink);font-weight:600;}
+.hero-sub{font-size:1.1rem;line-height:1.75;color:var(--ink-light);max-width:560px;margin-bottom:32px;font-weight:400;animation:fadeUp 0.8s ease 0.55s both;}
+.hero-sub strong{color:var(--ink);font-weight:700;}
 .hero-actions{display:flex;gap:16px;align-items:center;flex-wrap:wrap;animation:fadeUp 0.8s ease 0.65s both;margin-bottom:56px;}
 .hero-proof{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;max-width:680px;animation:fadeUp 0.8s ease 0.8s both;}
 .hproof-card{background:rgba(255,255,255,0.88);border:1px solid rgba(37,99,235,0.12);border-radius:14px;padding:18px 16px;backdrop-filter:blur(6px);}
@@ -246,6 +249,7 @@ footer{background:#0a1628;border-top:1px solid rgba(255,255,255,0.06);padding:64
   .hero{min-height:100svh;padding:92px 5% 56px;justify-content:center;}
   .hero-scroll{display:none;}
   .hero h1{font-size:clamp(1.7rem,5.5vw,2.4rem);}
+  .hero-lines{font-size:0.95rem;}
   .hero-sub{font-size:0.95rem;}
   .hero-proof{grid-template-columns:1fr;gap:10px;max-width:100%;}
   .hero-actions{flex-direction:column;align-items:stretch;}
@@ -318,24 +322,26 @@ footer{background:#0a1628;border-top:1px solid rgba(255,255,255,0.06);padding:64
     Verified Adherence · Device Returns · No App Required
   </div>
 
-<h1>
-  One photo. Adherence data,<br>
-  device returns, EPR compliance.
-</h1>
-<p class="hero-lines">
-  Unverified field data is your liability.<br>
-  One photo confirms the dose, tracks the device,<br>
-  and feeds your Scope 3 reporting.
-</p>
-<p class="hero-sub hero-sub-final">
-  <strong>No app. No hardware.</strong>
-</p>
+  <h1>
+    One photo. Adherence data,<br>
+    device returns, EPR compliance.
+  </h1>
 
+  <p class="hero-lines">
+    <span class="liability">Unverified field data is your liability.</span><br>
+    One photo confirms the dose, tracks the device,<br>
+    and feeds your Scope 3 reporting.
+  </p>
 
-<div class="hero-actions">
-  <a href="/contact" class="btn-primary btn-large">Start a Pilot</a>
-  <a href="#how" class="btn-ghost">See how it works <span class="arr">→</span></a>
-</div>
+  <p class="hero-sub">
+    <strong>No app. No hardware.</strong>
+  </p>
+
+  <div class="hero-actions">
+    <a href="/contact" class="btn-primary btn-large">Start a Pilot</a>
+    <a href="#how" class="btn-ghost">See how it works <span class="arr">→</span></a>
+  </div>
+
   <div class="hero-proof">
     <div class="hproof-card">
       <div class="hproof-label">✓ No app, no hardware</div>
