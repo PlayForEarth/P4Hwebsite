@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Play4Health — PSP Manager Dashboard</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --green:#16a34a;--green-dark:#166534;--green-lt:#dcfce7;--green-bd:rgba(22,163,74,.2);
+  --blue:#1251a3;--blue-mid:#1e72d4;--blue-lt:#e8f1fd;--blue-bd:rgba(18,81,163,.18);
+  --teal:#0b7285;--teal-lt:#e0f5f8;--teal-bd:rgba(11,114,133,.18);
+  --amber:#b45309;--amber-bg:#fef3c7;--amber-bd:rgba(180,83,9,.2);
+  --red:#b91c1c;--red-bg:#fee2e2;--red-bd:rgba(185,28,28,.2);
+  --purple:#6d28d9;--purple-lt:#ede9fe;--purple-bd:rgba(109,40,217,.18);
+  --ink:#1a1a1a;--muted:#6b7280;--bg:#f8f9fa;--bg1:#ffffff;--bd:rgba(0,0,0,0.08);
+  --radius:10px;--radius-lg:14px;
+  --font:'DM Sans',sans-serif;--mono:'DM Mono',monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;background:var(--bg);font-family:var(--font);color:var(--ink);font-size:13px}
+
+/* LAYOUT */
+.shell{display:flex;flex-direction:column;height:100%;min-height:100vh}
+.topbar{display:flex;align-items:center;justify-content:space-between;padding:11px 20px;background:var(--bg1);border-bottom:1px solid var(--bd);flex-shrink:0}
+.logo{font-size:15px;font-weight:600;color:var(--ink);letter-spacing:-.02em}.logo em{color:var(--green);font-style:normal}
+.prog-pill{font-size:10px;padding:3px 10px;border-radius:20px;background:var(--green-lt);color:var(--green-dark);border:1px solid var(--green-bd);font-weight:500}
+.topbar-right{display:flex;align-items:center;gap:10px}
+.live-badge{display:flex;align-items:center;gap:5px;font-size:11px;color:var(--green);font-weight:500}
+.pulse{width:7px;height:7px;border-radius:50%;background:var(--green);animation:pulse 1.8s infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.7)}}
+.export-btn{font-size:11px;padding:6px 13px;border-radius:8px;background:var(--bg1);border:1px solid var(--bd);color:var(--muted);cursor:pointer;font-family:var(--font);font-weight:500;transition:all .15s}
+.export-btn:hover{border-color:var(--green);color:var(--green)}
+
+/* TAB BAR */
+.tabbar{padding:10px 20px;background:var(--bg1);border-bottom:1px solid var(--bd);display:flex;flex-wrap:wrap;gap:6px;flex-shrink:0}
+.tab{padding:6px 14px;font-size:11px;font-weight:500;color:var(--muted);cursor:pointer;border:none;background:var(--bg);border-radius:20px;border:1px solid var(--bd);transition:all .15s;font-family:var(--font)}
+.tab:hover{color:var(--ink);border-color:rgba(0,0,0,.2)}
+.tab.on{background:var(--green);color:#fff;border-color:var(--green)}
+
+/* BODY */
+.body{flex:1;padding:16px 20px 32px;overflow-y:auto}
+.panel{display:none}.panel.on{display:block}
+
+/* GRIDS */
+.g2{display:grid;grid-template-columns:1.5fr 1fr;gap:12px;margin-bottom:12px}
+.g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:12px}
+.g2r{display:grid;grid-template-columns:1fr 1.5fr;gap:12px;margin-bottom:12px}
+
+/* KPI STRIP */
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:14px}
+.kpi{background:var(--bg1);border:1px solid var(--bd);border-radius:var(--radius-lg);padding:13px 14px;position:relative;transition:box-shadow .2s}
+.kpi:hover{box-shadow:0 4px 16px rgba(0,0,0,.06)}
+.kpi.hero{background:var(--green);border-color:var(--green)}
+.kpi.warn{border-color:var(--red);border-width:1.5px}
+.kpi.purple{background:var(--purple);border-color:var(--purple)}
+.kl{font-size:9px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:6px;font-weight:600}
+.kpi.hero .kl,.kpi.purple .kl{color:rgba(255,255,255,.65)}
+.kv{font-size:28px;font-weight:600;line-height:1;color:var(--ink);font-family:var(--mono)}
+.kpi.hero .kv,.kpi.purple .kv{color:#fff}
+.kpi.warn .kv{color:var(--red)}
+.kd{font-size:10px;margin-top:5px;font-weight:500}
+.kd.up{color:var(--green)}.kd.dn{color:var(--red)}
+.kpi.hero .kd,.kpi.purple .kd{color:rgba(255,255,255,.8)}
+.kt{height:3px;background:rgba(0,0,0,.07);border-radius:2px;margin-top:10px;overflow:hidden}
+.kpi.hero .kt,.kpi.purple .kt{background:rgba(255,255,255,.2)}
+.kf{height:100%;border-radius:2px;background:var(--blue-mid);transition:width 1s cubic-bezier(.4,0,.2,1)}
+.kpi.hero .kf,.kpi.purple .kf{background:rgba(255,255,255,.85)}
+.kpi-icon{font-size:16px;position:absolute;top:12px;right:13px;opacity:.22}
+
+/* CARDS */
+.card{background:var(--bg1);border:1px solid var(--bd);border-radius:var(--radius-lg);overflow:hidden;margin-bottom:12px;transition:box-shadow .2s}
+.card:last-child{margin-bottom:0}
+.card:hover{box-shadow:0 4px 20px rgba(0,0,0,.06)}
+.ch{display:flex;align-items:center;justify-content:space-between;padding:11px 16px;border-bottom:1px solid var(--bd);background:var(--bg1)}
+.ct{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
+.cb{padding:14px 16px}
+.badge{font-size:10px;padding:2px 9px;border-radius:10px;font-weight:500}
+.bb{background:var(--blue-lt);color:var(--blue)}
+.bg{background:var(--green-lt);color:var(--green-dark)}
+.bt{background:var(--teal-lt);color:var(--teal)}
+.ba{background:var(--amber-bg);color:var(--amber)}
+.br{background:var(--red-bg);color:var(--red)}
+.bp{background:var(--purple-lt);color:var(--purple)}
+
+/* BARS */
+.bar-row{display:flex;align-items:center;gap:8px;margin-bottom:9px}
+.bar-lbl{font-size:11px;color:var(--muted);flex-shrink:0}
+.bar-track{flex:1;height:8px;background:var(--bg);border-radius:4px;overflow:hidden}
+.bar-fill{height:100%;border-radius:4px;transition:width 1.2s cubic-bezier(.4,0,.2,1)}
+.bar-pct{font-size:11px;font-weight:600;color:var(--ink);width:30px;text-align:right;flex-shrink:0;font-family:var(--mono)}
+.bar-d{font-size:9px;font-weight:600;width:30px;text-align:right;flex-shrink:0}
+
+/* RINGS */
+.ring-pair{display:grid;grid-template-columns:1fr 1fr;gap:0}
+.ring-col{padding:14px 16px;display:flex;flex-direction:column;align-items:center}
+.ring-col+.ring-col{border-left:1px solid var(--bd)}
+.ring{position:relative;width:88px;height:88px;margin-bottom:10px}
+.ring svg{transform:rotate(-90deg)}
+.rc{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.rn{font-size:22px;font-weight:600;line-height:1;font-family:var(--mono)}
+.rs{font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;margin-top:2px}
+.rlbl{font-size:11px;font-weight:600;color:var(--ink);margin-bottom:3px;text-align:center}
+.rsub{font-size:10px;color:var(--muted);text-align:center;line-height:1.5;margin-bottom:10px;max-width:140px}
+
+/* STAT ROWS */
+.srow{display:flex;align-items:center;gap:6px;margin-bottom:6px;font-size:10px;width:100%}
+.sdot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
+.sname{flex:1;color:var(--muted)}
+.sbar{width:50px;height:4px;background:var(--bg);border-radius:3px;overflow:hidden}
+.sbf{height:100%;border-radius:3px}
+.scnt{font-size:10px;font-weight:600;color:var(--ink);width:30px;text-align:right;font-family:var(--mono)}
+
+/* STREAM GRID (overview) */
+.stream-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:1px solid var(--bd);border-radius:var(--radius-lg);overflow:hidden;margin-bottom:12px;background:var(--bg1)}
+.stream-col{padding:16px}
+.stream-col+.stream-col{border-left:1px solid var(--bd)}
+.stream-icon{width:34px;height:34px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:16px;margin-bottom:10px}
+.stream-name{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:8px}
+.stream-big{font-size:36px;font-weight:600;line-height:1;margin-bottom:3px;font-family:var(--mono)}
+.stream-sub{font-size:10px;color:var(--muted);margin-bottom:10px}
+.stream-track{height:6px;background:var(--bg);border-radius:3px;overflow:hidden;margin-bottom:4px}
+.stream-fill{height:100%;border-radius:3px}
+.stream-delta{display:flex;justify-content:space-between;font-size:9px;font-weight:500}
+.cohort-row{display:flex;align-items:center;gap:6px;margin-top:8px;font-size:10px}
+.cdot{width:6px;height:6px;border-radius:50%;flex-shrink:0}
+.clbl{width:54px;color:var(--muted);flex-shrink:0}
+.ctrk{flex:1;height:4px;background:var(--bg);border-radius:3px;overflow:hidden}
+.cfill{height:100%;border-radius:3px}
+.cpct{font-size:10px;font-weight:600;width:26px;text-align:right;flex-shrink:0;font-family:var(--mono)}
+
+/* AT-RISK TABLE */
+.risk-table{width:100%}
+.risk-head{display:grid;gap:4px;padding-bottom:7px;border-bottom:1px solid var(--bd);margin-bottom:2px}
+.risk-row{display:flex;align-items:center;gap:8px;padding:8px 0;border-bottom:1px solid var(--bd)}
+.risk-row:last-child{border-bottom:none}
+.rid{width:46px;color:var(--muted);flex-shrink:0;font-size:10px;font-family:var(--mono)}
+.rinfo{flex:1;line-height:1.3}
+.rname{font-size:11px;color:var(--ink)}
+.rsub{font-size:9px;color:var(--muted);margin-top:1px}
+.rage{font-size:9px;padding:2px 7px;border-radius:8px;font-weight:500;flex-shrink:0}
+.rpct{font-size:12px;font-weight:600;width:30px;text-align:right;flex-shrink:0;font-family:var(--mono)}
+.rflag{width:52px;text-align:right;flex-shrink:0}
+
+/* STREAK TABLE */
+.streak-row{display:flex;align-items:center;gap:8px;padding:8px 0;border-bottom:1px solid var(--bd);font-size:11px}
+.streak-row:last-child{border-bottom:none}
+.s-rank{width:18px;font-size:10px;color:var(--muted);text-align:center;flex-shrink:0}
+.s-id{width:46px;font-family:var(--mono);font-size:10px;color:var(--muted);flex-shrink:0}
+.s-info{flex:1}
+.s-name{color:var(--ink)}
+.s-sub{font-size:9px;color:var(--muted);margin-top:1px}
+.s-age{font-size:9px;padding:1px 6px;border-radius:8px;font-weight:500;flex-shrink:0}
+.s-pts{font-size:11px;font-weight:600;flex-shrink:0;font-family:var(--mono);width:36px;text-align:right}
+.s-streak{font-size:11px;font-weight:500;flex-shrink:0;white-space:nowrap}
+
+/* MOOD */
+.mood-row{display:flex;align-items:center;gap:8px;margin-bottom:8px}
+.mood-em{width:22px;text-align:center;font-size:14px;flex-shrink:0}
+.mood-lbl{width:56px;font-size:10px;color:var(--muted);flex-shrink:0}
+.mood-trk{flex:1;height:8px;background:var(--bg);border-radius:4px;overflow:hidden}
+.mood-fill{height:100%;border-radius:4px}
+.mood-n{font-size:11px;font-weight:600;color:var(--ink);width:32px;text-align:right;flex-shrink:0;font-family:var(--mono)}
+.mood-pct{font-size:9px;color:var(--muted);width:26px;text-align:right;flex-shrink:0}
+
+/* DEVICE ROWS */
+.dev-row{display:flex;align-items:center;gap:8px;padding:9px 0;border-bottom:1px solid var(--bd)}
+.dev-row:last-child{border-bottom:none}
+.dev-info{flex:1}
+.dev-name{font-size:11px;font-weight:500;color:var(--ink)}
+.dev-sub{font-size:9px;color:var(--muted);margin-top:1px}
+.dev-trk{width:70px;height:6px;background:var(--bg);border-radius:3px;overflow:hidden;flex-shrink:0}
+.dev-bar{height:100%;border-radius:3px}
+.dev-n{font-size:12px;font-weight:600;color:var(--ink);width:28px;text-align:right;flex-shrink:0;font-family:var(--mono)}
+
+/* KNOWLEDGE DIMS */
+.dim-row{margin-bottom:14px;padding-bottom:14px;border-bottom:1px solid var(--bd)}
+.dim-row:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
+.dim-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}
+.dim-icon{width:28px;height:28px;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0}
+.dim-name{font-size:11px;font-weight:600;color:var(--ink)}
+.dim-q{font-size:9px;color:var(--muted);margin-top:2px;font-style:italic;line-height:1.4}
+.dim-score{font-size:20px;font-weight:700;line-height:1;font-family:var(--mono)}
+.dim-delta{font-size:9px;font-weight:600;text-align:right;margin-top:2px}
+.dim-track{height:8px;background:var(--bg);border-radius:4px;overflow:hidden;margin-bottom:5px}
+.dim-fill{height:100%;border-radius:4px}
+.dim-cohorts{display:flex;gap:10px;flex-wrap:wrap}
+.dim-cohort{font-size:9px;color:var(--muted);display:flex;align-items:center;gap:3px}
+
+/* SEMINAR TABLE */
+.sem-row{display:flex;align-items:center;gap:8px;padding:8px 0;border-bottom:1px solid var(--bd)}
+.sem-row:last-child{border-bottom:none}
+.sem-month{width:48px;font-size:10px;color:var(--muted);flex-shrink:0;font-weight:600;font-family:var(--mono)}
+.sem-topic{flex:1;color:var(--ink);font-size:11px;line-height:1.3}
+.sem-sub{font-size:9px;color:var(--muted);margin-top:1px}
+.sem-att{font-size:11px;font-weight:600;width:26px;text-align:right;flex-shrink:0;font-family:var(--mono)}
+.sem-pct{font-size:9px;color:var(--muted);width:26px;text-align:right;flex-shrink:0}
+.sem-score{font-size:12px;font-weight:700;width:30px;text-align:right;flex-shrink:0;font-family:var(--mono)}
+.sem-row.today{background:var(--green-lt);margin:0 -16px;padding:8px 16px;border-radius:0}
+
+/* QUESTION BLOCKS */
+.q-block{background:var(--bg);border-radius:var(--radius);padding:11px 13px;margin-bottom:8px;border-left:3px solid transparent}
+.q-dim{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;margin-bottom:5px}
+.q-text{font-size:11px;color:var(--ink);line-height:1.55;margin-bottom:7px}
+.q-opt{font-size:10px;color:var(--muted);padding:3px 8px;border-radius:5px;display:flex;align-items:flex-start;gap:6px;margin-bottom:3px;line-height:1.4}
+.q-opt.correct{background:var(--green-lt);color:var(--green-dark);font-weight:500}
+.q-opt.wrong{background:var(--red-bg);color:var(--red)}
+
+/* SCOPE ROWS */
+.scrow{display:flex;align-items:center;gap:8px;margin-bottom:9px}
+.sclbl{font-size:10px;color:var(--muted);width:112px;flex-shrink:0;line-height:1.3}
+.sctrk{flex:1;height:7px;background:var(--bg);border-radius:4px;overflow:hidden}
+.scfill{height:100%;border-radius:4px}
+.scval{font-size:11px;font-weight:700;color:var(--ink);width:30px;text-align:right;flex-shrink:0;font-family:var(--mono)}
+
+/* ESG STATS */
+.estat{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px}
+.es{background:var(--bg);border-radius:var(--radius);padding:11px 13px}
+.esl{font-size:9px;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);margin-bottom:5px;font-weight:600}
+.esv{font-size:22px;font-weight:700;color:var(--ink);line-height:1;font-family:var(--mono)}
+.esd{font-size:9px;font-weight:600;color:var(--green);margin-top:3px}
+.esb{font-size:9px;color:var(--muted);margin-top:3px}
+
+/* BEFORE/AFTER */
+.ba-grid{display:grid;grid-template-columns:1fr auto 1fr;gap:10px;align-items:center;margin-bottom:12px}
+.ba-col{background:var(--bg);border-radius:var(--radius);padding:11px 12px;text-align:center}
+.ba-lbl{font-size:9px;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);margin-bottom:5px;font-weight:600}
+.ba-val{font-size:24px;font-weight:700;line-height:1;font-family:var(--mono)}
+
+/* NS BOXES */
+.ns{padding:11px 14px;border-radius:var(--radius);margin-top:10px}
+.ns.green{background:var(--green-lt);border:1px solid var(--green-bd)}
+.ns.purple{background:var(--purple-lt);border:1px solid var(--purple-bd)}
+.ns.blue{background:var(--blue-lt);border:1px solid var(--blue-bd)}
+.ns.teal{background:var(--teal-lt);border:1px solid var(--teal-bd)}
+.nsl{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin-bottom:5px}
+.ns.green .nsl{color:var(--green-dark)}.ns.purple .nsl{color:var(--purple)}.ns.blue .nsl{color:var(--blue)}.ns.teal .nsl{color:var(--teal)}
+.nst{font-size:11px;color:var(--ink);line-height:1.65}
+
+/* PILLS */
+.pills{display:flex;flex-wrap:wrap;gap:5px;margin-top:12px;padding-top:12px;border-top:1px solid var(--bd)}
+.pill{font-size:9px;padding:2px 9px;border-radius:10px;font-weight:600;background:var(--green-lt);color:var(--green-dark);border:1px solid var(--green-bd)}
+.pill.p{background:var(--purple-lt);color:var(--purple);border-color:var(--purple-bd)}
+.pill.t{background:var(--teal-lt);color:var(--teal);border-color:var(--teal-bd)}
+.pill.b{background:var(--blue-lt);color:var(--blue);border-color:var(--blue-bd)}
+
+/* TBAR */
+.tbar-wrap{padding:11px;background:var(--bg);border-radius:var(--radius);margin-top:11px}
+.tbar-row{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:6px}
+.tbar-lbl{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.07em;font-weight:600}
+.tbar-val{font-size:11px;font-weight:700;color:var(--ink);font-family:var(--mono)}
+.tbar{height:5px;background:rgba(0,0,0,.07);border-radius:3px;overflow:hidden}
+.tbar-fill{height:100%;border-radius:3px}
+.tbar-sub{font-size:9px;color:var(--muted);margin-top:5px}
+
+/* RPT */
+.rpt{padding:10px 13px;background:var(--bg);border-radius:var(--radius);margin-bottom:7px}
+.rpt-name{font-size:11px;font-weight:600;color:var(--ink);margin-bottom:2px}
+.rpt-sub{font-size:9px;color:var(--muted)}
+
+/* PHOTO NOTE */
+.pnote{display:flex;align-items:flex-start;gap:8px;padding:9px 12px;background:var(--teal-lt);border:1px solid var(--teal-bd);border-radius:var(--radius);margin-top:11px}
+.pnote-txt{font-size:10px;color:var(--teal);line-height:1.55}
+
+/* CHART */
+.chart-wrap{position:relative;height:176px;margin-bottom:11px}
+
+/* IMPACT RING */
+.impact-ring{position:relative;width:96px;height:96px;margin-bottom:10px}
+.impact-ring svg{transform:rotate(-90deg)}
+.irc{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.irn{font-size:26px;font-weight:700;color:var(--purple);line-height:1;font-family:var(--mono)}
+.irs{font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;margin-top:2px}
+
+/* FRAMEWORK ROWS */
+.fw-row{display:flex;align-items:center;gap:8px;padding:7px 0;border-bottom:1px solid var(--bd);font-size:11px}
+.fw-row:last-child{border-bottom:none}
+.fw-lbl{flex:1;color:var(--ink)}
+.fw-trk{width:58px;height:5px;background:var(--bg);border-radius:3px;overflow:hidden;flex-shrink:0}
+.fw-bar{height:100%;border-radius:3px}
+.fw-pct{font-size:11px;font-weight:700;width:28px;text-align:right;flex-shrink:0;font-family:var(--mono)}
+
+/* divider */
+.divlbl{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.09em;color:var(--muted);margin-bottom:8px;padding-bottom:7px;border-bottom:1px solid var(--bd)}
+
+/* section note */
+.snote{font-size:9px;color:var(--muted);margin-top:7px}
+</style>
+</head>
+<body>
+<div class="shell">
+
+<!-- TOPBAR -->
+<div class="topbar">
+  <div style="display:flex;align-items:center;gap:10px">
+    <div class="logo">Play4<em>Health</em></div>
+    <div class="prog-pill">Asthma PSP &mdash; ICS controller &mdash; Mixed ages &mdash; Nairobi, Kenya</div>
+  </div>
+  <div class="topbar-right">
+    <div class="live-badge"><div class="pulse"></div>Live</div>
+    <button class="export-btn" onclick="alert('Generating Q1 2026 report package...')">&#8593; Export report</button>
+  </div>
+</div>
+
+<!-- TAB BAR -->
+<div class="tabbar">
+  <button class="tab on"  onclick="sw('overview',this)">Overview</button>
+  <button class="tab"     onclick="sw('adherence',this)">Adherence</button>
+  <button class="tab"     onclick="sw('wellness',this)">Wellness</button>
+  <button class="tab"     onclick="sw('returns',this)">Device Returns</button>
+  <button class="tab"     onclick="sw('knowledge',this)">Knowledge &amp; Impact</button>
+  <button class="tab"     onclick="sw('esg',this)">EPR / ESG</button>
+</div>
+
+<div class="body">
+
+<!-- ═══════════════════════════════════════════ OVERVIEW ═══ -->
+<div id="panel-overview" class="panel on">
+  <div class="kpis">
+    <div class="kpi hero"><div class="kpi-icon">&#128247;</div><div class="kl">Verified adherence</div><div class="kv">74%</div><div class="kd">&#8593; 8 pts vs program start</div><div class="kt"><div class="kf" style="width:74%"></div></div></div>
+    <div class="kpi"><div class="kpi-icon">&#9733;</div><div class="kl">Activation rate</div><div class="kv">81%</div><div class="kd up">&#8593; active this week</div><div class="kt"><div class="kf" style="width:81%"></div></div></div>
+    <div class="kpi"><div class="kpi-icon">&#128203;</div><div class="kl">90-day persistence</div><div class="kv">68%</div><div class="kd up">&#8593; 11 pts vs baseline</div><div class="kt"><div class="kf" style="width:68%"></div></div></div>
+    <div class="kpi warn"><div class="kpi-icon">&#9888;</div><div class="kl">At-risk patients</div><div class="kv">24</div><div class="kd dn">&#8595; 3 flagged today</div><div class="kt"><div class="kf" style="width:8%;background:var(--red)"></div></div></div>
+  </div>
+  <!-- 3 streams -->
+  <div class="stream-grid">
+    <div class="stream-col">
+      <div class="stream-icon" style="background:var(--green-lt)">&#128247;</div>
+      <div class="stream-name">Dose logs</div>
+      <div class="stream-big" style="color:var(--green)">4,218</div>
+      <div class="stream-sub">photo-verified ICS doses &middot; this month</div>
+      <div class="stream-track"><div class="stream-fill" style="width:74%;background:var(--green)"></div></div>
+      <div class="stream-delta"><span style="color:var(--muted)">Baseline: 58%</span><span style="color:var(--green);font-weight:600">74% adherence</span></div>
+      <div class="cohort-row"><div class="cdot" style="background:#1251a3"></div><div class="clbl">Adult</div><div class="ctrk"><div class="cfill" style="width:79%;background:#1251a3"></div></div><div class="cpct">79%</div></div>
+      <div class="cohort-row"><div class="cdot" style="background:#0b7285"></div><div class="clbl">Teen</div><div class="ctrk"><div class="cfill" style="width:71%;background:#0b7285"></div></div><div class="cpct">71%</div></div>
+      <div class="cohort-row"><div class="cdot" style="background:#6d28d9"></div><div class="clbl">Child</div><div class="ctrk"><div class="cfill" style="width:69%;background:#6d28d9"></div></div><div class="cpct">69%</div></div>
+    </div>
+    <div class="stream-col">
+      <div class="stream-icon" style="background:var(--teal-lt)">&#9855;</div>
+      <div class="stream-name">Device returns</div>
+      <div class="stream-big" style="color:var(--teal)">187</div>
+      <div class="stream-sub">inhalers returned &middot; photo-verified</div>
+      <div class="stream-track"><div class="stream-fill" style="width:78%;background:var(--teal)"></div></div>
+      <div class="stream-delta"><span style="color:var(--muted)">Q1 target: 240</span><span style="color:var(--teal);font-weight:600">78% of target</span></div>
+      <div class="cohort-row"><div class="cdot" style="background:#1251a3"></div><div class="clbl">pMDI</div><div class="ctrk"><div class="cfill" style="width:84%;background:#1251a3"></div></div><div class="cpct">94</div></div>
+      <div class="cohort-row"><div class="cdot" style="background:#1e72d4"></div><div class="clbl">DPI</div><div class="ctrk"><div class="cfill" style="width:55%;background:#1e72d4"></div></div><div class="cpct">61</div></div>
+      <div class="cohort-row"><div class="cdot" style="background:#d97706"></div><div class="clbl">Spacer</div><div class="ctrk"><div class="cfill" style="width:29%;background:#d97706"></div></div><div class="cpct">32</div></div>
+    </div>
+    <div class="stream-col">
+      <div class="stream-icon" style="background:var(--purple-lt)">&#128578;</div>
+      <div class="stream-name">Mood logs</div>
+      <div class="stream-big" style="color:var(--purple)">2,841</div>
+      <div class="stream-sub">mood check-ins &middot; this month</div>
+      <div class="stream-track"><div class="stream-fill" style="width:67%;background:var(--purple)"></div></div>
+      <div class="stream-delta"><span style="color:var(--muted)">67% of active patients</span><span style="color:var(--purple);font-weight:600">&#8593; 12% vs last month</span></div>
+      <div class="cohort-row"><div class="cdot" style="background:var(--green)"></div><div class="clbl">Good</div><div class="ctrk"><div class="cfill" style="width:58%;background:var(--green)"></div></div><div class="cpct">58%</div></div>
+      <div class="cohort-row"><div class="cdot" style="background:#d97706"></div><div class="clbl">Neutral</div><div class="ctrk"><div class="cfill" style="width:29%;background:#d97706"></div></div><div class="cpct">29%</div></div>
+      <div class="cohort-row"><div class="cdot" style="background:var(--red)"></div><div class="clbl">Struggling</div><div class="ctrk"><div class="cfill" style="width:13%;background:var(--red)"></div></div><div class="cpct">13%</div></div>
+    </div>
+  </div>
+  <div class="g2">
+    <!-- Streak leaderboard -->
+    <div class="card">
+      <div class="ch"><div class="ct">Momentum &mdash; top streaks</div><div class="badge bg">Active patients</div></div>
+      <div class="cb" style="padding:8px 16px">
+        <div style="display:grid;grid-template-columns:18px 46px 1fr 38px 36px 52px;gap:4px;padding-bottom:7px;border-bottom:1px solid var(--bd)">
+          <div style="font-size:9px;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:.07em">#</div>
+          <div style="font-size:9px;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:.07em">ID</div>
+          <div style="font-size:9px;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:.07em">Activity</div>
+          <div style="font-size:9px;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:.07em">Age</div>
+          <div style="font-size:9px;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:.07em;text-align:right">Pts</div>
+          <div style="font-size:9px;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:.07em;text-align:right">Streak</div>
+        </div>
+        <div class="streak-row"><div class="s-rank">1</div><div class="s-id">P-0044</div><div class="s-info"><div class="s-name">Dose + return + mood</div><div class="s-sub">All 3 streams active</div></div><div><span class="s-age" style="background:var(--teal-lt);color:var(--teal)">Adult</span></div><div class="s-pts" style="color:var(--green)">125K</div><div class="s-streak">&#128293; 28d</div></div>
+        <div class="streak-row"><div class="s-rank">2</div><div class="s-id">P-0078</div><div class="s-info"><div class="s-name">Dose + mood</div><div class="s-sub">No return this month</div></div><div><span class="s-age" style="background:var(--purple-lt);color:var(--purple)">Child</span></div><div class="s-pts" style="color:var(--green)">98K</div><div class="s-streak">&#128293; 21d</div></div>
+        <div class="streak-row"><div class="s-rank">3</div><div class="s-id">P-0201</div><div class="s-info"><div class="s-name">Dose streak</div><div class="s-sub">Consistent dose only</div></div><div><span class="s-age" style="background:var(--teal-lt);color:var(--teal)">Adult</span></div><div class="s-pts" style="color:var(--green)">84K</div><div class="s-streak">&#128293; 18d</div></div>
+        <div class="streak-row"><div class="s-rank">4</div><div class="s-id">P-0117</div><div class="s-info"><div class="s-name">Dose + return</div><div class="s-sub">No mood logs</div></div><div><span class="s-age" style="background:var(--amber-bg);color:var(--amber)">Teen</span></div><div class="s-pts" style="color:var(--green)">71K</div><div class="s-streak">&#128293; 14d</div></div>
+        <div class="streak-row"><div class="s-rank">5</div><div class="s-id">P-0289</div><div class="s-info"><div class="s-name">Dose streak</div><div class="s-sub">Restarted after gap</div></div><div><span class="s-age" style="background:var(--purple-lt);color:var(--purple)">Child</span></div><div class="s-pts" style="color:var(--green)">52K</div><div class="s-streak">&#128293; 9d</div></div>
+        <div class="snote">Points accumulate across all 3 streams &middot; Lucky Spin triggers at milestones</div>
+      </div>
+    </div>
+    <!-- At-risk -->
+    <div class="card">
+      <div class="ch"><div class="ct">At-risk &mdash; action required</div><div class="badge br">24 patients</div></div>
+      <div class="cb" style="padding:8px 16px">
+        <div class="risk-row"><div class="rid">P-0183</div><div class="rinfo"><div class="rname">No dose photo &mdash; 8 days</div><div class="rsub">Previously consistent &middot; sudden drop</div></div><span class="rage" style="background:var(--teal-lt);color:var(--teal)">Adult</span><div class="rpct" style="color:var(--red)">29%</div><div class="rflag"><span class="badge br">Critical</span></div></div>
+        <div class="risk-row"><div class="rid">P-0241</div><div class="rinfo"><div class="rname">Caregiver not uploading</div><div class="rsub">Child &middot; 6 days silent</div></div><span class="rage" style="background:var(--purple-lt);color:var(--purple)">Child</span><div class="rpct" style="color:var(--red)">33%</div><div class="rflag"><span class="badge br">Critical</span></div></div>
+        <div class="risk-row"><div class="rid">P-0097</div><div class="rinfo"><div class="rname">Skipping every 2&ndash;3 days</div><div class="rsub">Low mood + low doses</div></div><span class="rage" style="background:var(--amber-bg);color:var(--amber)">Teen</span><div class="rpct" style="color:var(--amber)">48%</div><div class="rflag"><span class="badge ba">High</span></div></div>
+        <div class="risk-row"><div class="rid">P-0312</div><div class="rinfo"><div class="rname">Dropped at day 28</div><div class="rsub">Early lapse &middot; now silent</div></div><span class="rage" style="background:var(--amber-bg);color:var(--amber)">Teen</span><div class="rpct" style="color:var(--amber)">51%</div><div class="rflag"><span class="badge ba">High</span></div></div>
+        <div class="risk-row"><div class="rid">P-0158</div><div class="rinfo"><div class="rname">Sporadic &mdash; 14 weeks</div><div class="rsub">Mood: struggling &#215;3 this month</div></div><span class="rage" style="background:var(--teal-lt);color:var(--teal)">Adult</span><div class="rpct" style="color:var(--amber)">57%</div><div class="rflag"><span class="badge ba">High</span></div></div>
+        <div class="snote">Top 5 of 24 &middot; mood signal included in risk score &middot; age guides follow-up approach</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════ ADHERENCE ═══ -->
+<div id="panel-adherence" class="panel">
+  <div class="kpis">
+    <div class="kpi hero"><div class="kpi-icon">&#128247;</div><div class="kl">Verified adherence</div><div class="kv">74%</div><div class="kd">&#8593; 8 pts vs program start</div><div class="kt"><div class="kf" style="width:74%"></div></div></div>
+    <div class="kpi"><div class="kpi-icon">&#9733;</div><div class="kl">Activation rate</div><div class="kv">81%</div><div class="kd up">253 / 312 active this week</div><div class="kt"><div class="kf" style="width:81%"></div></div></div>
+    <div class="kpi"><div class="kpi-icon">&#128203;</div><div class="kl">90-day persistence</div><div class="kv">68%</div><div class="kd up">212 / 312 still on therapy</div><div class="kt"><div class="kf" style="width:68%"></div></div></div>
+    <div class="kpi warn"><div class="kpi-icon">&#9888;</div><div class="kl">At-risk patients</div><div class="kv">24</div><div class="kd dn">&#8595; 3 flagged today</div><div class="kt"><div class="kf" style="width:8%;background:var(--red)"></div></div></div>
+  </div>
+  <div class="g2">
+    <div class="card">
+      <div class="ch"><div class="ct">ICS dose adherence by zone</div><div class="badge bg">Photo-verified</div></div>
+      <div class="cb">
+        <div class="bar-row" style="margin-bottom:7px"><div class="bar-lbl" style="width:72px">Westlands</div><div class="bar-track"><div class="bar-fill" style="width:83%;background:var(--green)"></div></div><div class="bar-pct">83%</div><div class="bar-d" style="color:var(--green)">&#8593;5%</div></div>
+        <div class="bar-row" style="margin-bottom:7px"><div class="bar-lbl" style="width:72px">Karen</div><div class="bar-track"><div class="bar-fill" style="width:78%;background:var(--green)"></div></div><div class="bar-pct">78%</div><div class="bar-d" style="color:var(--green)">&#8593;3%</div></div>
+        <div class="bar-row" style="margin-bottom:7px"><div class="bar-lbl" style="width:72px">Kilimani</div><div class="bar-track"><div class="bar-fill" style="width:74%;background:var(--blue-mid)"></div></div><div class="bar-pct">74%</div><div class="bar-d" style="color:var(--green)">&#8593;7%</div></div>
+        <div class="bar-row" style="margin-bottom:7px"><div class="bar-lbl" style="width:72px">Kasarani</div><div class="bar-track"><div class="bar-fill" style="width:66%;background:#d97706"></div></div><div class="bar-pct">66%</div><div class="bar-d" style="color:var(--amber)">&#8595;2%</div></div>
+        <div class="bar-row"><div class="bar-lbl" style="width:72px">Embakasi</div><div class="bar-track"><div class="bar-fill" style="width:57%;background:var(--red)"></div></div><div class="bar-pct">57%</div><div class="bar-d" style="color:var(--red)">&#8595;5%</div></div>
+        <!-- Age cohorts -->
+        <div style="margin-top:14px;padding-top:14px;border-top:1px solid var(--bd)">
+          <div class="divlbl">By age cohort</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px">
+            <div style="background:var(--bg);border-radius:var(--radius);padding:10px 12px">
+              <div style="font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:.07em;margin-bottom:5px;font-weight:700">Child (under 12)</div>
+              <div style="font-size:22px;font-weight:700;color:#6d28d9;font-family:var(--mono)">69%</div>
+              <div style="font-size:9px;color:var(--muted);margin-top:2px">84 patients &middot; caregiver photo</div>
+              <div style="font-size:9px;font-weight:600;color:var(--green);margin-top:2px">&#8593; 14 pts vs baseline</div>
+            </div>
+            <div style="background:var(--bg);border-radius:var(--radius);padding:10px 12px">
+              <div style="font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:.07em;margin-bottom:5px;font-weight:700">Adolescent (12&ndash;17)</div>
+              <div style="font-size:22px;font-weight:700;color:var(--teal);font-family:var(--mono)">71%</div>
+              <div style="font-size:9px;color:var(--muted);margin-top:2px">96 patients &middot; self-reported</div>
+              <div style="font-size:9px;font-weight:600;color:var(--green);margin-top:2px">&#8593; 9 pts vs baseline</div>
+            </div>
+            <div style="background:var(--bg);border-radius:var(--radius);padding:10px 12px">
+              <div style="font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:.07em;margin-bottom:5px;font-weight:700">Adult (18+)</div>
+              <div style="font-size:22px;font-weight:700;color:var(--blue);font-family:var(--mono)">79%</div>
+              <div style="font-size:9px;color:var(--muted);margin-top:2px">132 patients &middot; self-reported</div>
+              <div style="font-size:9px;font-weight:600;color:var(--green);margin-top:2px">&#8593; 6 pts vs baseline</div>
+            </div>
+          </div>
+        </div>
+        <div class="pnote">
+          <div class="pnote-txt">&#128247; Patients and caregivers self-report each ICS dose by photo. GPS-tagged and timestamped at capture. No PSP team required. Data Medical Affairs can trust.</div>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="ch"><div class="ct">Activation &amp; 90-day persistence</div><div class="badge bt">312 patients</div></div>
+      <div class="ring-pair">
+        <div class="ring-col">
+          <div style="font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:.07em;margin-bottom:8px;font-weight:700">Activation rate</div>
+          <div class="ring"><svg width="88" height="88" viewBox="0 0 88 88"><circle cx="44" cy="44" r="33" fill="none" stroke="rgba(0,0,0,.07)" stroke-width="8"/><circle cx="44" cy="44" r="33" fill="none" stroke="#16a34a" stroke-width="8" stroke-dasharray="207.3" stroke-dashoffset="39.4" stroke-linecap="round"/></svg><div class="rc"><div class="rn" style="color:var(--green)">81%</div><div class="rs">active</div></div></div>
+          <div class="rlbl">253 / 312</div>
+          <div class="rsub">Photo-verified dose this week</div>
+          <div class="srow"><div class="sdot" style="background:var(--green)"></div><div class="sname">Active</div><div class="sbar"><div class="sbf" style="width:81%;background:var(--green)"></div></div><div class="scnt">253</div></div>
+          <div class="srow"><div class="sdot" style="background:#d97706"></div><div class="sname">Lapsed 7&ndash;14d</div><div class="sbar"><div class="sbf" style="width:12%;background:#d97706"></div></div><div class="scnt">38</div></div>
+          <div class="srow"><div class="sdot" style="background:var(--red)"></div><div class="sname">Lapsed 14d+</div><div class="sbar"><div class="sbf" style="width:7%;background:var(--red)"></div></div><div class="scnt">21</div></div>
+        </div>
+        <div class="ring-col">
+          <div style="font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:.07em;margin-bottom:8px;font-weight:700">90-day persistence</div>
+          <div class="ring"><svg width="88" height="88" viewBox="0 0 88 88"><circle cx="44" cy="44" r="33" fill="none" stroke="rgba(0,0,0,.07)" stroke-width="8"/><circle cx="44" cy="44" r="33" fill="none" stroke="#0b7285" stroke-width="8" stroke-dasharray="207.3" stroke-dashoffset="66.3" stroke-linecap="round"/></svg><div class="rc"><div class="rn" style="color:var(--teal)">68%</div><div class="rs">persist</div></div></div>
+          <div class="rlbl">212 / 312</div>
+          <div class="rsub">Still on ICS at 90 days from enrolment</div>
+          <div class="srow"><div class="sdot" style="background:var(--teal)"></div><div class="sname">Persistent</div><div class="sbar"><div class="sbf" style="width:68%;background:var(--teal)"></div></div><div class="scnt">212</div></div>
+          <div class="srow"><div class="sdot" style="background:#d97706"></div><div class="sname">Dropped 30&ndash;90d</div><div class="sbar"><div class="sbf" style="width:19%;background:#d97706"></div></div><div class="scnt">59</div></div>
+          <div class="srow"><div class="sdot" style="background:var(--red)"></div><div class="sname">Dropped &lt;30d</div><div class="sbar"><div class="sbf" style="width:13%;background:var(--red)"></div></div><div class="scnt">41</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════ WELLNESS ═══ -->
+<div id="panel-wellness" class="panel">
+  <div class="kpis">
+    <div class="kpi hero" style="background:var(--purple);border-color:var(--purple)"><div class="kpi-icon">&#128578;</div><div class="kl">Mood logs</div><div class="kv">2,841</div><div class="kd">67% of active patients</div><div class="kt"><div class="kf" style="width:67%"></div></div></div>
+    <div class="kpi"><div class="kpi-icon">&#128513;</div><div class="kl">Feeling good or great</div><div class="kv">58%</div><div class="kd up">&#8593; 4 pts vs last month</div><div class="kt"><div class="kf" style="width:58%"></div></div></div>
+    <div class="kpi warn"><div class="kpi-icon">&#128546;</div><div class="kl">Struggling</div><div class="kv">199</div><div class="kd dn">68% also missed doses same week</div><div class="kt"><div class="kf" style="width:7%;background:var(--red)"></div></div></div>
+    <div class="kpi"><div class="kpi-icon">&#128200;</div><div class="kl">Mood &rarr; adherence lift</div><div class="kv">+58%</div><div class="kd up">Great vs struggling adherence gap</div><div class="kt"><div class="kf" style="width:78%"></div></div></div>
+  </div>
+  <div class="g2">
+    <div class="card">
+      <div class="ch"><div class="ct">Mood distribution &mdash; all patients</div><div class="badge bp">2,841 logs this month</div></div>
+      <div class="cb">
+        <div style="font-size:10px;color:var(--muted);margin-bottom:13px;line-height:1.65">Patients log mood daily in the app. For children, caregivers log on their behalf. Mood is a leading indicator — patients reporting "struggling" are 3&#215; more likely to miss doses in the following week.</div>
+        <div class="mood-row"><div class="mood-em">&#128513;</div><div class="mood-lbl">Great</div><div class="mood-trk"><div class="mood-fill" style="width:34%;background:#16a34a"></div></div><div class="mood-n">967</div><div class="mood-pct">34%</div></div>
+        <div class="mood-row"><div class="mood-em">&#128578;</div><div class="mood-lbl">Good</div><div class="mood-trk"><div class="mood-fill" style="width:24%;background:#4ade80"></div></div><div class="mood-n">681</div><div class="mood-pct">24%</div></div>
+        <div class="mood-row"><div class="mood-em">&#128528;</div><div class="mood-lbl">Neutral</div><div class="mood-trk"><div class="mood-fill" style="width:22%;background:#d97706"></div></div><div class="mood-n">625</div><div class="mood-pct">22%</div></div>
+        <div class="mood-row"><div class="mood-em">&#128529;</div><div class="mood-lbl">Low</div><div class="mood-trk"><div class="mood-fill" style="width:13%;background:#f97316"></div></div><div class="mood-n">369</div><div class="mood-pct">13%</div></div>
+        <div class="mood-row"><div class="mood-em">&#128546;</div><div class="mood-lbl">Struggling</div><div class="mood-trk"><div class="mood-fill" style="width:7%;background:var(--red)"></div></div><div class="mood-n">199</div><div class="mood-pct">7%</div></div>
+        <div style="margin-top:13px;padding:10px 12px;background:var(--red-bg);border-radius:var(--radius);border-left:3px solid var(--red)">
+          <div style="font-size:10px;color:var(--red);font-weight:700;margin-bottom:3px">199 patients logged "struggling" this month</div>
+          <div style="font-size:10px;color:var(--ink);line-height:1.55">68% of these also missed at least one dose in the same week. Mood is the earliest flag the program has — it fires before the adherence data does.</div>
+        </div>
+        <div class="pills">
+          <div class="pill p">&#10003; Daily self-report</div>
+          <div class="pill p">&#10003; Caregiver proxy for under-12</div>
+          <div class="pill t">&#10003; Adherence correlation tracked</div>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="ch"><div class="ct">Mood &#215; adherence correlation</div><div class="badge bp">Next-day adherence rate by mood</div></div>
+      <div class="cb">
+        <div style="font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:.07em;margin-bottom:10px;font-weight:700">Adherence rate the day after each mood state</div>
+        <div style="display:flex;flex-direction:column;gap:9px;margin-bottom:14px">
+          <div style="display:flex;align-items:center;gap:8px;font-size:11px"><span style="font-size:14px">&#128513;</span><div style="width:58px;color:var(--muted)">Great</div><div style="flex:1;height:8px;background:var(--bg);border-radius:4px;overflow:hidden"><div style="height:100%;width:89%;background:#16a34a;border-radius:4px"></div></div><div style="font-weight:700;width:28px;text-align:right;font-family:var(--mono)">89%</div></div>
+          <div style="display:flex;align-items:center;gap:8px;font-size:11px"><span style="font-size:14px">&#128578;</span><div style="width:58px;color:var(--muted)">Good</div><div style="flex:1;height:8px;background:var(--bg);border-radius:4px;overflow:hidden"><div style="height:100%;width:82%;background:#4ade80;border-radius:4px"></div></div><div style="font-weight:700;width:28px;text-align:right;font-family:var(--mono)">82%</div></div>
+          <div style="display:flex;align-items:center;gap:8px;font-size:11px"><span style="font-size:14px">&#128528;</span><div style="width:58px;color:var(--muted)">Neutral</div><div style="flex:1;height:8px;background:var(--bg);border-radius:4px;overflow:hidden"><div style="height:100%;width:71%;background:#d97706;border-radius:4px"></div></div><div style="font-weight:700;width:28px;text-align:right;font-family:var(--mono)">71%</div></div>
+          <div style="display:flex;align-items:center;gap:8px;font-size:11px"><span style="font-size:14px">&#128529;</span><div style="width:58px;color:var(--muted)">Low</div><div style="flex:1;height:8px;background:var(--bg);border-radius:4px;overflow:hidden"><div style="height:100%;width:54%;background:#f97316;border-radius:4px"></div></div><div style="font-weight:700;width:28px;text-align:right;font-family:var(--mono)">54%</div></div>
+          <div style="display:flex;align-items:center;gap:8px;font-size:11px"><span style="font-size:14px">&#128546;</span><div style="width:58px;color:var(--muted)">Struggling</div><div style="flex:1;height:8px;background:var(--bg);border-radius:4px;overflow:hidden"><div style="height:100%;width:31%;background:var(--red);border-radius:4px"></div></div><div style="font-weight:700;width:28px;text-align:right;font-family:var(--mono)">31%</div></div>
+        </div>
+        <div class="ns purple">
+          <div class="nsl">Why mood matters to Medical Affairs</div>
+          <div class="nst">Mood is not a wellness add-on. A patient logging "struggling" today has a 69% chance of missing their dose tomorrow. This signal makes the PSP proactive, not reactive — and it's unique to platforms that capture wellbeing alongside adherence.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════ DEVICE RETURNS ═══ -->
+<div id="panel-returns" class="panel">
+  <div class="kpis">
+    <div class="kpi hero" style="background:var(--teal);border-color:var(--teal)"><div class="kpi-icon">&#9855;</div><div class="kl">Device return rate</div><div class="kv">78%</div><div class="kd">187 / 240 Q1 target</div><div class="kt"><div class="kf" style="width:78%"></div></div></div>
+    <div class="kpi"><div class="kpi-icon">&#128247;</div><div class="kl">pMDI canisters</div><div class="kv">94</div><div class="kd up">&#8593; highest CO2e per unit</div><div class="kt"><div class="kf" style="width:84%"></div></div></div>
+    <div class="kpi"><div class="kpi-icon">&#9855;</div><div class="kl">DPI devices</div><div class="kv">61</div><div class="kd up">&#8593; on track</div><div class="kt"><div class="kf" style="width:68%"></div></div></div>
+    <div class="kpi warn"><div class="kpi-icon">&#9888;</div><div class="kl">Paediatric spacers</div><div class="kv">32</div><div class="kd dn">&#8595; below target</div><div class="kt"><div class="kf" style="width:41%;background:var(--amber)"></div></div></div>
+  </div>
+  <div class="g2">
+    <div class="card">
+      <div class="ch"><div class="ct">ICS inhaler returns by device type</div><div class="badge bt">Brand-agnostic &middot; photo-verified</div></div>
+      <div class="cb">
+        <div style="font-size:10px;color:var(--muted);margin-bottom:12px;line-height:1.65">Patients return used ICS inhalers at pharmacy collection points found via the in-app map. Any brand accepted. Photo taken at drop-off, device weighed, entered into EPR waste manifest. Each return earns a Lucky Spin.</div>
+        <div class="dev-row">
+          <div class="dev-info"><div class="dev-name">pMDI canisters</div><div class="dev-sub">HFC propellant &middot; ~2,000&#215; CO2e warming potential &middot; EPR priority</div></div>
+          <div class="dev-trk"><div class="dev-bar" style="width:84%;background:var(--blue)"></div></div>
+          <div class="dev-n">94</div>
+          <div style="width:64px;text-align:right;flex-shrink:0"><span class="badge bg">On track</span></div>
+        </div>
+        <div class="dev-row">
+          <div class="dev-info"><div class="dev-name">DPI devices</div><div class="dev-sub">Turbuhaler / Accuhaler &middot; no propellant</div></div>
+          <div class="dev-trk"><div class="dev-bar" style="width:68%;background:var(--blue-mid)"></div></div>
+          <div class="dev-n">61</div>
+          <div style="width:64px;text-align:right;flex-shrink:0"><span class="badge bg">On track</span></div>
+        </div>
+        <div class="dev-row">
+          <div class="dev-info"><div class="dev-name">Paediatric spacers</div><div class="dev-sub">Used with pMDI by under-12s &middot; recovery rate low</div></div>
+          <div class="dev-trk"><div class="dev-bar" style="width:41%;background:#d97706"></div></div>
+          <div class="dev-n">32</div>
+          <div style="width:64px;text-align:right;flex-shrink:0"><span class="badge ba">Below tgt</span></div>
+        </div>
+        <div class="tbar-wrap">
+          <div class="tbar-row"><div class="tbar-lbl">Q1 EPR target vs actual</div><div class="tbar-val">187 / 240 units</div></div>
+          <div class="tbar"><div class="tbar-fill" style="width:78%;background:var(--teal)"></div></div>
+          <div class="tbar-sub">78% of quarterly target &middot; pMDI recovery drives Scope 3 Cat. 12 impact</div>
+        </div>
+        <div class="pills">
+          <div class="pill t">&#10003; Patient photo at drop-off</div>
+          <div class="pill t">&#10003; Weight logged</div>
+          <div class="pill t">&#10003; Waste manifest</div>
+          <div class="pill t">&#10003; One-click EPR export</div>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="ch"><div class="ct">Monthly return trend</div><div class="badge bb">Units collected</div></div>
+      <div class="cb">
+        <div class="chart-wrap"><canvas id="devChart"></canvas></div>
+        <div style="display:flex;gap:14px;font-size:10px;margin-bottom:12px">
+          <span style="display:flex;align-items:center;gap:4px"><span style="width:10px;height:10px;border-radius:2px;background:var(--teal);display:inline-block"></span>Returned</span>
+          <span style="display:flex;align-items:center;gap:4px"><span style="width:10px;height:10px;border-radius:2px;background:rgba(0,0,0,.1);display:inline-block"></span>Target</span>
+        </div>
+        <div class="ns teal">
+          <div class="nsl">Why pMDI recovery matters most</div>
+          <div class="nst">ICS pMDI canisters contain HFC propellants with ~2,000&#215; the CO2e warming potential of CO2. Each canister recovered is a defensible Scope 3 Cat. 12 reduction — the only number your CSO can put in front of an auditor with a verified chain of evidence.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════ KNOWLEDGE ═══ -->
+<div id="panel-knowledge" class="panel">
+  <div class="kpis">
+    <div class="kpi purple"><div class="kpi-icon">&#127891;</div><div class="kl">Knowledge index</div><div class="kv">72</div><div class="kd">&#8593; 19 pts vs enrollment</div><div class="kt"><div class="kf" style="width:72%"></div></div></div>
+    <div class="kpi"><div class="kpi-icon">&#128101;</div><div class="kl">Seminar attendance</div><div class="kv">68%</div><div class="kd up">212 of 312 enrolled</div><div class="kt"><div class="kf" style="width:68%"></div></div></div>
+    <div class="kpi"><div class="kpi-icon">&#9989;</div><div class="kl">Quiz completion</div><div class="kv">81%</div><div class="kd up">of attendees &middot; pre &amp; post</div><div class="kt"><div class="kf" style="width:81%"></div></div></div>
+    <div class="kpi"><div class="kpi-icon">&#128200;</div><div class="kl">Knowledge &#215; adherence lift</div><div class="kv">+32%</div><div class="kd up">0 vs 3+ seminars attended</div><div class="kt"><div class="kf" style="width:74%"></div></div></div>
+  </div>
+  <div class="g2">
+    <div class="card">
+      <div class="ch"><div class="ct">Knowledge score by dimension</div><div class="badge bp">Pre vs post seminar</div></div>
+      <div class="cb">
+        <div class="dim-row">
+          <div class="dim-head">
+            <div style="display:flex;align-items:center;gap:8px"><div class="dim-icon" style="background:var(--green-lt)">&#128138;</div><div><div class="dim-name">ICS — why daily use matters</div><div class="dim-q">"My inhaler only works when I feel symptoms" — % who correctly disagree</div></div></div>
+            <div style="text-align:right"><div class="dim-score" style="color:var(--green)">79%</div><div class="dim-delta" style="color:var(--green)">&#8593; 28 pts</div></div>
+          </div>
+          <div class="dim-track"><div class="dim-fill" style="width:79%;background:var(--green)"></div></div>
+          <div class="dim-cohorts"><div class="dim-cohort"><div class="cdot" style="background:#1251a3"></div>Adult 84%</div><div class="dim-cohort"><div class="cdot" style="background:#6d28d9"></div>Caregiver 78%</div><div class="dim-cohort"><div class="cdot" style="background:#d97706"></div>Teen 71%</div></div>
+        </div>
+        <div class="dim-row">
+          <div class="dim-head">
+            <div style="display:flex;align-items:center;gap:8px"><div class="dim-icon" style="background:var(--blue-lt)">&#128168;</div><div><div class="dim-name">Triggers &amp; prevention</div><div class="dim-q">"Can you name 3 triggers that worsen your asthma?"</div></div></div>
+            <div style="text-align:right"><div class="dim-score" style="color:var(--blue)">74%</div><div class="dim-delta" style="color:var(--green)">&#8593; 22 pts</div></div>
+          </div>
+          <div class="dim-track"><div class="dim-fill" style="width:74%;background:var(--blue-mid)"></div></div>
+          <div class="dim-cohorts"><div class="dim-cohort"><div class="cdot" style="background:#1251a3"></div>Adult 79%</div><div class="dim-cohort"><div class="cdot" style="background:#6d28d9"></div>Caregiver 76%</div><div class="dim-cohort"><div class="cdot" style="background:#d97706"></div>Teen 63%</div></div>
+        </div>
+        <div class="dim-row">
+          <div class="dim-head">
+            <div style="display:flex;align-items:center;gap:8px"><div class="dim-icon" style="background:var(--red-bg)">&#128680;</div><div><div class="dim-name">Emergency red flags</div><div class="dim-q">"When would you go to hospital vs wait at home?"</div></div></div>
+            <div style="text-align:right"><div class="dim-score" style="color:var(--red)">61%</div><div class="dim-delta" style="color:var(--green)">&#8593; 17 pts</div></div>
+          </div>
+          <div class="dim-track"><div class="dim-fill" style="width:61%;background:var(--red)"></div></div>
+          <div class="dim-cohorts"><div class="dim-cohort"><div class="cdot" style="background:#1251a3"></div>Adult 68%</div><div class="dim-cohort"><div class="cdot" style="background:#6d28d9"></div>Caregiver 72%</div><div class="dim-cohort"><div class="cdot" style="background:#d97706"></div>Teen 44%</div></div>
+        </div>
+        <div class="dim-row">
+          <div class="dim-head">
+            <div style="display:flex;align-items:center;gap:8px"><div class="dim-icon" style="background:var(--amber-bg)">&#128137;</div><div><div class="dim-name">Inhaler technique</div><div class="dim-q">"Correct technique observed during seminar check"</div></div></div>
+            <div style="text-align:right"><div class="dim-score" style="color:var(--amber)">68%</div><div class="dim-delta" style="color:var(--green)">&#8593; 31 pts</div></div>
+          </div>
+          <div class="dim-track"><div class="dim-fill" style="width:68%;background:#d97706"></div></div>
+          <div class="dim-cohorts"><div class="dim-cohort"><div class="cdot" style="background:#1251a3"></div>Adult 72%</div><div class="dim-cohort"><div class="cdot" style="background:#6d28d9"></div>Caregiver 74%</div><div class="dim-cohort"><div class="cdot" style="background:#d97706"></div>Teen 55%</div></div>
+        </div>
+        <div class="dim-row">
+          <div class="dim-head">
+            <div style="display:flex;align-items:center;gap:8px"><div class="dim-icon" style="background:var(--teal-lt)">&#9855;</div><div><div class="dim-name">Device return &amp; EPR reason</div><div class="dim-q">"Why does returning your inhaler matter for the planet?"</div></div></div>
+            <div style="text-align:right"><div class="dim-score" style="color:var(--teal)">83%</div><div class="dim-delta" style="color:var(--green)">&#8593; 41 pts</div></div>
+          </div>
+          <div class="dim-track"><div class="dim-fill" style="width:83%;background:var(--teal)"></div></div>
+          <div class="dim-cohorts"><div class="dim-cohort"><div class="cdot" style="background:#1251a3"></div>Adult 86%</div><div class="dim-cohort"><div class="cdot" style="background:#6d28d9"></div>Caregiver 84%</div><div class="dim-cohort"><div class="cdot" style="background:#d97706"></div>Teen 77%</div></div>
+        </div>
+        <div class="pills">
+          <div class="pill p">&#10003; Pre/post quiz scored</div>
+          <div class="pill p">&#10003; Observed technique check</div>
+          <div class="pill t">&#10003; Medical Affairs exportable</div>
+        </div>
+      </div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:12px">
+      <div class="card">
+        <div class="ch"><div class="ct">Knowledge index</div><div class="badge bp">All 5 dimensions</div></div>
+        <div class="cb" style="display:flex;flex-direction:column;align-items:center">
+          <div class="impact-ring">
+            <svg width="96" height="96" viewBox="0 0 96 96"><circle cx="48" cy="48" r="38" fill="none" stroke="rgba(0,0,0,.07)" stroke-width="9"/><circle cx="48" cy="48" r="38" fill="none" stroke="#6d28d9" stroke-width="9" stroke-dasharray="238.8" stroke-dashoffset="66.9" stroke-linecap="round"/></svg>
+            <div class="irc"><div class="irn">72</div><div class="irs">/100</div></div>
+          </div>
+          <div style="font-size:12px;font-weight:600;color:var(--ink);margin-bottom:4px">Informed</div>
+          <div style="font-size:10px;color:var(--muted);text-align:center;line-height:1.5;margin-bottom:12px">Emergency (61%) and technique (68%) need reinforcement — both safety-critical.</div>
+          <div style="width:100%">
+            <div class="srow"><div class="sdot" style="background:var(--teal)"></div><div class="sname">EPR / return</div><div class="sbar"><div class="sbf" style="width:83%;background:var(--teal)"></div></div><div class="scnt">83%</div></div>
+            <div class="srow"><div class="sdot" style="background:var(--green)"></div><div class="sname">ICS daily use</div><div class="sbar"><div class="sbf" style="width:79%;background:var(--green)"></div></div><div class="scnt">79%</div></div>
+            <div class="srow"><div class="sdot" style="background:var(--blue-mid)"></div><div class="sname">Triggers</div><div class="sbar"><div class="sbf" style="width:74%;background:var(--blue-mid)"></div></div><div class="scnt">74%</div></div>
+            <div class="srow"><div class="sdot" style="background:#d97706"></div><div class="sname">Technique</div><div class="sbar"><div class="sbf" style="width:68%;background:#d97706"></div></div><div class="scnt">68%</div></div>
+            <div class="srow"><div class="sdot" style="background:var(--red)"></div><div class="sname">Emergency</div><div class="sbar"><div class="sbf" style="width:61%;background:var(--red)"></div></div><div class="scnt">61%</div></div>
+          </div>
+          <div class="ns purple" style="width:100%">
+            <div class="nsl">Next seminar — 18 March 2026</div>
+            <div class="nst">Lead with emergency red flags + technique. These are the two lowest scores and both are safety-critical.</div>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="ch"><div class="ct">Knowledge &#215; adherence lift</div><div class="badge bg">By sessions attended</div></div>
+        <div class="cb">
+          <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:13px">
+            <div style="display:flex;align-items:center;gap:7px;font-size:11px"><div style="width:62px;color:var(--muted);flex-shrink:0">0 sessions</div><div style="flex:1;height:8px;background:var(--bg);border-radius:4px;overflow:hidden"><div style="height:100%;width:52%;background:#d1d5db;border-radius:4px"></div></div><div style="font-weight:700;width:28px;text-align:right;font-family:var(--mono)">52%</div><div style="font-size:9px;color:var(--muted);width:28px;text-align:right">n=41</div></div>
+            <div style="display:flex;align-items:center;gap:7px;font-size:11px"><div style="width:62px;color:var(--muted);flex-shrink:0">1 session</div><div style="flex:1;height:8px;background:var(--bg);border-radius:4px;overflow:hidden"><div style="height:100%;width:63%;background:var(--blue-mid);border-radius:4px"></div></div><div style="font-weight:700;width:28px;text-align:right;font-family:var(--mono)">63%</div><div style="font-size:9px;color:var(--muted);width:28px;text-align:right">n=68</div></div>
+            <div style="display:flex;align-items:center;gap:7px;font-size:11px"><div style="width:62px;color:var(--muted);flex-shrink:0">2 sessions</div><div style="flex:1;height:8px;background:var(--bg);border-radius:4px;overflow:hidden"><div style="height:100%;width:74%;background:var(--blue);border-radius:4px"></div></div><div style="font-weight:700;width:28px;text-align:right;font-family:var(--mono)">74%</div><div style="font-size:9px;color:var(--muted);width:28px;text-align:right">n=89</div></div>
+            <div style="display:flex;align-items:center;gap:7px;font-size:11px"><div style="width:62px;color:var(--muted);flex-shrink:0">3+ sessions</div><div style="flex:1;height:8px;background:var(--bg);border-radius:4px;overflow:hidden"><div style="height:100%;width:84%;background:var(--green);border-radius:4px"></div></div><div style="font-weight:700;width:28px;text-align:right;font-family:var(--mono)">84%</div><div style="font-size:9px;color:var(--muted);width:28px;text-align:right">n=114</div></div>
+          </div>
+          <div class="ba-grid">
+            <div class="ba-col"><div class="ba-lbl">At enrollment</div><div class="ba-val" style="color:var(--muted)">53</div><div style="font-size:9px;color:var(--muted);margin-top:3px">avg. knowledge score</div></div>
+            <div style="font-size:18px;color:var(--green);font-weight:700;text-align:center">&#8594;</div>
+            <div class="ba-col" style="background:var(--green-lt);border:1px solid var(--green-bd)"><div class="ba-lbl" style="color:var(--green-dark)">Today</div><div class="ba-val" style="color:var(--green)">72</div><div style="font-size:9px;color:var(--green);margin-top:3px;font-weight:600">+19 pts lift</div></div>
+          </div>
+          <div class="ns green">
+            <div class="nsl">Core impact claim</div>
+            <div class="nst">3+ seminar attendees show 84% adherence — 32 pts above those attending none. Knowledge is the strongest single predictor of sustained adherence in this program.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Seminar history + question bank -->
+  <div class="g2">
+    <div class="card">
+      <div class="ch"><div class="ct">Monthly seminar history</div><div class="badge bg">Walk &amp; Talk format &middot; patients + caregivers</div></div>
+      <div class="cb" style="padding:8px 16px">
+        <div style="display:grid;grid-template-columns:48px 1fr 26px 26px 32px;gap:4px;padding-bottom:7px;border-bottom:1px solid var(--bd)">
+          <div style="font-size:9px;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:.07em">Month</div>
+          <div style="font-size:9px;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:.07em">Topic</div>
+          <div style="font-size:9px;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:.07em;text-align:right">Att.</div>
+          <div style="font-size:9px;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:.07em;text-align:right">%</div>
+          <div style="font-size:9px;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:.07em;text-align:right">Score</div>
+        </div>
+        <div class="sem-row"><div class="sem-month">Oct 25</div><div class="sem-topic">ICS — why daily use<div class="sem-sub">Intro session &middot; enrollment month</div></div><div class="sem-att">148</div><div class="sem-pct">47%</div><div class="sem-score" style="color:var(--amber)">51</div></div>
+        <div class="sem-row"><div class="sem-month">Nov 25</div><div class="sem-topic">Triggers &amp; prevention<div class="sem-sub">Dust, smoke, cold air, exercise</div></div><div class="sem-att">171</div><div class="sem-pct">55%</div><div class="sem-score" style="color:var(--amber)">58</div></div>
+        <div class="sem-row"><div class="sem-month">Dec 25</div><div class="sem-topic">Inhaler technique<div class="sem-sub">Observed check + caregiver coaching</div></div><div class="sem-att">188</div><div class="sem-pct">60%</div><div class="sem-score" style="color:var(--blue)">64</div></div>
+        <div class="sem-row"><div class="sem-month">Jan 26</div><div class="sem-topic">Emergency red flags<div class="sem-sub">When to go to hospital &middot; rescue plan</div></div><div class="sem-att">196</div><div class="sem-pct">63%</div><div class="sem-score" style="color:var(--blue)">68</div></div>
+        <div class="sem-row"><div class="sem-month">Feb 26</div><div class="sem-topic">Device return &amp; EPR<div class="sem-sub">Why returns matter &middot; Lucky Spin reminder</div></div><div class="sem-att">204</div><div class="sem-pct">65%</div><div class="sem-score" style="color:var(--green)">71</div></div>
+        <div class="sem-row today"><div class="sem-month" style="color:var(--green-dark)">Mar 26</div><div class="sem-topic" style="color:var(--green-dark);font-weight:600">Emergency + technique (repeat)<div class="sem-sub" style="color:var(--green-dark);opacity:.7">Today &middot; 18 March 2026</div></div><div class="sem-att" style="color:var(--green-dark)">212</div><div class="sem-pct" style="color:var(--green-dark)">68%</div><div class="sem-score" style="color:var(--green-dark)">72</div></div>
+        <div class="snote">Score = weighted pre/post quiz average across all 5 dimensions &middot; attendance rising each month</div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="ch"><div class="ct">Sample question bank</div><div class="badge bp">30 questions &middot; 5 dimensions &middot; pre &amp; post</div></div>
+      <div class="cb" style="display:flex;flex-direction:column;gap:8px">
+        <div class="q-block" style="border-left-color:var(--green)"><div class="q-dim" style="color:var(--green-dark)">ICS daily use</div><div class="q-text">My controller inhaler should only be used when I have symptoms.</div><div class="q-opt wrong">&#10005; True</div><div class="q-opt correct">&#10003; False &mdash; it reduces inflammation daily, even when symptom-free</div></div>
+        <div class="q-block" style="border-left-color:var(--red)"><div class="q-dim" style="color:var(--red)">Emergency red flags</div><div class="q-text">Child's lips are blue, cannot speak in full sentences. You should:</div><div class="q-opt wrong">&#10005; Give 2 puffs and wait 10 minutes</div><div class="q-opt correct">&#10003; Call emergency services immediately</div></div>
+        <div class="q-block" style="border-left-color:var(--amber)"><div class="q-dim" style="color:var(--amber)">Inhaler technique</div><div class="q-text">How long should you hold your breath after inhaling from a pMDI?</div><div class="q-opt wrong">&#10005; 2 seconds</div><div class="q-opt correct">&#10003; 10 seconds, then breathe out slowly</div></div>
+        <div class="q-block" style="border-left-color:var(--teal)"><div class="q-dim" style="color:var(--teal)">Device return &amp; EPR</div><div class="q-text">Why return your used inhaler rather than throwing it in the bin?</div><div class="q-opt wrong">&#10005; To get a discount on the next one</div><div class="q-opt correct">&#10003; The HFC propellant is a powerful greenhouse gas &mdash; recovery prevents its release</div></div>
+        <div style="padding:9px 12px;background:var(--bg);border-radius:var(--radius)"><div style="font-size:9px;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:.07em;margin-bottom:4px">Full bank</div><div style="font-size:10px;color:var(--ink);line-height:1.65">5 dimensions &#215; 6 questions = 30 total. 3 given pre-seminar on arrival, 3 post at close. Score delta = knowledge lift per session. Caregiver version adapted for under-12 patients.</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════ EPR / ESG ═══ -->
+<div id="panel-esg" class="panel">
+  <div class="kpis">
+    <div class="kpi hero" style="background:var(--teal);border-color:var(--teal)"><div class="kpi-icon">&#127758;</div><div class="kl">tCO2e avoided</div><div class="kv">9.4</div><div class="kd">est. from pMDI HFC recovery</div><div class="kt"><div class="kf" style="width:78%"></div></div></div>
+    <div class="kpi"><div class="kpi-icon">&#9855;</div><div class="kl">Devices recovered</div><div class="kv">187</div><div class="kd up">&#8593; 38% vs Q4 2025</div><div class="kt"><div class="kf" style="width:78%"></div></div></div>
+    <div class="kpi"><div class="kpi-icon">&#128247;</div><div class="kl">Verified actions</div><div class="kv">7,059</div><div class="kd up">doses + returns + mood</div><div class="kt"><div class="kf" style="width:82%"></div></div></div>
+    <div class="kpi"><div class="kpi-icon">&#128101;</div><div class="kl">Program reach</div><div class="kv">312</div><div class="kd up">&#8593; 18 enrolled this month</div><div class="kt"><div class="kf" style="width:62%"></div></div></div>
+  </div>
+  <div class="g3">
+    <div class="card">
+      <div class="ch"><div class="ct">Scope 3 coverage</div><div class="badge bt">Cat. 11 &amp; 12</div></div>
+      <div class="cb">
+        <div class="scrow"><div class="sclbl">pMDI HFC propellant</div><div class="sctrk"><div class="scfill" style="width:78%;background:var(--blue)"></div></div><div class="scval">78%</div></div>
+        <div class="scrow"><div class="sclbl">Inhaler packaging</div><div class="sctrk"><div class="scfill" style="width:71%;background:var(--teal)"></div></div><div class="scval">71%</div></div>
+        <div class="scrow"><div class="sclbl">Device end-of-life</div><div class="sctrk"><div class="scfill" style="width:63%;background:var(--blue-mid)"></div></div><div class="scval">63%</div></div>
+        <div class="scrow"><div class="sclbl">Paediatric spacers</div><div class="sctrk"><div class="scfill" style="width:41%;background:#d97706"></div></div><div class="scval">41%</div></div>
+        <div style="padding-top:12px;border-top:1px solid var(--bd);margin-top:4px">
+          <div class="divlbl">Compliance frameworks</div>
+          <div class="fw-row"><div class="fw-lbl">KEBS Medical Waste</div><div class="fw-trk"><div class="fw-bar" style="width:84%;background:var(--teal)"></div></div><div class="fw-pct" style="color:var(--teal)">84%</div></div>
+          <div class="fw-row"><div class="fw-lbl">GHG Protocol Cat. 12</div><div class="fw-trk"><div class="fw-bar" style="width:71%;background:var(--blue-mid)"></div></div><div class="fw-pct" style="color:var(--blue)">71%</div></div>
+          <div class="fw-row"><div class="fw-lbl">IFRS S2 Disclosure</div><div class="fw-trk"><div class="fw-bar" style="width:58%;background:#d97706"></div></div><div class="fw-pct" style="color:var(--amber)">58%</div></div>
+          <div class="fw-row"><div class="fw-lbl">Kenya EPR Device</div><div class="fw-trk"><div class="fw-bar" style="width:78%;background:var(--blue)"></div></div><div class="fw-pct" style="color:var(--blue)">78%</div></div>
+        </div>
+        <div class="pills">
+          <div class="pill t">&#10003; ISAE 3000</div>
+          <div class="pill t">&#10003; Audit trail</div>
+          <div class="pill b">&#10003; GHG Protocol</div>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="ch"><div class="ct">ESG impact &mdash; CSO view</div><div class="badge ba">Q1 2026</div></div>
+      <div class="cb">
+        <div class="estat">
+          <div class="es"><div class="esl">Devices recovered</div><div class="esv">187</div><div class="esd">&#8593; 38% vs Q4</div></div>
+          <div class="es"><div class="esl">tCO2e avoided</div><div class="esv">9.4</div><div class="esb">est. pMDI HFC recovery</div></div>
+          <div class="es"><div class="esl">Verified doses</div><div class="esv">4,218</div><div class="esb">patient photo &middot; ICS</div></div>
+          <div class="es"><div class="esl">Mood logs</div><div class="esv">2,841</div><div class="esb">wellbeing signal</div></div>
+          <div class="es"><div class="esl">Knowledge index</div><div class="esv">72</div><div class="esd">&#8593; 19 pts vs enrolment</div></div>
+          <div class="es"><div class="esl">Seminar attendees</div><div class="esv">212</div><div class="esb">68% of enrolled</div></div>
+        </div>
+        <div class="ns teal">
+          <div class="nsl">What makes this defensible</div>
+          <div class="nst">Every data point is photo-captured by the patient or caregiver, timestamped, and GPS-tagged. The pharma lab receives a verified chain of evidence across four streams — adherence, device returns, patient wellbeing, and health literacy — that no other PSP platform generates simultaneously.</div>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="ch"><div class="ct">Lab reporting package</div><div class="badge bg">Ready to export</div></div>
+      <div class="cb">
+        <div class="rpt" style="border-left:3px solid var(--green)"><div class="rpt-name">Verified adherence report</div><div class="rpt-sub">Per-patient &middot; age cohort split &middot; photo evidence &middot; Medical Affairs ready</div></div>
+        <div class="rpt" style="border-left:3px solid var(--purple)"><div class="rpt-name">Patient wellness report</div><div class="rpt-sub">Mood distribution &middot; adherence correlation &middot; at-risk flags</div></div>
+        <div class="rpt" style="border-left:3px solid var(--blue-mid)"><div class="rpt-name">Activation &amp; persistence</div><div class="rpt-sub">Weekly activation rate &middot; 90-day retention by cohort &middot; dropout analysis</div></div>
+        <div class="rpt" style="border-left:3px solid var(--teal)"><div class="rpt-name">EPR device recovery log</div><div class="rpt-sub">Returns &middot; device type &middot; weight &middot; waste manifest &middot; KEBS format</div></div>
+        <div class="rpt" style="border-left:3px solid var(--purple)"><div class="rpt-name">Knowledge &amp; impact report</div><div class="rpt-sub">Knowledge index &middot; per-dimension scores &middot; seminar attendance &middot; pre/post lift</div></div>
+        <div class="rpt" style="border-left:3px solid var(--amber)"><div class="rpt-name">Scope 3 data pack</div><div class="rpt-sub">Cat. 11 &amp; 12 &middot; GHG Protocol &middot; IFRS S2 &middot; pMDI HFC breakdown</div></div>
+        <div class="rpt" style="border-left:3px solid var(--green)"><div class="rpt-name">CSO ESG summary</div><div class="rpt-sub">tCO2e avoided &middot; device return rate &middot; program reach &middot; one page</div></div>
+        <button class="export-btn" style="width:100%;margin-top:11px;padding:10px;font-size:12px;border-radius:var(--radius);font-weight:600;cursor:pointer" onclick="alert('Generating Q1 2026 complete report package...')">&#8593; Generate Q1 2026 full report package</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div><!-- /body -->
+</div><!-- /shell -->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<script>
+function sw(id, btn) {
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('on'));
+  document.querySelectorAll('.tab').forEach(b => b.classList.remove('on'));
+  document.getElementById('panel-' + id).classList.add('on');
+  btn.classList.add('on');
+  if (id === 'returns') initDevChart();
+}
+
+let devChartDone = false;
+function initDevChart() {
+  if (devChartDone) return;
+  devChartDone = true;
+  new Chart(document.getElementById('devChart'), {
+    type: 'bar',
+    data: {
+      labels: ['Oct', 'Nov', 'Dec', 'Jan', 'Feb', 'Mar'],
+      datasets: [
+        { label: 'Returned', data: [58, 74, 98, 118, 152, 187], backgroundColor: '#0b7285', borderRadius: 5, borderSkipped: false },
+        { label: 'Target',   data: [90, 100, 120, 150, 180, 240], backgroundColor: 'rgba(0,0,0,0.08)', borderRadius: 5, borderSkipped: false }
+      ]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { display: false } },
+      scales: {
+        x: { grid: { display: false }, ticks: { font: { size: 11, family: "'DM Mono'" } } },
+        y: { grid: { color: 'rgba(0,0,0,0.05)' }, ticks: { font: { size: 11, family: "'DM Mono'" } }, beginAtZero: true }
+      }
+    }
+  });
+}
+</script>
+</body>
+</html>
