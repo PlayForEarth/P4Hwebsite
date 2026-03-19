@@ -145,15 +145,15 @@ section{padding:100px 5%;}
 }
 .btn-embed-full:hover{background:var(--blue-dark);}
 
-#how{background:var(--bg2);border-top:1px solid var(--border);}
+#how{background:white;border-top:1px solid var(--border);}
 .how-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:56px;border:1px solid var(--border-dark);border-radius:var(--radius);overflow:hidden;background:white;box-shadow:0 4px 20px rgba(14,27,46,0.06);}
-.hw-step{padding:32px 24px;border-right:1px solid rgba(14,27,46,0.07);transition:background 0.25s;}
+.hw-step{padding:28px 22px;border-right:1px solid rgba(14,27,46,0.07);transition:background 0.25s;}
 .hw-step:last-child{border-right:none;}
 .hw-step:hover{background:var(--blue-faint);}
-.hw-num{font-size:2rem;font-weight:700;color:rgba(14,27,46,0.12);line-height:1;margin-bottom:10px;}
-.hw-icon{font-size:1.5rem;margin-bottom:10px;display:block;}
-.hw-step h4{font-size:0.9rem;font-weight:700;color:var(--ink);margin-bottom:6px;line-height:1.3;}
-.hw-step p{font-size:0.8rem;color:var(--ink-light);line-height:1.6;}
+.hw-step-header{display:flex;align-items:baseline;gap:10px;margin-bottom:12px;}
+.hw-num{font-size:0.95rem;font-weight:700;color:var(--blue);opacity:0.45;line-height:1;flex-shrink:0;}
+.hw-step h4{font-size:0.95rem;font-weight:700;color:var(--ink);line-height:1.3;}
+.hw-step p{font-size:0.82rem;color:var(--ink-light);line-height:1.65;}
 #measurable{background:var(--bg);border-top:1px solid var(--border);}
 .measurable-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:16px;margin-top:56px;}
 .measure-card{background:white;border:1px solid var(--border-dark);border-radius:var(--radius);padding:28px 20px;text-align:center;transition:all 0.25s;}
@@ -281,8 +281,7 @@ footer{background:#0a1628;border-top:1px solid rgba(255,255,255,0.06);padding:64
   .how-steps{grid-template-columns:repeat(2,1fr);}
   .hw-step:nth-child(2){border-right:none;}
   .hw-step:nth-child(3){border-top:1px solid rgba(14,27,46,0.07);border-right:1px solid rgba(14,27,46,0.07);}
-  .hw-step:nth-child(4){border-top:1px solid rgba(14,27,46,0.07);border-right:none;}
-}
+  .hw-step:nth-child(4){border-top:1px solid rgba(14,27,46,0.07);border-right:none;}}
 @media(max-width:900px){
   .nav-links{display:none;}
   .nav-hamburger{display:flex;}
@@ -453,27 +452,19 @@ footer{background:#0a1628;border-top:1px solid rgba(255,255,255,0.06);padding:64
   <p class="section-sub">No app to download. No hardware to install. Works through existing pharmacy networks in days.</p>
   <div class="how-steps">
     <div class="hw-step">
-      <div class="hw-num">01</div>
-      <span class="hw-icon">&#128248;</span>
-      <h4>Patient takes a photo</h4>
-      <p>Dose confirmed or device return initiated &mdash; shared via a simple link. No app, no login friction.</p>
+      <div class="hw-step-header"><div class="hw-num">01</div><h4>Patient takes a photo</h4></div>
+      <p>Dose confirmed or device return initiated &mdash; via a simple link. No app, no login friction.</p>
     </div>
     <div class="hw-step">
-      <div class="hw-num">02</div>
-      <span class="hw-icon">&#9989;</span>
-      <h4>Verification runs automatically</h4>
+      <div class="hw-step-header"><div class="hw-num">02</div><h4>Verification runs automatically</h4></div>
       <p>Timeframe rules, duplicate controls, and photo context checked instantly. No manual review needed.</p>
     </div>
     <div class="hw-step">
-      <div class="hw-num">03</div>
-      <span class="hw-icon">&#127919;</span>
-      <h4>Points, streaks, Lucky Spin</h4>
+      <div class="hw-step-header"><div class="hw-num">03</div><h4>Points, streaks, Lucky Spin</h4></div>
       <p>Gamification turns daily doses into habits. Streaks and rewards keep patients engaged week after week.</p>
     </div>
     <div class="hw-step">
-      <div class="hw-num">04</div>
-      <span class="hw-icon">&#128202;</span>
-      <h4>Data flows to your dashboard</h4>
+      <div class="hw-step-header"><div class="hw-num">04</div><h4>Data flows to your dashboard</h4></div>
       <p>Adherence rates, device returns, patient activation &mdash; live. Export-ready for PSP, ESG, and medical affairs.</p>
     </div>
   </div>
