@@ -98,18 +98,53 @@ section{padding:100px 5%;}
 .section-title{font-size:clamp(2rem,3.6vw,3rem);font-weight:400;line-height:1.1;letter-spacing:-0.02em;margin-bottom:20px;color:var(--ink);}
 .section-title em{color:var(--blue);font-style:normal;}
 .section-sub{font-size:1.05rem;color:var(--ink-light);line-height:1.75;max-width:540px;}
-#who{background:white;border-top:1px solid var(--border);}
-.who-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:56px;}
-.who-card{background:var(--bg);border:1px solid var(--border-dark);border-radius:var(--radius);padding:32px 28px;position:relative;overflow:hidden;transition:all 0.25s;}
-.who-card:hover{transform:translateY(-3px);box-shadow:0 8px 32px rgba(37,99,235,0.1);border-color:rgba(37,99,235,0.2);}
-.who-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--blue),var(--teal));}
-.who-icon{font-size:2.2rem;margin-bottom:12px;display:block;}
-.who-role{font-size:0.82rem;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:var(--blue);margin-bottom:10px;}
-.who-card h3{font-size:1.35rem;font-weight:700;color:var(--ink);margin-bottom:10px;line-height:1.25;}
-.who-card p{font-size:0.86rem;color:var(--ink-light);line-height:1.65;margin-bottom:16px;}
-.who-card ul{list-style:none;display:flex;flex-direction:column;gap:8px;}
-.who-card ul li{font-size:0.84rem;color:var(--ink-light);display:flex;gap:10px;align-items:flex-start;}
-.li-icon{flex-shrink:0;line-height:1.4;}
+#how{background:var(--bg2);border-top:1px solid var(--border);}
+#dashboard{background:white;border-top:1px solid var(--border);padding:100px 5%;}
+
+/* ===== PLATFORM EMBED ===== */
+.platform-embed-wrap{
+  max-width:1200px;margin:0 auto 0;
+  border-radius:16px;overflow:hidden;
+  box-shadow:0 8px 40px rgba(14,27,46,0.1);
+  border:1px solid var(--border);
+  background:var(--bg3);position:relative;
+}
+.platform-embed-bar{
+  background:#f0f2f8;border-bottom:1px solid var(--border);
+  padding:10px 16px;display:flex;align-items:center;gap:10px;
+}
+.embed-dot{width:10px;height:10px;border-radius:50%;}
+.platform-embed-bar .embed-label{
+  font-size:11px;font-family:'DM Sans',monospace;
+  color:rgba(14,27,46,0.35);margin-left:4px;letter-spacing:0.04em;
+}
+.platform-embed-bar .embed-live{
+  margin-left:auto;display:flex;align-items:center;gap:5px;
+  font-size:11px;font-weight:600;color:var(--green);
+}
+.embed-pulse{
+  width:7px;height:7px;border-radius:50%;
+  background:var(--green);animation:epulse 1.8s infinite;
+}
+@keyframes epulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.35;transform:scale(.6)}}
+.platform-embed-wrap iframe{
+  display:block;width:100%;height:680px;border:none;
+}
+.platform-embed-cta{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:18px 24px;background:var(--blue-faint);
+  border-top:1px solid var(--border);flex-wrap:wrap;gap:12px;
+}
+.platform-embed-cta p{font-size:0.88rem;color:var(--ink-light);line-height:1.5;}
+.platform-embed-cta p strong{color:var(--ink);}
+.btn-embed-full{
+  display:inline-flex;align-items:center;gap:7px;
+  background:var(--blue);color:white;padding:10px 22px;
+  border-radius:24px;font-size:0.86rem;font-weight:600;
+  text-decoration:none;white-space:nowrap;transition:background 0.2s;flex-shrink:0;
+}
+.btn-embed-full:hover{background:var(--blue-dark);}
+
 #how{background:var(--bg2);border-top:1px solid var(--border);}
 .how-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:56px;border:1px solid var(--border-dark);border-radius:var(--radius);overflow:hidden;background:white;box-shadow:0 4px 20px rgba(14,27,46,0.06);}
 .hw-step{padding:32px 24px;border-right:1px solid rgba(14,27,46,0.07);transition:background 0.25s;}
@@ -195,7 +230,7 @@ section{padding:100px 5%;}
 .price-card.featured .price-divider{background:rgba(255,255,255,0.1);}
 .price-features{list-style:none;display:flex;flex-direction:column;gap:11px;}
 .price-features li{font-size:0.85rem;color:var(--ink-mid);display:flex;gap:9px;}
-.price-features li::before{content:'✓';color:var(--blue);font-weight:700;flex-shrink:0;}
+.price-features li::before{content:'&#x2713;';color:var(--blue);font-weight:700;flex-shrink:0;}
 .price-card.featured .price-features li{color:rgba(255,255,255,0.75);}
 .price-card.featured .price-features li::before{color:#93c5fd;}
 .price-btn{display:block;margin-top:28px;text-align:center;padding:12px 20px;border-radius:24px;font-size:0.88rem;font-weight:600;text-decoration:none;transition:all 0.2s;}
@@ -254,6 +289,7 @@ footer{background:#0a1628;border-top:1px solid rgba(255,255,255,0.06);padding:64
   .mobile-menu{display:flex;}
   section{padding:72px 5%;}
   #contact{padding:96px 5%;}
+  #dashboard{padding:72px 5%;}
   .hero{min-height:100svh;padding:92px 5% 56px;justify-content:center;}
   .hero-scroll{display:none;}
   .hero h1{font-size:clamp(1.7rem,5.5vw,2.4rem);}
@@ -280,12 +316,15 @@ footer{background:#0a1628;border-top:1px solid rgba(255,255,255,0.06);padding:64
   .footer-grid{grid-template-columns:1fr 1fr;gap:28px;}
   .footer-grid>div:first-child{grid-column:1/-1;}
   .footer-bottom{flex-direction:column;align-items:flex-start;}
+  .platform-embed-wrap iframe{height:480px;}
+  .platform-embed-cta{flex-direction:column;align-items:flex-start;}
 }
 @media(max-width:480px){
   section{padding:60px 5%;}
   .hero h1{font-size:clamp(1.5rem,7vw,1.9rem);}
   .measurable-grid{grid-template-columns:1fr;}
   .footer-grid{grid-template-columns:1fr;}
+  .platform-embed-wrap iframe{height:360px;}
 }
 </style>
 </head>
@@ -294,7 +333,7 @@ footer{background:#0a1628;border-top:1px solid rgba(255,255,255,0.06);padding:64
 <nav id="mainNav">
   <a href="/" class="nav-logo">Play4<span>Health</span></a>
   <ul class="nav-links">
-    <li><a href="#who">Who It's For</a></li>
+    <li><a href="#dashboard">What You Buy</a></li>
     <li><a href="#how">How It Works</a></li>
     <li><a href="#hai">HAI Index</a></li>
     <li><a href="#traction">Traction</a></li>
@@ -308,7 +347,7 @@ footer{background:#0a1628;border-top:1px solid rgba(255,255,255,0.06);padding:64
 </nav>
 
 <nav class="mobile-menu" id="mobileMenu">
-  <a href="#who" class="mobile-menu-link">Who It's For <span class="arrow">&rarr;</span></a>
+  <a href="#dashboard" class="mobile-menu-link">What You Buy <span class="arrow">&rarr;</span></a>
   <a href="#how" class="mobile-menu-link">How It Works <span class="arrow">&rarr;</span></a>
   <a href="#measurable" class="mobile-menu-link">What's Measurable <span class="arrow">&rarr;</span></a>
   <a href="#hai" class="mobile-menu-link">HAI Index <span class="arrow">&rarr;</span></a>
@@ -381,43 +420,29 @@ footer{background:#0a1628;border-top:1px solid rgba(255,255,255,0.06);padding:64
   </div>
 </div>
 
-<section id="who">
-  <div class="section-eyebrow">Who It's For</div>
-  <h2 class="section-title">Built for three buyers.<br><em>One verified proof system.</em></h2>
-  <p class="section-sub">The same verified field data serves PSP teams, market access, and ESG functions &mdash; each with a different reason to act.</p>
-  <div class="who-grid">
-    <div class="who-card">
-      <span class="who-icon">&#128138;</span>
-      <div class="who-role">Pharma / PSP Teams</div>
-      <h3>You're spending on patient support with no proof it works.</h3>
-      <p>PSP budgets are under pressure. Payers want evidence. You have self-reported data at best. Play4Health gives you photo-verified adherence at scale.</p>
-      <ul>
-        <li><span class="li-icon">&#128202;</span> Verified adherence rates for PSP reporting</li>
-        <li><span class="li-icon">&#128197;</span> 90-day persistence tracking</li>
-        <li><span class="li-icon">&#127963;&#65039;</span> Real-world evidence for market access</li>
-      </ul>
+<!-- DASHBOARD SECTION -->
+<section id="dashboard">
+  <div class="section-eyebrow">What You Buy</div>
+  <h2 class="section-title">Your programme. <em>Live.</em></h2>
+  <p class="section-sub" style="margin-bottom:40px;">Every patient photo generates a verified compliance event. You see adherence rates, at-risk flags, device return volumes, and EPR data &mdash; across all cohorts, in real time.</p>
+
+  <div class="platform-embed-wrap">
+    <div class="platform-embed-bar">
+      <div class="embed-dot" style="background:#ff5f57"></div>
+      <div class="embed-dot" style="background:#febc2e"></div>
+      <div class="embed-dot" style="background:#28c840"></div>
+      <span class="embed-label">play4health.org / dashboard</span>
+      <div class="embed-live"><div class="embed-pulse"></div>Live</div>
     </div>
-    <div class="who-card">
-      <span class="who-icon">&#127973;</span>
-      <div class="who-role">Market Access / Medical Affairs</div>
-      <h3>Payers want real-world outcomes. You don't have them yet.</h3>
-      <p>Outcomes-based contracts require verified adherence data. Self-reported compliance won't survive scrutiny. Play4Health generates field-level evidence that holds up.</p>
-      <ul>
-        <li><span class="li-icon">&#9989;</span> Photo-verified dose confirmations</li>
-        <li><span class="li-icon">&#128203;</span> Structured data for HTA and payer submissions</li>
-        <li><span class="li-icon">&#9878;&#65039;</span> Independent, audit-ready methodology</li>
-      </ul>
-    </div>
-    <div class="who-card">
-      <span class="who-icon">&#127807;</span>
-      <div class="who-role">ESG / Sustainability Teams</div>
-      <h3>Inhalers and pens end up in landfill. You can't prove otherwise.</h3>
-      <p>Medical device EPR obligations are tightening. Without a verified return scheme, you're exposed. Play4Health tracks device returns through existing pharmacy networks.</p>
-      <ul>
-        <li><span class="li-icon">&#9851;&#65039;</span> Verified inhaler and pen return records</li>
-        <li><span class="li-icon">&#127758;</span> Scope 3 and CSRD-ready data export</li>
-        <li><span class="li-icon">&#128274;</span> EPR compliance without new infrastructure</li>
-      </ul>
+    <iframe
+      src="/dashboard"
+      title="Play4Health PSP Manager Dashboard"
+      scrolling="no"
+      loading="lazy"
+    ></iframe>
+    <div class="platform-embed-cta">
+      <p><strong>Interactive demo.</strong> Click the tabs to explore adherence data, wellness signals, device returns, knowledge scores, and EPR / ESG reporting.</p>
+      <a href="/dashboard" class="btn-embed-full" target="_blank">Open full dashboard &rarr;</a>
     </div>
   </div>
 </section>
@@ -626,12 +651,13 @@ footer{background:#0a1628;border-top:1px solid rgba(255,255,255,0.06);padding:64
       <p class="footer-tagline">Verified adherence, device returns, and EPR-ready data for pharma PSP teams &mdash; using existing pharmacy networks, no hardware required.</p>
       <div class="footer-social">
         <a href="https://www.linkedin.com/company/playforearth" target="_blank" class="social-btn">in</a>
-        <a href="mailto:hello@play4health.org" class="social-btn">&#9993;</a>
+        <a href="/cdn-cgi/l/email-protection#6d05080101022d1d010c145905080c01190543021f0a" class="social-btn">&#9993;</a>
       </div>
     </div>
     <div class="footer-col">
       <h5>Platform</h5>
       <ul>
+        <li><a href="#dashboard">Live Dashboard</a></li>
         <li><a href="#how">How It Works</a></li>
         <li><a href="#measurable">What's Measurable</a></li>
         <li><a href="#hai">HAI Index</a></li>
@@ -664,13 +690,17 @@ footer{background:#0a1628;border-top:1px solid rgba(255,255,255,0.06);padding:64
   </div>
 </footer>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 window.addEventListener('scroll',()=>{
   document.getElementById('mainNav').style.background=window.scrollY>60?'rgba(247,248,252,0.98)':'rgba(247,248,252,0.94)';
 });
 const h=document.getElementById('hamburger'),m=document.getElementById('mobileMenu');
 h.addEventListener('click',()=>{const o=h.classList.toggle('open');m.classList.toggle('open',o);document.body.style.overflow=o?'hidden':'';});
 m.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{h.classList.remove('open');m.classList.remove('open');document.body.style.overflow='';}));
-</script>
-</body>
-</html>
+
+// Auto-size iframe to its content height once loaded
+const dashIframe = document.querySelector('.platform-embed-wrap iframe');
+if (dashIframe) {
+  dashIframe.addEventListener('load', () => {
+    try {
+      const hh = das
