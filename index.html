@@ -6,7 +6,6 @@
 <title>Play4Health — Verified Adherence. Tracked Returns. Proven Care.</title>
 <meta name="description" content="Play4Health turns daily medication routines into verified adherence proof, device return data, and EPR-ready compliance evidence. No sensors. No app. Just proof from the field.">
 <link rel="canonical" href="https://www.play4health.org/">
-<!-- Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-7JM995K277"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -67,7 +66,6 @@ nav{position:fixed;top:0;left:0;right:0;z-index:500;display:flex;align-items:cen
 .hero h1 em{color:var(--blue);font-style:normal;}
 .hero-lines{font-size:1.1rem;line-height:1.75;color:var(--ink-mid);max-width:580px;margin-bottom:8px;font-weight:400;animation:fadeUp 0.8s ease 0.5s both;position:relative;z-index:2;}
 .hero-lines strong{color:var(--ink);font-weight:600;}
-.hero-lines .liability{color:var(--ink);font-weight:600;}
 .hero-sub{font-size:1.1rem;line-height:1.75;color:var(--ink-light);max-width:560px;margin-bottom:32px;font-weight:400;animation:fadeUp 0.8s ease 0.55s both;}
 .hero-sub strong{color:var(--ink);font-weight:700;}
 .hero-actions{display:flex;gap:16px;align-items:center;flex-wrap:wrap;animation:fadeUp 0.8s ease 0.65s both;margin-bottom:56px;}
@@ -98,53 +96,20 @@ section{padding:100px 5%;}
 .section-title{font-size:clamp(2rem,3.6vw,3rem);font-weight:400;line-height:1.1;letter-spacing:-0.02em;margin-bottom:20px;color:var(--ink);}
 .section-title em{color:var(--blue);font-style:normal;}
 .section-sub{font-size:1.05rem;color:var(--ink-light);line-height:1.75;max-width:540px;}
-#how{background:var(--bg2);border-top:1px solid var(--border);}
 #dashboard{background:white;border-top:1px solid var(--border);padding:100px 5%;}
-
-/* ===== PLATFORM EMBED ===== */
-.platform-embed-wrap{
-  max-width:1200px;margin:0 auto 0;
-  border-radius:16px;overflow:hidden;
-  box-shadow:0 8px 40px rgba(14,27,46,0.1);
-  border:1px solid var(--border);
-  background:var(--bg3);position:relative;
-}
-.platform-embed-bar{
-  background:#f0f2f8;border-bottom:1px solid var(--border);
-  padding:10px 16px;display:flex;align-items:center;gap:10px;
-}
+.platform-embed-wrap{max-width:1200px;margin:0 auto 0;border-radius:16px;overflow:hidden;box-shadow:0 8px 40px rgba(14,27,46,0.1);border:1px solid var(--border);background:var(--bg3);position:relative;}
+.platform-embed-bar{background:#f0f2f8;border-bottom:1px solid var(--border);padding:10px 16px;display:flex;align-items:center;gap:10px;}
 .embed-dot{width:10px;height:10px;border-radius:50%;}
-.platform-embed-bar .embed-label{
-  font-size:11px;font-family:'DM Sans',monospace;
-  color:rgba(14,27,46,0.35);margin-left:4px;letter-spacing:0.04em;
-}
-.platform-embed-bar .embed-live{
-  margin-left:auto;display:flex;align-items:center;gap:5px;
-  font-size:11px;font-weight:600;color:var(--green);
-}
-.embed-pulse{
-  width:7px;height:7px;border-radius:50%;
-  background:var(--green);animation:epulse 1.8s infinite;
-}
+.platform-embed-bar .embed-label{font-size:11px;font-family:'DM Sans',monospace;color:rgba(14,27,46,0.35);margin-left:4px;letter-spacing:0.04em;}
+.platform-embed-bar .embed-live{margin-left:auto;display:flex;align-items:center;gap:5px;font-size:11px;font-weight:600;color:var(--green);}
+.embed-pulse{width:7px;height:7px;border-radius:50%;background:var(--green);animation:epulse 1.8s infinite;}
 @keyframes epulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.35;transform:scale(.6)}}
-.platform-embed-wrap iframe{
-  display:block;width:100%;height:680px;border:none;
-}
-.platform-embed-cta{
-  display:flex;align-items:center;justify-content:space-between;
-  padding:18px 24px;background:var(--blue-faint);
-  border-top:1px solid var(--border);flex-wrap:wrap;gap:12px;
-}
+.platform-embed-wrap iframe{display:block;width:100%;height:680px;border:none;}
+.platform-embed-cta{display:flex;align-items:center;justify-content:space-between;padding:18px 24px;background:var(--blue-faint);border-top:1px solid var(--border);flex-wrap:wrap;gap:12px;}
 .platform-embed-cta p{font-size:0.88rem;color:var(--ink-light);line-height:1.5;}
 .platform-embed-cta p strong{color:var(--ink);}
-.btn-embed-full{
-  display:inline-flex;align-items:center;gap:7px;
-  background:var(--blue);color:white;padding:10px 22px;
-  border-radius:24px;font-size:0.86rem;font-weight:600;
-  text-decoration:none;white-space:nowrap;transition:background 0.2s;flex-shrink:0;
-}
+.btn-embed-full{display:inline-flex;align-items:center;gap:7px;background:var(--blue);color:white;padding:10px 22px;border-radius:24px;font-size:0.86rem;font-weight:600;text-decoration:none;white-space:nowrap;transition:background 0.2s;flex-shrink:0;}
 .btn-embed-full:hover{background:var(--blue-dark);}
-
 #how{background:white;border-top:1px solid var(--border);}
 .how-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:56px;border:1px solid var(--border-dark);border-radius:var(--radius);overflow:hidden;background:white;box-shadow:0 4px 20px rgba(14,27,46,0.06);}
 .hw-step{padding:28px 22px;border-right:1px solid rgba(14,27,46,0.07);transition:background 0.25s;}
@@ -207,6 +172,8 @@ section{padding:100px 5%;}
 .proof-trophy{font-size:1.5rem;flex-shrink:0;line-height:1;margin-top:2px;}
 .proof-item h4{font-size:0.9rem;font-weight:700;margin-bottom:3px;color:var(--ink);}
 .proof-item p{font-size:0.82rem;color:var(--ink-light);line-height:1.6;}
+
+/* ===== PRICING ===== */
 #pricing{background:var(--bg3);border-top:1px solid var(--border);}
 .pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:56px;align-items:start;}
 .price-card{background:var(--bg);border:1px solid var(--border-dark);border-radius:var(--radius);padding:36px 30px;position:relative;transition:all 0.25s;}
@@ -220,8 +187,10 @@ section{padding:100px 5%;}
 .price-card.featured .price-main{color:white;}
 .price-per{font-size:0.85rem;font-weight:400;color:var(--ink-light);}
 .price-card.featured .price-per{color:rgba(255,255,255,0.45);}
-.price-setup{font-size:0.78rem;color:var(--ink-light);margin-bottom:20px;}
+.price-setup{font-size:0.78rem;color:var(--ink-light);margin-bottom:20px;line-height:1.6;}
+.price-setup em{display:block;font-style:normal;font-size:0.74rem;margin-top:3px;opacity:0.75;}
 .price-card.featured .price-setup{color:rgba(255,255,255,0.4);}
+.price-card.featured .price-setup em{color:rgba(255,255,255,0.3);}
 .price-badge{font-size:0.75rem;font-weight:600;display:inline-block;padding:4px 12px;border-radius:20px;margin-bottom:20px;}
 .pb-teal{color:var(--teal);background:var(--teal-pale);}
 .pb-blue{color:#93c5fd;background:rgba(37,99,235,0.2);}
@@ -230,7 +199,7 @@ section{padding:100px 5%;}
 .price-card.featured .price-divider{background:rgba(255,255,255,0.1);}
 .price-features{list-style:none;display:flex;flex-direction:column;gap:11px;}
 .price-features li{font-size:0.85rem;color:var(--ink-mid);display:flex;gap:9px;}
-.price-features li::before{content:'&#x2713;';color:var(--blue);font-weight:700;flex-shrink:0;}
+.price-features li::before{content:'\2713';color:var(--blue);font-weight:700;flex-shrink:0;}
 .price-card.featured .price-features li{color:rgba(255,255,255,0.75);}
 .price-card.featured .price-features li::before{color:#93c5fd;}
 .price-btn{display:block;margin-top:28px;text-align:center;padding:12px 20px;border-radius:24px;font-size:0.88rem;font-weight:600;text-decoration:none;transition:all 0.2s;}
@@ -238,6 +207,7 @@ section{padding:100px 5%;}
 .pbo:hover{background:var(--blue);color:white;}
 .pbf{background:var(--blue);color:white;}
 .pbf:hover{background:var(--blue-dark);}
+
 #northstar{background:var(--ink);padding:100px 5%;text-align:center;border-top:1px solid rgba(255,255,255,0.06);position:relative;overflow:hidden;}
 #northstar::before{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(37,99,235,0.1) 0%,transparent 70%);}
 .ns-inner{max-width:680px;margin:0 auto;position:relative;z-index:1;}
@@ -297,7 +267,6 @@ footer{background:#0a1628;border-top:1px solid rgba(255,255,255,0.06);padding:64
   .hero-proof{grid-template-columns:1fr;gap:10px;max-width:100%;}
   .hero-actions{flex-direction:column;align-items:stretch;}
   .btn-primary,.btn-ghost{text-align:center;justify-content:center;}
-  .who-grid{grid-template-columns:1fr;gap:14px;margin-top:40px;}
   .how-steps{grid-template-columns:1fr;}
   .hw-step{border-right:none!important;border-top:1px solid rgba(14,27,46,0.07)!important;}
   .hw-step:first-child{border-top:none!important;}
@@ -316,15 +285,13 @@ footer{background:#0a1628;border-top:1px solid rgba(255,255,255,0.06);padding:64
   .footer-grid>div:first-child{grid-column:1/-1;}
   .footer-bottom{flex-direction:column;align-items:flex-start;}
   .platform-embed-wrap iframe{height:480px;}
-  .platform-embed-cta{flex-direction:column;align-items:flex-start;}
-}
+  .platform-embed-cta{flex-direction:column;align-items:flex-start;}}
 @media(max-width:480px){
   section{padding:60px 5%;}
   .hero h1{font-size:clamp(1.5rem,7vw,1.9rem);}
   .measurable-grid{grid-template-columns:1fr;}
   .footer-grid{grid-template-columns:1fr;}
-  .platform-embed-wrap iframe{height:360px;}
-}
+  .platform-embed-wrap iframe{height:360px;}}
 </style>
 </head>
 <body>
@@ -362,32 +329,24 @@ footer{background:#0a1628;border-top:1px solid rgba(255,255,255,0.06);padding:64
   <div class="hero-blob blob1"></div>
   <div class="hero-blob blob2"></div>
   <div class="hero-blob blob3"></div>
-
   <div class="hero-eyebrow">
     <span class="eyebrow-dot"></span>
     Verified Adherence &middot; Device Returns &middot; No App Required
   </div>
-
   <h1>
     Your patients take their meds.<br>
     Your devices end up in landfill.<br>
     <em>You can't prove either.</em>
   </h1>
-
   <p class="hero-lines">
     The patient takes one photo of their dose or used device.<br>
     You get a verified adherence record, a tracked return, and EPR-ready data &mdash; through pharmacies you already use.
   </p>
-
-  <p class="hero-sub">
-    <strong>No app. No hardware. Just their phone camera.</strong>
-  </p>
-
+  <p class="hero-sub"><strong>No app. No hardware. Just their phone camera.</strong></p>
   <div class="hero-actions">
     <a href="/contact" class="btn-primary btn-large">Start a Pilot</a>
     <a href="#how" class="btn-ghost">See how it works <span class="arr">&rarr;</span></a>
   </div>
-
   <div class="hero-proof">
     <div class="hproof-card">
       <div class="hproof-label">&#10003; Patient takes the photo</div>
@@ -405,7 +364,6 @@ footer{background:#0a1628;border-top:1px solid rgba(255,255,255,0.06);padding:64
       <div class="hproof-desc">Gamification drives sustained adherence &mdash; verified week after week</div>
     </div>
   </div>
-
   <div class="hero-scroll"><span class="scroll-line"></span> Scroll to explore</div>
 </section>
 
@@ -419,12 +377,10 @@ footer{background:#0a1628;border-top:1px solid rgba(255,255,255,0.06);padding:64
   </div>
 </div>
 
-<!-- DASHBOARD SECTION -->
 <section id="dashboard">
   <div class="section-eyebrow">What You Buy</div>
   <h2 class="section-title">Your programme. <em>Live.</em></h2>
   <p class="section-sub" style="margin-bottom:40px;">Every patient photo generates a verified compliance event. You see adherence rates, at-risk flags, device return volumes, and EPR data &mdash; across all cohorts, in real time.</p>
-
   <div class="platform-embed-wrap">
     <div class="platform-embed-bar">
       <div class="embed-dot" style="background:#ff5f57"></div>
@@ -433,12 +389,7 @@ footer{background:#0a1628;border-top:1px solid rgba(255,255,255,0.06);padding:64
       <span class="embed-label">play4health.org / demo</span>
       <div class="embed-live"><div class="embed-pulse"></div>Live</div>
     </div>
-    <iframe
-      src="/demo"
-      title="Play4Health PSP Manager Dashboard"
-      scrolling="no"
-      loading="lazy"
-    ></iframe>
+    <iframe src="/demo" title="Play4Health PSP Manager Dashboard" scrolling="no" loading="lazy"></iframe>
     <div class="platform-embed-cta">
       <p><strong>Interactive demo.</strong> Click the tabs to explore adherence data, wellness signals, device returns, knowledge scores, and EPR / ESG reporting.</p>
       <a href="/demo" class="btn-embed-full" target="_blank">Open full dashboard &rarr;</a>
@@ -554,57 +505,73 @@ footer{background:#0a1628;border-top:1px solid rgba(255,255,255,0.06);padding:64
   </div>
 </section>
 
+<!-- ===== PRICING — USD 3-TIER ===== -->
 <section id="pricing">
   <div class="section-eyebrow">Pricing</div>
   <h2 class="section-title">You pay for what gets <em>verified.</em></h2>
   <p class="section-sub">All tiers include the full behavioral platform. Pricing scales with verified action volume &mdash; not enrolled patients, not headcount.</p>
   <div class="pricing-grid">
+
+    <!-- TIER 1: PILOT -->
     <div class="price-card">
-      <div class="price-tier">Care Proof Starter</div>
-      <div class="price-main">From &euro;50,000<span class="price-per"> / year</span></div>
-      <div class="price-setup">+ &euro;10,000 one-time setup</div>
+      <div class="price-tier">Care Proof Pilot</div>
+      <div class="price-main">$12,000<span class="price-per"> flat &mdash; 6 months</span></div>
+      <div class="price-setup">
+        Up to 300 enrolled patients. Setup included.
+        <em>Setup fee waived on conversion to annual plan.</em>
+      </div>
       <span class="price-badge pb-teal">Pilot &amp; early programmes</span>
       <div class="price-divider"></div>
       <ul class="price-features">
         <li>1 brand, 1 country</li>
+        <li>Up to 300 enrolled patients</li>
         <li>Verified adherence + device returns</li>
-        <li>Health &amp; ESG dashboard</li>
+        <li>HAI dashboard &amp; baseline report</li>
         <li>Data export (PSP, ESG, EPR)</li>
-        <li>Capped annual spend</li>
+        <li>Onboarding included</li>
       </ul>
       <a href="/contact" class="price-btn pbo">Start a pilot &rarr;</a>
     </div>
+
+    <!-- TIER 2: NATIONAL -->
     <div class="price-card featured">
       <span class="price-popular">Most popular</span>
-      <div class="price-tier">Care Proof Growth</div>
-      <div class="price-main">From &euro;120,000<span class="price-per"> / year</span></div>
-      <div class="price-setup">+ &euro;15,000 one-time setup</div>
+      <div class="price-tier">Care Proof National</div>
+      <div class="price-main">From $45,000<span class="price-per"> / year</span></div>
+      <div class="price-setup">
+        + $10,000 one-time setup &middot; up to 1,000 enrolled patients
+        <em>Setup waived on conversion from Pilot. $35/patient above 1,000.</em>
+      </div>
       <span class="price-badge pb-blue">National patient programmes</span>
       <div class="price-divider"></div>
       <ul class="price-features">
-        <li>Everything in Starter</li>
-        <li>Higher verified action volumes</li>
+        <li>Everything in Pilot</li>
+        <li>Full HAI dashboard with programme analytics</li>
         <li>Pharmacy or caregiver network activation</li>
         <li>Monthly summary reports</li>
         <li>Priority support</li>
       </ul>
       <a href="/contact" class="price-btn pbf">Talk to us &rarr;</a>
     </div>
+
+    <!-- TIER 3: ENTERPRISE -->
     <div class="price-card">
       <div class="price-tier">Care Proof Enterprise</div>
-      <div class="price-main">From &euro;250,000<span class="price-per"> / year</span></div>
-      <div class="price-setup">Custom setup &amp; integration</div>
+      <div class="price-main">From $95,000<span class="price-per"> / year</span></div>
+      <div class="price-setup">Custom setup &amp; integration &middot; multi-market or 2+ disease areas</div>
       <span class="price-badge pb-purple">Multi-market programmes</span>
       <div class="price-divider"></div>
       <ul class="price-features">
-        <li>Everything in Growth</li>
+        <li>Everything in National</li>
         <li>Multi-country deployment</li>
         <li>Audit-ready RWE methodology</li>
-        <li>Custom integrations</li>
+        <li>Custom integrations (CRM, Salesforce)</li>
+        <li>Branded programme portal</li>
         <li>Dedicated support &amp; SLA</li>
       </ul>
       <a href="/contact" class="price-btn pbo">Get in touch &rarr;</a>
     </div>
+
   </div>
   <p style="text-align:center;font-size:0.8rem;color:var(--ink-light);margin-top:32px;">All plans include verified adherence, device returns, gamification, and full dashboard. Same core system &mdash; only scale changes.</p>
 </section>
@@ -688,10 +655,15 @@ window.addEventListener('scroll',()=>{
 const h=document.getElementById('hamburger'),m=document.getElementById('mobileMenu');
 h.addEventListener('click',()=>{const o=h.classList.toggle('open');m.classList.toggle('open',o);document.body.style.overflow=o?'hidden':'';});
 m.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{h.classList.remove('open');m.classList.remove('open');document.body.style.overflow='';}));
-
-// Auto-size iframe to its content height once loaded
 const dashIframe = document.querySelector('.platform-embed-wrap iframe');
 if (dashIframe) {
   dashIframe.addEventListener('load', () => {
     try {
-      const hh = das
+      const hh = dashIframe.contentDocument.body.scrollHeight;
+      if (hh > 400) dashIframe.style.height = hh + 'px';
+    } catch(e) {}
+  });
+}
+</script>
+</body>
+</html>
