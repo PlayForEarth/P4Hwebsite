@@ -26,11 +26,13 @@
   --amber:#d97706;--amber-pale:#fef3c7;
   --border:rgba(37,99,235,0.1);--border-dark:rgba(14,27,46,0.08);
   --sans:'DM Sans',sans-serif;--radius:16px;
+  --max-w:1200px;--gutter:clamp(24px,5vw,80px);
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 html{scroll-behavior:smooth;}
 body{font-family:var(--sans);background:var(--bg);color:var(--ink);overflow-x:hidden;}
-nav{position:fixed;top:0;left:0;right:0;z-index:500;display:flex;align-items:center;justify-content:space-between;padding:14px 5%;background:rgba(247,248,252,0.94);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);transition:background 0.3s;}
+.section-inner{max-width:var(--max-w);margin:0 auto;width:100%;}
+nav{position:fixed;top:0;left:0;right:0;z-index:500;display:flex;align-items:center;justify-content:space-between;padding:14px var(--gutter);background:rgba(247,248,252,0.94);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);transition:background 0.3s;}
 .nav-logo{font-size:1.15rem;font-weight:500;color:var(--ink);text-decoration:none;}
 .nav-logo span{color:var(--blue);}
 .nav-links{display:flex;list-style:none;gap:32px;align-items:center;}
@@ -60,9 +62,10 @@ nav{position:fixed;top:0;left:0;right:0;z-index:500;display:flex;align-items:cen
 .blob2{width:260px;height:260px;background:rgba(13,148,136,0.1);top:45%;right:32%;animation-delay:2.5s;}
 .blob3{width:180px;height:180px;background:rgba(56,189,248,0.09);bottom:18%;right:18%;animation-delay:5s;}
 /* ===== HERO SPLIT LAYOUT ===== */
-.hero{display:grid;grid-template-columns:1fr 1fr;padding:0;padding-top:72px;position:relative;overflow:hidden;background:var(--bg);align-items:center;}
-.hero-left{display:flex;flex-direction:column;justify-content:center;padding:80px 6% 80px 5%;position:relative;z-index:2;}
-.hero-right{position:relative;z-index:2;display:flex;align-items:center;justify-content:center;padding:80px 5% 80px 2%;}
+.hero{display:block;padding:0;padding-top:72px;position:relative;overflow:hidden;background:var(--bg);}
+.hero-inner{display:grid;grid-template-columns:1fr 1fr;width:100%;max-width:var(--max-w);margin:0 auto;position:relative;z-index:2;align-items:center;}
+.hero-left{display:flex;flex-direction:column;justify-content:center;padding:80px var(--gutter) 80px 0;position:relative;z-index:2;}
+.hero-right{position:relative;z-index:2;display:flex;align-items:center;justify-content:center;padding:80px 0 80px var(--gutter);}
 .hero-visual{width:100%;max-width:500px;position:relative;}
 .hero-visual-panel{background:white;border-radius:20px;border:1px solid var(--border-dark);box-shadow:0 20px 60px rgba(14,27,46,0.12);padding:28px;animation:fadeUp 0.9s ease 0.5s both;}
 .hvp-bar{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;padding-bottom:16px;border-bottom:1px solid var(--border);}
@@ -121,18 +124,18 @@ nav{position:fixed;top:0;left:0;right:0;z-index:500;display:flex;align-items:cen
 .btn-outline:hover{border-color:#93c5fd;color:#93c5fd;}
 .btn-outline-blue{color:var(--blue);border:1.5px solid var(--blue);padding:14px 32px;border-radius:32px;font-size:0.95rem;font-weight:600;text-decoration:none;display:inline-block;transition:all 0.2s;background:transparent;}
 .btn-outline-blue:hover{background:var(--blue);color:white;transform:translateY(-2px);}
-.logos-strip{background:white;border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:28px 5%;}
-.logos-inner{display:flex;align-items:center;gap:40px;flex-wrap:wrap;justify-content:center;}
+.logos-strip{background:white;border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:28px var(--gutter);}
+.logos-inner{max-width:var(--max-w);margin:0 auto;display:flex;align-items:center;gap:40px;flex-wrap:wrap;justify-content:center;}
 .logos-label{font-size:0.78rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:rgba(14,27,46,0.3);}
 .logo-item{font-size:1rem;color:rgba(14,27,46,0.5);}
 .logo-item sup{font-size:0.6rem;color:var(--blue);vertical-align:super;margin-left:2px;font-weight:600;}
-section{padding:100px 5%;}
+section{padding:100px var(--gutter);}
 .section-eyebrow{display:inline-flex;align-items:center;gap:8px;background:var(--blue-faint);border:1px solid rgba(37,99,235,0.15);color:var(--blue);font-size:0.7rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;padding:5px 14px;border-radius:20px;margin-bottom:16px;}
 .section-title{font-size:clamp(2rem,3.6vw,3rem);font-weight:400;line-height:1.1;letter-spacing:-0.02em;margin-bottom:20px;color:var(--ink);}
 .section-title em{color:var(--blue);font-style:normal;}
 .section-sub{font-size:1.05rem;color:var(--ink-light);line-height:1.75;max-width:540px;}
-#dashboard{background:white;border-top:1px solid var(--border);padding:100px 5%;}
-.platform-embed-wrap{max-width:1200px;margin:0 auto 0;border-radius:16px;overflow:hidden;box-shadow:0 8px 40px rgba(14,27,46,0.1);border:1px solid var(--border);background:var(--bg3);position:relative;}
+#dashboard{background:white;border-top:1px solid var(--border);padding:100px var(--gutter);}
+.platform-embed-wrap{max-width:var(--max-w);margin:0 auto 0;border-radius:16px;overflow:hidden;box-shadow:0 8px 40px rgba(14,27,46,0.1);border:1px solid var(--border);background:var(--bg3);position:relative;}
 .platform-embed-bar{background:#f0f2f8;border-bottom:1px solid var(--border);padding:10px 16px;display:flex;align-items:center;gap:10px;}
 .embed-dot{width:10px;height:10px;border-radius:50%;}
 .platform-embed-bar .embed-label{font-size:11px;font-family:'DM Sans',monospace;color:rgba(14,27,46,0.35);margin-left:4px;letter-spacing:0.04em;}
@@ -254,9 +257,9 @@ section{padding:100px 5%;}
 .not-dot{width:8px;height:8px;border-radius:50%;background:var(--blue);flex-shrink:0;}
 
 /* ===== DUAL BENEFIT ===== */
-#dual-benefit{background:var(--bg2);border-top:1px solid var(--border);padding:100px 5%;}
+#dual-benefit{background:var(--bg2);border-top:1px solid var(--border);padding:100px var(--gutter);}
 .dual-header{max-width:580px;margin-bottom:56px;}
-.dual-cards{display:grid;grid-template-columns:1fr 1fr;gap:20px;max-width:960px;}
+.dual-cards{display:grid;grid-template-columns:1fr 1fr;gap:20px;max-width:var(--max-w);}
 .dual-card{background:white;border:1.5px solid rgba(37,99,235,0.12);border-radius:var(--radius);padding:36px 32px;position:relative;overflow:hidden;transition:all 0.25s;}
 .dual-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--blue);}
 .dual-card.teal-accent::before{background:var(--teal);}
@@ -271,15 +274,15 @@ section{padding:100px 5%;}
 .dual-card.teal-accent .dual-list li::before{color:var(--teal);}
 .dual-footer{margin-top:32px;font-size:0.75rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:rgba(14,27,46,0.3);text-align:center;}
 
-#northstar{background:var(--ink);padding:100px 5%;text-align:center;border-top:1px solid rgba(255,255,255,0.06);position:relative;overflow:hidden;}
+#northstar{background:var(--ink);padding:100px var(--gutter);text-align:center;border-top:1px solid rgba(255,255,255,0.06);position:relative;overflow:hidden;}
 #northstar::before{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(37,99,235,0.1) 0%,transparent 70%);}
-.ns-inner{max-width:680px;margin:0 auto;position:relative;z-index:1;}
+.ns-inner{max-width:680px;margin:0 auto;position:relative;z-index:1;text-align:center;}
 .ns-pill{display:inline-block;font-size:0.7rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.4);background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.1);border-radius:24px;padding:6px 16px;margin-bottom:32px;}
 .ns-quote{font-size:clamp(1.8rem,3vw,2.6rem);font-weight:400;line-height:1.25;color:rgba(255,255,255,0.88);margin-bottom:24px;letter-spacing:-0.02em;}
 .ns-quote strong{font-weight:600;color:#93c5fd;}
 .ns-body{font-size:0.97rem;line-height:1.75;color:rgba(255,255,255,0.5);margin-bottom:28px;}
 .ns-star{display:inline-flex;align-items:center;gap:9px;background:rgba(37,99,235,0.15);border:1px solid rgba(37,99,235,0.3);border-radius:24px;padding:9px 18px;font-size:0.73rem;font-weight:700;text-transform:uppercase;color:#93c5fd;}
-#contact{background:linear-gradient(135deg,#0e1b2e 0%,#0e2a4a 50%,#0d2b2a 100%);border-top:1px solid rgba(37,99,235,0.2);text-align:center;padding:140px 5%;position:relative;overflow:hidden;}
+#contact{background:linear-gradient(135deg,#0e1b2e 0%,#0e2a4a 50%,#0d2b2a 100%);border-top:1px solid rgba(37,99,235,0.2);text-align:center;padding:140px var(--gutter);position:relative;overflow:hidden;}
 #contact::before{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(37,99,235,0.12) 0%,transparent 65%);}
 .contact-inner{position:relative;z-index:1;}
 .contact-pill{display:inline-flex;align-items:center;gap:8px;background:rgba(37,99,235,0.15);border:1px solid rgba(37,99,235,0.25);border-radius:24px;padding:6px 16px;font-size:0.7rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#93c5fd;margin-bottom:28px;}
@@ -290,8 +293,8 @@ section{padding:100px 5%;}
 .trust-badges{display:flex;justify-content:center;gap:20px;flex-wrap:wrap;margin-top:40px;}
 .trust-badge{background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:12px;padding:9px 16px;font-size:0.77rem;color:rgba(255,255,255,0.5);display:flex;align-items:center;gap:8px;}
 .tbdot{width:6px;height:6px;border-radius:50%;background:#5eead4;flex-shrink:0;}
-footer{background:#0a1628;border-top:1px solid rgba(255,255,255,0.06);padding:64px 5% 40px;}
-.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;margin-bottom:56px;}
+footer{background:#0a1628;border-top:1px solid rgba(255,255,255,0.06);padding:64px var(--gutter) 40px;}
+.footer-grid{max-width:var(--max-w);margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;margin-bottom:56px;}
 .footer-logo{font-size:1.1rem;font-weight:500;color:white;text-decoration:none;display:block;margin-bottom:12px;}
 .footer-logo span{color:#93c5fd;}
 .footer-tagline{font-size:0.83rem;color:rgba(255,255,255,0.4);line-height:1.65;max-width:270px;margin-bottom:20px;}
@@ -303,7 +306,7 @@ footer{background:#0a1628;border-top:1px solid rgba(255,255,255,0.06);padding:64
 .footer-col ul li{margin-bottom:10px;}
 .footer-col ul li a{font-size:0.86rem;color:rgba(255,255,255,0.5);text-decoration:none;transition:color 0.2s;}
 .footer-col ul li a:hover{color:#93c5fd;}
-.footer-bottom{border-top:1px solid rgba(255,255,255,0.07);padding-top:24px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;}
+.footer-bottom{max-width:var(--max-w);margin:0 auto;border-top:1px solid rgba(255,255,255,0.07);padding-top:24px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;}
 .footer-copy{font-size:0.78rem;color:rgba(255,255,255,0.25);}
 .footer-legal{display:flex;gap:20px;}
 .footer-legal a{font-size:0.75rem;color:rgba(255,255,255,0.25);text-decoration:none;transition:color 0.2s;}
@@ -319,11 +322,11 @@ footer{background:#0a1628;border-top:1px solid rgba(255,255,255,0.06);padding:64
   .nav-links{display:none;}
   .nav-hamburger{display:flex;}
   .mobile-menu{display:flex;}
-  section{padding:72px 5%;}
-  #contact{padding:96px 5%;}
-  #dashboard{padding:72px 5%;}
-  .hero{grid-template-columns:1fr;padding-top:72px;}
-  .hero-left{padding:56px 5% 32px;justify-content:flex-start;}
+  section{padding:72px var(--gutter);}
+  #contact{padding:96px var(--gutter);}
+  #dashboard{padding:72px var(--gutter);}
+  .hero-inner{grid-template-columns:1fr;padding:0 var(--gutter);}
+  .hero-left{padding:56px 0 32px;justify-content:flex-start;}
   .hero-right{display:none;}
   .hero h1{font-size:clamp(1.7rem,5.5vw,2.4rem);}
   .hero-sub{font-size:0.95rem;}
@@ -353,7 +356,7 @@ footer{background:#0a1628;border-top:1px solid rgba(255,255,255,0.06);padding:64
   .not-tags{gap:8px;}
   .not-tag{font-size:0.8rem;padding:8px 16px;}}
 @media(max-width:480px){
-  section{padding:60px 5%;}
+  section{padding:60px var(--gutter);}
   .hero h1{font-size:clamp(1.5rem,7vw,1.9rem);}
   .measurable-grid{grid-template-columns:1fr;}
   .footer-grid{grid-template-columns:1fr;}
@@ -395,6 +398,7 @@ footer{background:#0a1628;border-top:1px solid rgba(255,255,255,0.06);padding:64
   <div class="hero-blob blob1"></div>
   <div class="hero-blob blob2"></div>
   <div class="hero-blob blob3"></div>
+  <div class="hero-inner" style="padding:0 var(--gutter);">
 
   <!-- LEFT: content -->
   <div class="hero-left">
@@ -479,6 +483,7 @@ footer{background:#0a1628;border-top:1px solid rgba(255,255,255,0.06);padding:64
       </div>
     </div>
   </div>
+  </div><!-- /hero-inner -->
 </section>
 
 <div class="logos-strip">
@@ -492,6 +497,7 @@ footer{background:#0a1628;border-top:1px solid rgba(255,255,255,0.06);padding:64
 </div>
 
 <section id="dual-benefit">
+  <div class="section-inner">
   <div class="dual-header">
     <div class="section-eyebrow">What You Get</div>
     <h2 class="section-title">One photo.<br><em>Two mandates covered.</em></h2>
@@ -520,9 +526,11 @@ footer{background:#0a1628;border-top:1px solid rgba(255,255,255,0.06);padding:64
     </div>
   </div>
   <p class="dual-footer">Both. From one patient photo.</p>
+  </div>
 </section>
 
 <section id="dashboard">
+  <div class="section-inner">
   <div class="section-eyebrow">What You Buy</div>
   <h2 class="section-title">Your programme. <em>Live.</em></h2>
   <p class="section-sub" style="margin-bottom:40px;">Every patient photo generates a verified compliance event. You see adherence rates, at-risk flags, device return volumes, and EPR data &mdash; across all cohorts, in real time.</p>
@@ -540,9 +548,11 @@ footer{background:#0a1628;border-top:1px solid rgba(255,255,255,0.06);padding:64
       <a href="/demo" class="btn-embed-full" target="_blank">Open full dashboard &rarr;</a>
     </div>
   </div>
+  </div>
 </section>
 
 <section id="how">
+  <div class="section-inner">
   <div class="section-eyebrow">How It Works</div>
   <h2 class="section-title">One photo.<br><em>Four verified outcomes.</em></h2>
   <p class="section-sub">No app to download. No hardware to install. Works through existing pharmacy networks in days.</p>
@@ -567,6 +577,7 @@ footer{background:#0a1628;border-top:1px solid rgba(255,255,255,0.06);padding:64
 </section>
 
 <section id="measurable">
+  <div class="section-inner">
   <div class="section-eyebrow">What Becomes Measurable</div>
   <h2 class="section-title">Outcomes no longer <em>assumed.</em></h2>
   <p class="section-sub">Every metric verified in real life &mdash; not modelled, not estimated, not self-reported.</p>
@@ -577,9 +588,11 @@ footer{background:#0a1628;border-top:1px solid rgba(255,255,255,0.06);padding:64
     <div class="measure-card"><span class="measure-icon">&#9889;</span><div class="measure-title">Patient Activation</div><div class="measure-desc">Engagement scores, streak data, and re-engagement signals</div><span class="measure-label ml-psp">PSP</span></div>
     <div class="measure-card"><span class="measure-icon">&#127758;</span><div class="measure-title">ESG Impact</div><div class="measure-desc">Scope 3 mapping, CSRD-ready reports, verified waste reduction</div><span class="measure-label ml-epr">ESG</span></div>
   </div>
+  </div>
 </section>
 
 <section id="forpharma">
+  <div class="section-inner">
   <div class="section-eyebrow">Built for Your Existing Frameworks</div>
   <h2 class="section-title">Fits the conversations<br>that <em>matter most.</em></h2>
   <p class="section-sub">PSP budgets. Market access submissions. ESG reporting. Play4Health plugs into frameworks you already have.</p>
@@ -600,9 +613,11 @@ footer{background:#0a1628;border-top:1px solid rgba(255,255,255,0.06);padding:64
       <p>Photo-verified inhaler and pen returns. CSRD, EPR, and Scope 3 ready &mdash; independent, audit-proof, no new infrastructure required.</p>
     </div>
   </div>
+  </div>
 </section>
 
 <section id="hai">
+  <div class="section-inner">
   <div class="section-eyebrow">The Measurement Standard</div>
   <h2 class="section-title">HAI: we measure what <em>actually happens</em> &mdash; not what patients say.</h2>
   <p class="section-sub">The Health Adherence Index tells you whether care behavior is genuinely embedded &mdash; or just happening under programme pressure.</p>
@@ -629,9 +644,11 @@ footer{background:#0a1628;border-top:1px solid rgba(255,255,255,0.06);padding:64
       </div>
     </div>
   </div>
+  </div>
 </section>
 
 <section id="traction">
+  <div class="section-inner">
   <div class="section-eyebrow">Proof</div>
   <h2 class="section-title">Real data.<br><em>Real markets.</em></h2>
   <div class="traction-grid">
@@ -648,9 +665,11 @@ footer{background:#0a1628;border-top:1px solid rgba(255,255,255,0.06);padding:64
       <div class="proof-item"><div class="proof-trophy">&#128640;</div><div><h4>MDX Nature Positive Accelerator</h4><p>Selected for the Middlesex University Dubai accelerator supporting circular economy ventures.</p></div></div>
     </div>
   </div>
+  </div>
 </section>
 
 <section id="pricing">
+  <div class="section-inner">
   <div class="section-eyebrow">Pricing</div>
   <h2 class="section-title">You pay for what gets <em>verified.</em></h2>
   <p class="section-sub">All tiers include the full behavioral platform. Pricing scales with verified action volume &mdash; not enrolled patients, not headcount.</p>
@@ -711,10 +730,11 @@ footer{background:#0a1628;border-top:1px solid rgba(255,255,255,0.06);padding:64
     </div>
   </div>
   <p style="text-align:center;font-size:0.8rem;color:var(--ink-light);margin-top:32px;">All plans include verified adherence, device returns, gamification, and full dashboard. Same core system &mdash; only scale changes.</p>
+  </div>
 </section>
 
 <section id="northstar">
-  <div class="ns-inner">
+  <div class="section-inner ns-inner">
     <div class="ns-pill">Our North Star</div>
     <p class="ns-quote">Healthcare without waste.<br><strong>Better outcomes for patients.<br>Better outcomes for the planet.</strong></p>
     <p class="ns-body">We start with adherence and device returns &mdash; because that's where outcomes are real and regulatory pressure is building today. The verified field data we generate builds the case for better care, less waste, and health systems that account for their environmental footprint.</p>
@@ -723,7 +743,7 @@ footer{background:#0a1628;border-top:1px solid rgba(255,255,255,0.06);padding:64
 </section>
 
 <section id="contact">
-  <div class="contact-inner">
+  <div class="section-inner contact-inner">
     <div class="contact-pill">Work With Us</div>
     <h2>Your patients are already taking their meds.<br><em>Now capture the proof.</em></h2>
     <p>90-day pilot. Activate existing pharmacy networks. The first verified adherence dataset your programme has ever had.</p>
