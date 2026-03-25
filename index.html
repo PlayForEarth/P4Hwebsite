@@ -52,13 +52,46 @@ nav{position:fixed;top:0;left:0;right:0;z-index:500;display:flex;align-items:cen
 @keyframes fadeUp{from{opacity:0;transform:translateY(24px);}to{opacity:1;transform:translateY(0);}}
 @keyframes pulse{0%,100%{opacity:0.6;}50%{opacity:1;}}
 @keyframes scanLine{0%{left:-100%;}100%{left:100%;}}
-.hero{min-height:100svh;display:flex;flex-direction:column;justify-content:flex-end;padding:0 5% 100px;padding-top:120px;position:relative;overflow:hidden;background:var(--bg);}
+
 .hero-bg{position:absolute;inset:0;z-index:0;background:radial-gradient(ellipse 65% 55% at 72% 25%,rgba(37,99,235,0.1) 0%,transparent 60%),radial-gradient(ellipse 45% 45% at 15% 75%,rgba(13,148,136,0.1) 0%,transparent 55%),var(--bg);}
 .hero-grid{position:absolute;inset:0;z-index:0;background-image:linear-gradient(rgba(37,99,235,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(37,99,235,0.04) 1px,transparent 1px);background-size:56px 56px;}
 .hero-blob{position:absolute;border-radius:50%;filter:blur(70px);pointer-events:none;z-index:0;animation:blobFloat 9s ease-in-out infinite;}
 .blob1{width:420px;height:420px;background:rgba(37,99,235,0.09);top:3%;right:6%;}
 .blob2{width:260px;height:260px;background:rgba(13,148,136,0.1);top:45%;right:32%;animation-delay:2.5s;}
 .blob3{width:180px;height:180px;background:rgba(56,189,248,0.09);bottom:18%;right:18%;animation-delay:5s;}
+/* ===== HERO SPLIT LAYOUT ===== */
+.hero{display:grid;grid-template-columns:1fr 1fr;padding:0;padding-top:72px;position:relative;overflow:hidden;background:var(--bg);align-items:center;}
+.hero-left{display:flex;flex-direction:column;justify-content:center;padding:80px 6% 80px 5%;position:relative;z-index:2;}
+.hero-right{position:relative;z-index:2;display:flex;align-items:center;justify-content:center;padding:80px 5% 80px 2%;}
+.hero-visual{width:100%;max-width:500px;position:relative;}
+.hero-visual-panel{background:white;border-radius:20px;border:1px solid var(--border-dark);box-shadow:0 20px 60px rgba(14,27,46,0.12);padding:28px;animation:fadeUp 0.9s ease 0.5s both;}
+.hvp-bar{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;padding-bottom:16px;border-bottom:1px solid var(--border);}
+.hvp-title{font-size:0.78rem;font-weight:700;color:var(--ink);}
+.hvp-live{display:flex;align-items:center;gap:5px;font-size:0.7rem;font-weight:600;color:var(--green);}
+.hvp-dot{width:6px;height:6px;border-radius:50%;background:var(--green);animation:epulse 1.8s infinite;}
+.hvp-metrics{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:20px;}
+.hvp-metric{background:var(--bg);border-radius:10px;padding:14px 12px;text-align:center;}
+.hvp-metric-val{font-size:1.5rem;font-weight:700;color:var(--blue);line-height:1;margin-bottom:3px;}
+.hvp-metric-val.teal{color:var(--teal);}
+.hvp-metric-label{font-size:0.62rem;color:var(--ink-light);font-weight:500;line-height:1.4;}
+.hvp-patient{display:flex;flex-direction:column;gap:8px;}
+.hvp-patient-row{display:flex;align-items:center;gap:10px;background:var(--bg);border-radius:10px;padding:10px 12px;}
+.hvp-avatar{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.75rem;font-weight:700;flex-shrink:0;}
+.av-blue{background:var(--blue-pale);color:var(--blue);}
+.av-teal{background:var(--teal-pale);color:var(--teal);}
+.av-amber{background:var(--amber-pale);color:var(--amber);}
+.hvp-pname{font-size:0.78rem;font-weight:600;color:var(--ink);flex:1;}
+.hvp-pstatus{font-size:0.65rem;color:var(--ink-light);}
+.hvp-badge{font-size:0.6rem;font-weight:700;padding:2px 8px;border-radius:6px;white-space:nowrap;}
+.hb-green{background:var(--green-pale);color:var(--green);}
+.hb-amber{background:var(--amber-pale);color:var(--amber);}
+.hb-blue{background:var(--blue-pale);color:var(--blue);}
+.hero-chip{position:absolute;background:white;border:1px solid var(--border-dark);border-radius:12px;padding:10px 14px;box-shadow:0 6px 20px rgba(14,27,46,0.1);animation:fadeUp 0.8s ease both;display:flex;align-items:center;gap:8px;white-space:nowrap;z-index:3;}
+.chip1{top:-18px;right:-20px;animation-delay:0.9s;}
+.chip2{bottom:20px;left:-28px;animation-delay:1.1s;}
+.chip-icon{font-size:1rem;}
+.chip-text{font-size:0.72rem;font-weight:700;color:var(--ink);}
+.chip-sub{font-size:0.62rem;color:var(--ink-light);}
 .hero-eyebrow,.hero h1,.hero-lines,.hero-sub,.hero-actions,.hero-proof{position:relative;z-index:2;}
 .hero-eyebrow{font-size:0.75rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--blue);display:inline-flex;align-items:center;gap:10px;background:var(--blue-faint);padding:6px 16px;border-radius:24px;border:1px solid rgba(37,99,235,0.2);width:fit-content;margin-bottom:28px;animation:fadeUp 0.8s ease 0.2s both;}
 .eyebrow-dot{width:7px;height:7px;border-radius:50%;background:var(--blue);animation:pulse 2s ease-in-out infinite;}
@@ -86,6 +119,8 @@ nav{position:fixed;top:0;left:0;right:0;z-index:500;display:flex;align-items:cen
 .btn-ghost:hover .arr{transform:translateX(4px);}
 .btn-outline{color:rgba(255,255,255,0.75);border:1px solid rgba(255,255,255,0.2);padding:16px 40px;border-radius:40px;font-size:0.93rem;font-weight:500;text-decoration:none;display:inline-block;transition:all 0.2s;}
 .btn-outline:hover{border-color:#93c5fd;color:#93c5fd;}
+.btn-outline-blue{color:var(--blue);border:1.5px solid var(--blue);padding:14px 32px;border-radius:32px;font-size:0.95rem;font-weight:600;text-decoration:none;display:inline-block;transition:all 0.2s;background:transparent;}
+.btn-outline-blue:hover{background:var(--blue);color:white;transform:translateY(-2px);}
 .logos-strip{background:white;border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:28px 5%;}
 .logos-inner{display:flex;align-items:center;gap:40px;flex-wrap:wrap;justify-content:center;}
 .logos-label{font-size:0.78rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:rgba(14,27,46,0.3);}
@@ -208,6 +243,34 @@ section{padding:100px 5%;}
 .pbf{background:var(--blue);color:white;}
 .pbf:hover{background:var(--blue-dark);}
 
+/* ===== WHAT WE ARE NOT ===== */
+#not-positioning{background:white;border-top:1px solid var(--border);padding:80px 5%;}
+.not-inner{max-width:1000px;margin:0 auto;}
+.not-tags{display:flex;flex-wrap:wrap;gap:12px;margin-top:40px;align-items:center;}
+.not-tag{display:inline-flex;align-items:center;gap:9px;border:1px solid rgba(14,27,46,0.14);border-radius:32px;padding:10px 20px;font-size:0.88rem;font-weight:500;color:rgba(14,27,46,0.3);}
+.not-tag .nt-label{text-decoration:line-through;text-decoration-thickness:1.5px;text-decoration-color:rgba(14,27,46,0.22);}
+.not-active{border-color:var(--blue)!important;color:var(--ink)!important;background:var(--blue-faint);font-weight:600;}
+.not-active .nt-label{text-decoration:none!important;}
+.not-dot{width:8px;height:8px;border-radius:50%;background:var(--blue);flex-shrink:0;}
+
+/* ===== DUAL BENEFIT ===== */
+#dual-benefit{background:var(--bg2);border-top:1px solid var(--border);padding:100px 5%;}
+.dual-header{max-width:580px;margin-bottom:56px;}
+.dual-cards{display:grid;grid-template-columns:1fr 1fr;gap:20px;max-width:960px;}
+.dual-card{background:white;border:1.5px solid rgba(37,99,235,0.12);border-radius:var(--radius);padding:36px 32px;position:relative;overflow:hidden;transition:all 0.25s;}
+.dual-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--blue);}
+.dual-card.teal-accent::before{background:var(--teal);}
+.dual-card:hover{transform:translateY(-3px);box-shadow:0 10px 32px rgba(37,99,235,0.1);}
+.dual-audience{display:inline-block;font-size:0.65rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--blue);background:var(--blue-faint);border:1px solid rgba(37,99,235,0.2);border-radius:20px;padding:4px 12px;margin-bottom:18px;}
+.dual-card.teal-accent .dual-audience{color:var(--teal);background:var(--teal-pale);border-color:rgba(13,148,136,0.2);}
+.dual-card h3{font-size:1.15rem;font-weight:700;color:var(--ink);margin-bottom:10px;line-height:1.3;}
+.dual-card>p{font-size:0.88rem;color:var(--ink-light);line-height:1.7;margin-bottom:22px;}
+.dual-list{list-style:none;display:flex;flex-direction:column;gap:9px;}
+.dual-list li{font-size:0.84rem;color:var(--ink-mid);display:flex;gap:9px;align-items:flex-start;line-height:1.55;}
+.dual-list li::before{content:'\2713';color:var(--blue);font-weight:700;flex-shrink:0;margin-top:1px;}
+.dual-card.teal-accent .dual-list li::before{color:var(--teal);}
+.dual-footer{margin-top:32px;font-size:0.75rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:rgba(14,27,46,0.3);text-align:center;}
+
 #northstar{background:var(--ink);padding:100px 5%;text-align:center;border-top:1px solid rgba(255,255,255,0.06);position:relative;overflow:hidden;}
 #northstar::before{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(37,99,235,0.1) 0%,transparent 70%);}
 .ns-inner{max-width:680px;margin:0 auto;position:relative;z-index:1;}
@@ -259,14 +322,14 @@ footer{background:#0a1628;border-top:1px solid rgba(255,255,255,0.06);padding:64
   section{padding:72px 5%;}
   #contact{padding:96px 5%;}
   #dashboard{padding:72px 5%;}
-  .hero{min-height:100svh;padding:92px 5% 56px;justify-content:center;}
-  .hero-scroll{display:none;}
+  .hero{grid-template-columns:1fr;padding-top:72px;}
+  .hero-left{padding:56px 5% 32px;justify-content:flex-start;}
+  .hero-right{display:none;}
   .hero h1{font-size:clamp(1.7rem,5.5vw,2.4rem);}
-  .hero-lines{font-size:0.95rem;}
   .hero-sub{font-size:0.95rem;}
-  .hero-proof{grid-template-columns:1fr;gap:10px;max-width:100%;}
   .hero-actions{flex-direction:column;align-items:stretch;}
   .btn-primary,.btn-ghost{text-align:center;justify-content:center;}
+  .hero-not-tags{gap:6px;}
   .how-steps{grid-template-columns:1fr;}
   .hw-step{border-right:none!important;border-top:1px solid rgba(14,27,46,0.07)!important;}
   .hw-step:first-child{border-top:none!important;}
@@ -285,7 +348,10 @@ footer{background:#0a1628;border-top:1px solid rgba(255,255,255,0.06);padding:64
   .footer-grid>div:first-child{grid-column:1/-1;}
   .footer-bottom{flex-direction:column;align-items:flex-start;}
   .platform-embed-wrap iframe{height:480px;}
-  .platform-embed-cta{flex-direction:column;align-items:flex-start;}}
+  .platform-embed-cta{flex-direction:column;align-items:flex-start;}
+  .dual-cards{grid-template-columns:1fr;}
+  .not-tags{gap:8px;}
+  .not-tag{font-size:0.8rem;padding:8px 16px;}}
 @media(max-width:480px){
   section{padding:60px 5%;}
   .hero h1{font-size:clamp(1.5rem,7vw,1.9rem);}
@@ -329,42 +395,90 @@ footer{background:#0a1628;border-top:1px solid rgba(255,255,255,0.06);padding:64
   <div class="hero-blob blob1"></div>
   <div class="hero-blob blob2"></div>
   <div class="hero-blob blob3"></div>
-  <div class="hero-eyebrow">
-    <span class="eyebrow-dot"></span>
-    Verified Adherence &middot; Device Returns &middot; No App Required
-  </div>
-  <h1>
-    Your patients take their meds.<br>
-    Your devices end up in landfill.<br>
-    <em>You can't prove either.</em>
-  </h1>
-  <p class="hero-lines">
-    The patient takes one photo of their dose or used device.<br>
-    You get a verified adherence record, a tracked return, and EPR-ready data &mdash; through pharmacies you already use.
-  </p>
-  <p class="hero-sub"><strong>No app. No hardware. Just their phone camera.</strong></p>
-  <div class="hero-actions">
-    <a href="/contact" class="btn-primary btn-large">Start a Pilot</a>
-    <a href="#how" class="btn-ghost">See how it works <span class="arr">&rarr;</span></a>
-  </div>
-  <div class="hero-proof">
-    <div class="hproof-card">
-      <div class="hproof-label">&#10003; Patient takes the photo</div>
-      <div class="hproof-title">Their phone. No app, no login.</div>
-      <div class="hproof-desc">A simple link &mdash; the patient photographs their dose or device. Works through existing pharmacy networks.</div>
+
+  <!-- LEFT: content -->
+  <div class="hero-left">
+    <div class="hero-eyebrow"><span class="eyebrow-dot"></span>NOT ANOTHER PSP TOOL</div>
+    <div class="not-tags" style="margin-bottom:28px;animation:fadeUp 0.8s ease 0.3s both;">
+      <span class="not-active not-tag"><span class="not-dot"></span><span class="nt-label">Verified field execution layer</span></span>
+      <span class="not-tag"><span class="nt-label">Patient app</span></span>
+      <span class="not-tag"><span class="nt-label">Chatbot</span></span>
+      <span class="not-tag"><span class="nt-label">Pill reminder</span></span>
+      <span class="not-tag"><span class="nt-label">Call centre</span></span>
     </div>
-    <div class="hproof-card">
-      <div class="hproof-label">&#10003; Audit-ready proof</div>
-      <div class="hproof-title">Photo-verified, timestamped</div>
-      <div class="hproof-desc">Every dose confirmed with a photo &mdash; exportable for PSP, ESG, and EPR reporting</div>
-    </div>
-    <div class="hproof-card">
-      <div class="hproof-label">&#10003; Behavior that sticks</div>
-      <div class="hproof-title">Habits, not one-off data</div>
-      <div class="hproof-desc">Gamification drives sustained adherence &mdash; verified week after week</div>
+    <h1>
+      Your patients take their meds.<br>
+      Your devices end up in landfill.<br>
+      <em>You can't prove either.</em>
+    </h1>
+    <p class="hero-lines">The patient takes one photo. You get a verified adherence record, a tracked return, and EPR-ready data &mdash; through pharmacies you already use.</p>
+    <p class="hero-sub"><strong>No app. No hardware. No new headcount.</strong></p>
+    <div class="hero-actions">
+      <a href="/contact" class="btn-primary btn-large">Start a Pilot</a>
+      <a href="/contact" class="btn-outline-blue">Get free ESG Snapshot</a>
+      <a href="#how" class="btn-ghost">See how it works <span class="arr">&rarr;</span></a>
     </div>
   </div>
-  <div class="hero-scroll"><span class="scroll-line"></span> Scroll to explore</div>
+
+  <!-- RIGHT: visual panel -->
+  <div class="hero-right">
+    <div class="hero-visual">
+      <div class="hero-chip chip1">
+        <span class="chip-icon">&#128138;</span>
+        <div><div class="chip-text">Photo verified</div><div class="chip-sub">Timestamped &middot; Audit-ready</div></div>
+      </div>
+      <div class="hero-visual-panel">
+        <div class="hvp-bar">
+          <span class="hvp-title">PSP Manager Dashboard</span>
+          <span class="hvp-live"><span class="hvp-dot"></span>Live</span>
+        </div>
+        <div class="hvp-metrics">
+          <div class="hvp-metric">
+            <div class="hvp-metric-val">84%</div>
+            <div class="hvp-metric-label">Adherence rate</div>
+          </div>
+          <div class="hvp-metric">
+            <div class="hvp-metric-val teal">312</div>
+            <div class="hvp-metric-label">Device returns</div>
+          </div>
+          <div class="hvp-metric">
+            <div class="hvp-metric-val">67d</div>
+            <div class="hvp-metric-label">Avg. streak</div>
+          </div>
+        </div>
+        <div class="hvp-patient">
+          <div class="hvp-patient-row">
+            <div class="hvp-avatar av-blue">JM</div>
+            <div style="flex:1">
+              <div class="hvp-pname">Patient JM</div>
+              <div class="hvp-pstatus">Last dose confirmed 2h ago</div>
+            </div>
+            <span class="hvp-badge hb-green">On track</span>
+          </div>
+          <div class="hvp-patient-row">
+            <div class="hvp-avatar av-amber">SK</div>
+            <div style="flex:1">
+              <div class="hvp-pname">Patient SK</div>
+              <div class="hvp-pstatus">Missed 2 confirmations</div>
+            </div>
+            <span class="hvp-badge hb-amber">At risk</span>
+          </div>
+          <div class="hvp-patient-row">
+            <div class="hvp-avatar av-teal">RM</div>
+            <div style="flex:1">
+              <div class="hvp-pname">Patient RM</div>
+              <div class="hvp-pstatus">Inhaler return verified &#10003;</div>
+            </div>
+            <span class="hvp-badge hb-blue">EPR logged</span>
+          </div>
+        </div>
+      </div>
+      <div class="hero-chip chip2">
+        <span class="chip-icon">&#127758;</span>
+        <div><div class="chip-text">Scope 3 Cat. 11 &amp; 12</div><div class="chip-sub">Export-ready &middot; CSRD aligned</div></div>
+      </div>
+    </div>
+  </div>
 </section>
 
 <div class="logos-strip">
@@ -376,6 +490,37 @@ footer{background:#0a1628;border-top:1px solid rgba(255,255,255,0.06);padding:64
     <span class="logo-item">African Impact Challenge <sup>Cohort 6 &middot; 2026</sup></span>
   </div>
 </div>
+
+<section id="dual-benefit">
+  <div class="dual-header">
+    <div class="section-eyebrow">What You Get</div>
+    <h2 class="section-title">One photo.<br><em>Two mandates covered.</em></h2>
+    <p class="section-sub">Every patient confirmation generates both clinical proof and regulatory compliance data &mdash; simultaneously, from the same action, at no extra cost.</p>
+  </div>
+  <div class="dual-cards">
+    <div class="dual-card">
+      <div class="dual-audience">PSP Teams &amp; Medical Affairs</div>
+      <h3>Verified adherence proof</h3>
+      <p>Real-world evidence your programme actually changed behavior &mdash; not survey estimates, not enrolment numbers. Audit-ready from day one.</p>
+      <ul class="dual-list">
+        <li>Photo-confirmed dose frequency &amp; 90-day persistence</li>
+        <li>At-risk patient flags before dropout occurs</li>
+        <li>HAI dashboard export for PSP reporting &amp; payer submissions</li>
+      </ul>
+    </div>
+    <div class="dual-card teal-accent">
+      <div class="dual-audience">ESG Leads &amp; CFOs</div>
+      <h3>EPR &amp; Scope 3 compliance data</h3>
+      <p>Device return rates, inhaler and pen recovery volumes, CSRD-ready waste reduction evidence &mdash; from the same field action, no new infrastructure needed.</p>
+      <ul class="dual-list">
+        <li>Verified device return rates &amp; recovery volumes</li>
+        <li>Scope 3 Cat. 11 &amp; 12 export-ready</li>
+        <li>Audit-ready evidence for any EPR framework</li>
+      </ul>
+    </div>
+  </div>
+  <p class="dual-footer">Both. From one patient photo.</p>
+</section>
 
 <section id="dashboard">
   <div class="section-eyebrow">What You Buy</div>
@@ -505,14 +650,11 @@ footer{background:#0a1628;border-top:1px solid rgba(255,255,255,0.06);padding:64
   </div>
 </section>
 
-<!-- ===== PRICING — USD 3-TIER ===== -->
 <section id="pricing">
   <div class="section-eyebrow">Pricing</div>
   <h2 class="section-title">You pay for what gets <em>verified.</em></h2>
   <p class="section-sub">All tiers include the full behavioral platform. Pricing scales with verified action volume &mdash; not enrolled patients, not headcount.</p>
   <div class="pricing-grid">
-
-    <!-- TIER 1: PILOT -->
     <div class="price-card">
       <div class="price-tier">Care Proof Pilot</div>
       <div class="price-main">$12,000<span class="price-per"> flat &mdash; 6 months</span></div>
@@ -532,8 +674,6 @@ footer{background:#0a1628;border-top:1px solid rgba(255,255,255,0.06);padding:64
       </ul>
       <a href="/contact" class="price-btn pbo">Start a pilot &rarr;</a>
     </div>
-
-    <!-- TIER 2: NATIONAL -->
     <div class="price-card featured">
       <span class="price-popular">Most popular</span>
       <div class="price-tier">Care Proof National</div>
@@ -553,8 +693,6 @@ footer{background:#0a1628;border-top:1px solid rgba(255,255,255,0.06);padding:64
       </ul>
       <a href="/contact" class="price-btn pbf">Talk to us &rarr;</a>
     </div>
-
-    <!-- TIER 3: ENTERPRISE -->
     <div class="price-card">
       <div class="price-tier">Care Proof Enterprise</div>
       <div class="price-main">From $95,000<span class="price-per"> / year</span></div>
@@ -571,7 +709,6 @@ footer{background:#0a1628;border-top:1px solid rgba(255,255,255,0.06);padding:64
       </ul>
       <a href="/contact" class="price-btn pbo">Get in touch &rarr;</a>
     </div>
-
   </div>
   <p style="text-align:center;font-size:0.8rem;color:var(--ink-light);margin-top:32px;">All plans include verified adherence, device returns, gamification, and full dashboard. Same core system &mdash; only scale changes.</p>
 </section>
