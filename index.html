@@ -4,14 +4,14 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Play4Health - Treatment only works if it continues.</title>
-<meta name="description" content="Digital support more than doubles the odds a patient continues treatment. Play4Health verifies that they did, dose by dose, from day 1 of initiation. Photo-confirmed adherence, side-effect signals, visit readiness and tracked device returns. A link on any phone, no app, no hardware, no field agents.">
+<meta name="description" content="For patients who pay out of pocket, Play4Health makes chronic treatment visible between clinic visits: each dose confirmed from the patient's phone, each empty device returned at refill. No app, no hardware, no field agents.">
 <meta property="og:title" content="Play4Health – Treatment only works if it continues.">
-<meta property="og:description" content="Digital support more than doubles the odds a patient continues. We verify that they did, dose by dose, from day 1 of initiation.">
+<meta property="og:description" content="Each dose confirmed from the patient's phone. Each empty device returned at refill. Built for markets where patients pay out of pocket.">
 <meta property="og:image" content="https://www.play4health.org/og-image.png">
 <meta property="og:url" content="https://www.play4health.org/">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
-  <link rel="canonical" href="https://www.play4health.org/">
+<link rel="canonical" href="https://www.play4health.org/">
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-7JM995K277"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -28,8 +28,7 @@
   --blue:#2563eb;--blue-dark:#1d4ed8;
   --blue-pale:#dbeafe;--blue-faint:#eff6ff;
   --teal:#0d9488;--teal-pale:#ccfbf1;
-  --green:#16a34a;--green-pale:#dcfce7;
-  --amber:#d97706;--amber-pale:#fef3c7;
+  --green:#16a34a;
   --border:rgba(37,99,235,0.1);--border-dark:rgba(14,27,46,0.08);
   --sans:'DM Sans',sans-serif;--radius:16px;
   --max-w:1200px;--gutter:clamp(24px,5vw,80px);
@@ -38,6 +37,7 @@
 html{scroll-behavior:smooth;}
 body{font-family:var(--sans);background:var(--bg);color:var(--ink);overflow-x:hidden;}
 .section-inner{max-width:var(--max-w);margin:0 auto;width:100%;}
+
 nav{position:fixed;top:0;left:0;right:0;z-index:500;display:flex;align-items:center;justify-content:space-between;padding:14px var(--gutter);background:rgba(247,248,252,0.94);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);transition:background 0.3s;}
 .nav-logo{font-size:1.15rem;font-weight:500;color:var(--ink);text-decoration:none;}
 .nav-logo span{color:var(--blue);}
@@ -56,6 +56,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:500;display:flex;align-items:cen
 .mobile-menu-link{display:flex;align-items:center;justify-content:space-between;padding:18px 0;font-size:1.4rem;font-weight:600;color:var(--ink);text-decoration:none;border-bottom:1px solid var(--border);}
 .mobile-menu-link .arrow{color:var(--blue);opacity:0.5;}
 .mobile-menu-cta{margin-top:32px;display:block;background:var(--blue);color:white;text-align:center;padding:18px 28px;border-radius:40px;font-size:1rem;font-weight:600;text-decoration:none;}
+
 @keyframes blobFloat{0%,100%{transform:translateY(0) scale(1);}50%{transform:translateY(-18px) scale(1.04);}}
 @keyframes fadeUp{from{opacity:0;transform:translateY(24px);}to{opacity:1;transform:translateY(0);}}
 @keyframes pulse{0%,100%{opacity:0.6;}50%{opacity:1;}}
@@ -80,9 +81,9 @@ nav{position:fixed;top:0;left:0;right:0;z-index:500;display:flex;align-items:cen
 .chip-text span{font-size:0.74rem;color:rgba(255,255,255,0.65);line-height:1.3;}
 .hero h1{font-size:clamp(2.2rem,4.2vw,3.5rem);font-weight:400;line-height:1.1;letter-spacing:-0.03em;margin-bottom:28px;color:var(--ink);animation:fadeUp 0.8s ease 0.35s both;}
 .hero h1 em{color:var(--blue);font-style:normal;}
-.hero-lines{font-size:1.15rem;line-height:1.8;color:var(--ink-mid);max-width:600px;margin-bottom:8px;font-weight:400;animation:fadeUp 0.8s ease 0.5s both;}
+.hero-lines{font-size:1.15rem;line-height:1.8;color:var(--ink-mid);max-width:600px;margin-bottom:10px;font-weight:400;animation:fadeUp 0.8s ease 0.5s both;}
 .hero-lines strong{color:var(--ink);font-weight:600;}
-.hero-sub{font-size:1.1rem;line-height:1.75;color:var(--ink-light);max-width:500px;margin-bottom:40px;font-weight:400;animation:fadeUp 0.8s ease 0.55s both;}
+.hero-sub{font-size:1.05rem;line-height:1.75;color:var(--ink-light);max-width:520px;margin-bottom:40px;font-weight:400;animation:fadeUp 0.8s ease 0.55s both;}
 .hero-sub strong{color:var(--ink);font-weight:700;}
 .hero-actions{display:flex;gap:20px;align-items:center;flex-wrap:wrap;justify-content:flex-start;animation:fadeUp 0.8s ease 0.65s both;}
 .not-tags{display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-start;margin-bottom:28px;animation:fadeUp 0.8s ease 0.3s both;}
@@ -101,23 +102,64 @@ nav{position:fixed;top:0;left:0;right:0;z-index:500;display:flex;align-items:cen
 .btn-ghost:hover .arr{transform:translateX(4px);}
 .btn-outline{color:rgba(255,255,255,0.75);border:1px solid rgba(255,255,255,0.2);padding:16px 40px;border-radius:40px;font-size:0.93rem;font-weight:500;text-decoration:none;display:inline-block;transition:all 0.2s;}
 .btn-outline:hover{border-color:#93c5fd;color:#93c5fd;}
+
 .logos-strip{background:white;border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:28px var(--gutter);}
 .logos-inner{max-width:var(--max-w);margin:0 auto;display:flex;align-items:center;gap:40px;flex-wrap:wrap;justify-content:center;}
 .logos-label{font-size:0.78rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:rgba(14,27,46,0.3);}
 .logo-item{font-size:1rem;color:rgba(14,27,46,0.5);}
 .logo-item sup{font-size:0.6rem;color:var(--blue);vertical-align:super;margin-left:2px;font-weight:600;}
 .logos-note{max-width:var(--max-w);margin:14px auto 0;text-align:center;font-size:0.72rem;color:rgba(14,27,46,0.3);}
+
 section{padding:100px var(--gutter);}
 .section-eyebrow{display:inline-flex;align-items:center;gap:8px;background:var(--blue-faint);border:1px solid rgba(37,99,235,0.15);color:var(--blue);font-size:0.7rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;padding:5px 14px;border-radius:20px;margin-bottom:16px;}
 .section-title{font-size:clamp(2rem,3.6vw,3rem);font-weight:400;line-height:1.1;letter-spacing:-0.02em;margin-bottom:20px;color:var(--ink);}
 .section-title em{color:var(--blue);font-style:normal;}
-.section-sub{font-size:1.05rem;color:var(--ink-light);line-height:1.75;max-width:540px;}
-.cite{display:block;margin-top:14px;font-size:0.78rem;color:rgba(14,27,46,0.38);line-height:1.6;max-width:540px;}
-#dashboard{background:white;border-top:1px solid var(--border);padding:100px var(--gutter);}
-.platform-embed-wrap{max-width:var(--max-w);margin:0 auto 0;border-radius:16px;overflow:hidden;box-shadow:0 8px 40px rgba(14,27,46,0.1);border:1px solid var(--border);background:var(--bg3);position:relative;}
+.section-sub{font-size:1.05rem;color:var(--ink-light);line-height:1.75;max-width:620px;}
+.note{margin-top:28px;font-size:0.78rem;color:rgba(14,27,46,0.42);line-height:1.7;max-width:820px;}
+
+/* ===== WHY PATIENTS STOP ===== */
+#whystop{background:white;border-top:1px solid var(--border);}
+.why-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:52px;}
+.why-card{background:var(--bg);border:1px solid var(--border-dark);border-radius:var(--radius);padding:28px 24px;transition:all 0.25s;}
+.why-card:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(37,99,235,0.08);border-color:rgba(37,99,235,0.22);}
+.why-card h3{font-size:1rem;font-weight:700;color:var(--ink);margin-bottom:10px;}
+.why-card p{font-size:0.85rem;color:var(--ink-light);line-height:1.7;}
+.highlight{margin-top:44px;padding:28px 30px;background:var(--blue-faint);border-left:3px solid var(--blue);border-radius:var(--radius);max-width:880px;}
+.highlight p{font-size:0.97rem;color:var(--ink-mid);line-height:1.78;}
+.highlight strong{color:var(--ink);font-weight:700;}
+@media(max-width:1100px){.why-grid{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:600px){.why-grid{grid-template-columns:1fr;}}
+
+/* ===== EVIDENCE ===== */
+#evidence{background:var(--bg);border-top:1px solid var(--border);}
+.ev-top{display:grid;grid-template-columns:1.1fr 0.9fr;gap:56px;align-items:end;}
+.stat-box{background:white;border:1px solid var(--border-dark);border-left:3px solid var(--blue);border-radius:var(--radius);padding:28px 26px;}
+.stat-num{font-size:2.6rem;font-weight:400;color:var(--blue);line-height:1;margin-bottom:8px;letter-spacing:-0.02em;}
+.stat-desc{font-size:0.85rem;color:var(--ink-light);line-height:1.7;}
+.stat-src{margin-top:14px;padding-top:12px;border-top:1px solid var(--border-dark);font-size:0.72rem;color:rgba(14,27,46,0.38);line-height:1.6;}
+.stat-src a{color:var(--blue);text-decoration:none;font-weight:600;}
+.stat-src a:hover{text-decoration:underline;}
+@media(max-width:1100px){.ev-top{grid-template-columns:1fr;gap:32px;align-items:start;}}
+
+/* ===== HOW IT WORKS ===== */
+#how{background:white;border-top:1px solid var(--border);}
+.how-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:52px;border:1px solid var(--border-dark);border-radius:var(--radius);overflow:hidden;background:white;box-shadow:0 4px 20px rgba(14,27,46,0.06);}
+.hw-step{padding:28px 22px;border-right:1px solid rgba(14,27,46,0.07);transition:background 0.25s;}
+.hw-step:last-child{border-right:none;}
+.hw-step:hover{background:var(--blue-faint);}
+.hw-step-header{display:flex;align-items:baseline;gap:10px;margin-bottom:12px;}
+.hw-num{font-size:0.95rem;font-weight:700;color:var(--blue);opacity:0.45;line-height:1;flex-shrink:0;}
+.hw-step h4{font-size:0.95rem;font-weight:700;color:var(--ink);line-height:1.3;}
+.hw-step p{font-size:0.82rem;color:var(--ink-light);line-height:1.65;}
+
+/* ===== DASHBOARD ===== */
+#dashboard{background:var(--bg2);border-top:1px solid var(--border);padding:100px var(--gutter);}
+.kpi-list{list-style:none;display:flex;flex-wrap:wrap;gap:10px;margin:28px 0 40px;}
+.kpi-list li{font-size:0.83rem;font-weight:600;color:var(--ink-mid);background:white;border:1px solid var(--border);border-radius:24px;padding:8px 16px;}
+.platform-embed-wrap{max-width:var(--max-w);margin:0 auto;border-radius:16px;overflow:hidden;box-shadow:0 8px 40px rgba(14,27,46,0.1);border:1px solid var(--border);background:var(--bg3);position:relative;}
 .platform-embed-bar{background:#f0f2f8;border-bottom:1px solid var(--border);padding:10px 16px;display:flex;align-items:center;gap:10px;}
 .embed-dot{width:10px;height:10px;border-radius:50%;}
-.platform-embed-bar .embed-label{font-size:11px;font-family:'DM Sans',monospace;color:rgba(14,27,46,0.35);margin-left:4px;letter-spacing:0.04em;}
+.platform-embed-bar .embed-label{font-size:11px;color:rgba(14,27,46,0.35);margin-left:4px;letter-spacing:0.04em;}
 .platform-embed-bar .embed-live{margin-left:auto;display:flex;align-items:center;gap:5px;font-size:11px;font-weight:600;color:var(--green);}
 .embed-pulse{width:7px;height:7px;border-radius:50%;background:var(--green);animation:epulse 1.8s infinite;}
 @keyframes epulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.35;transform:scale(.6)}}
@@ -127,71 +169,8 @@ section{padding:100px var(--gutter);}
 .platform-embed-cta p strong{color:var(--ink);}
 .btn-embed-full{display:inline-flex;align-items:center;gap:7px;background:var(--blue);color:white;padding:10px 22px;border-radius:24px;font-size:0.86rem;font-weight:600;text-decoration:none;white-space:nowrap;transition:background 0.2s;flex-shrink:0;}
 .btn-embed-full:hover{background:var(--blue-dark);}
-#how{background:white;border-top:1px solid var(--border);}
-.how-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:56px;border:1px solid var(--border-dark);border-radius:var(--radius);overflow:hidden;background:white;box-shadow:0 4px 20px rgba(14,27,46,0.06);}
-.hw-step{padding:28px 22px;border-right:1px solid rgba(14,27,46,0.07);transition:background 0.25s;}
-.hw-step:last-child{border-right:none;}
-.hw-step:hover{background:var(--blue-faint);}
-.hw-step-header{display:flex;align-items:baseline;gap:10px;margin-bottom:12px;}
-.hw-num{font-size:0.95rem;font-weight:700;color:var(--blue);opacity:0.45;line-height:1;flex-shrink:0;}
-.hw-step h4{font-size:0.95rem;font-weight:700;color:var(--ink);line-height:1.3;}
-.hw-step p{font-size:0.82rem;color:var(--ink-light);line-height:1.65;}
 
-/* ===== AT A GLANCE ===== */
-#glance{background:var(--bg2);border-top:1px solid var(--border);padding:80px var(--gutter);}
-.gl-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;max-width:var(--max-w);margin:0 auto;align-items:stretch;}
-.gl-col{background:white;border:1px solid var(--border-dark);border-radius:var(--radius);padding:32px 28px 30px;position:relative;overflow:hidden;transition:transform 0.25s,box-shadow 0.25s;display:flex;flex-direction:column;}
-.gl-col::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:var(--blue);}
-.gl-col:hover{transform:translateY(-3px);box-shadow:0 12px 34px rgba(37,99,235,0.12);}
-.gl-teal::before{background:var(--teal);}
-.gl-tag{display:inline-block;align-self:flex-start;font-size:0.66rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--blue);background:var(--blue-faint);border:1px solid rgba(37,99,235,0.2);border-radius:20px;padding:5px 13px;margin-bottom:18px;}
-.gl-teal .gl-tag{color:var(--teal);background:var(--teal-pale);border-color:rgba(13,148,136,0.22);}
-.gl-col h3{font-size:1.32rem;font-weight:700;color:var(--ink);margin-bottom:20px;line-height:1.22;letter-spacing:-0.015em;}
-.gl-list{list-style:none;display:flex;flex-direction:column;gap:11px;}
-.gl-list li{font-size:0.9rem;color:var(--ink-mid);line-height:1.5;display:flex;gap:10px;align-items:flex-start;}
-.gl-list li::before{content:'\2713';color:var(--blue);font-weight:700;flex-shrink:0;}
-.gl-teal .gl-list li::before{color:var(--teal);}
-.gl-dark{background:var(--blue-faint);border:1.5px solid rgba(37,99,235,0.3);box-shadow:0 10px 34px rgba(37,99,235,0.14);}
-.gl-dark::before{height:5px;background:var(--blue);}
-.gl-dark:hover{box-shadow:0 16px 42px rgba(37,99,235,0.2);}
-.gl-dark .gl-tag{color:white;background:var(--blue);border-color:var(--blue);}
-.gl-dark h3{color:var(--ink);}
-.gl-kpis{list-style:none;display:flex;flex-direction:column;gap:0;}
-.gl-kpis li{font-size:0.89rem;font-weight:600;color:var(--ink);line-height:1.4;padding:10px 0;border-bottom:1px solid rgba(37,99,235,0.14);display:flex;gap:11px;align-items:center;}
-.gl-kpis li:last-child{border-bottom:none;padding-bottom:0;}
-.gl-kpis li::before{content:'\2192';color:var(--blue);font-weight:700;flex-shrink:0;}
-@media(max-width:1000px){.gl-grid{grid-template-columns:1fr 1fr;}.gl-dark{grid-column:1/-1;}}
-@media(max-width:700px){#glance{padding:56px var(--gutter);}.gl-grid{grid-template-columns:1fr;}.gl-dark{grid-column:auto;}.gl-col h3{font-size:1.2rem;}}
-
-/* ===== INITIATION WINDOW ===== */
-#window{background:var(--bg);border-top:1px solid var(--border);}
-.win-top{display:grid;grid-template-columns:1.1fr 0.9fr;gap:56px;align-items:end;}
-.win-stat{background:white;border:1px solid var(--border-dark);border-left:3px solid var(--blue);border-radius:var(--radius);padding:28px 26px;}
-.win-stat-num{font-size:2.6rem;font-weight:400;color:var(--blue);line-height:1;margin-bottom:8px;letter-spacing:-0.02em;}
-.win-stat-desc{font-size:0.85rem;color:var(--ink-light);line-height:1.7;}
-.win-stat-src{margin-top:14px;padding-top:12px;border-top:1px solid var(--border-dark);font-size:0.72rem;color:rgba(14,27,46,0.38);line-height:1.6;}
-.win-stat-src a{color:var(--blue);text-decoration:none;font-weight:600;}
-.win-stat-src a:hover{text-decoration:underline;}
-.win-highlight{margin-top:40px;padding:28px 30px;background:var(--blue-faint);border-left:3px solid var(--blue);border-radius:var(--radius);max-width:860px;}
-.win-highlight p{font-size:0.97rem;color:var(--ink-mid);line-height:1.78;}
-.win-highlight strong{color:var(--ink);font-weight:700;}
-.win-note{margin-top:26px;font-size:0.78rem;color:rgba(14,27,46,0.42);line-height:1.7;max-width:820px;}
-
-/* ===== USE CASES ===== */
-#usecases{background:var(--bg);border-top:1px solid var(--border);}
-.uc-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:52px;}
-.uc-card{background:white;border:1px solid var(--border-dark);border-radius:var(--radius);padding:28px 24px;display:flex;flex-direction:column;transition:all 0.25s;}
-.uc-card:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(37,99,235,0.08);border-color:rgba(37,99,235,0.22);}
-.uc-card h3{font-size:1rem;font-weight:700;color:var(--ink);margin-bottom:10px;line-height:1.3;}
-.uc-card p{font-size:0.84rem;color:var(--ink-light);line-height:1.7;margin-bottom:20px;}
-.uc-tag{margin-top:auto;font-size:0.7rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;padding:5px 11px;border-radius:8px;align-self:flex-start;}
-.uc-device{background:var(--teal-pale);color:var(--teal);}
-.uc-nodevice{background:rgba(14,27,46,0.05);color:rgba(14,27,46,0.42);}
-.uc-note{margin-top:32px;font-size:0.82rem;color:rgba(14,27,46,0.42);line-height:1.7;max-width:720px;}
-@media(max-width:1100px){.uc-grid{grid-template-columns:repeat(2,1fr);}}
-@media(max-width:600px){.uc-grid{grid-template-columns:1fr;}}
-
-/* ===== DEVICE RECOVERY ===== */
+/* ===== RECOVERY ===== */
 #recovery{background:white;border-top:1px solid var(--border);}
 .rec-top{display:grid;grid-template-columns:1.1fr 0.9fr;gap:56px;align-items:end;}
 .rec-eyebrow{display:inline-flex;align-items:center;gap:8px;background:var(--teal-pale);border:1px solid rgba(13,148,136,0.25);color:var(--teal);font-size:0.7rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;padding:5px 14px;border-radius:20px;margin-bottom:16px;}
@@ -205,26 +184,20 @@ section{padding:100px var(--gutter);}
 .rec-card:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(13,148,136,0.1);border-color:rgba(13,148,136,0.25);}
 .rec-card h3{font-size:0.95rem;font-weight:700;color:var(--ink);margin-bottom:10px;}
 .rec-card p{font-size:0.85rem;color:var(--ink-light);line-height:1.7;}
-.rec-bottleneck{margin-top:40px;padding:26px 28px;background:var(--teal-pale);border-radius:var(--radius);font-size:0.95rem;color:var(--ink-mid);line-height:1.75;max-width:820px;border-left:3px solid var(--teal);}
-.rec-note{margin-top:32px;font-size:0.8rem;color:rgba(14,27,46,0.42);line-height:1.7;max-width:760px;}
+@media(max-width:1100px){.rec-top{grid-template-columns:1fr;gap:32px;align-items:start;}.rec-grid{grid-template-columns:1fr;}}
 
-/* ===== HAI ===== */
-#hai{background:var(--bg);border-top:1px solid var(--border);}
-.hai-inner{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;max-width:var(--max-w);margin:0 auto;}
-.hai-eyebrow{display:inline-flex;align-items:center;gap:8px;background:var(--blue-faint);border:1px solid rgba(37,99,235,0.15);color:var(--blue);font-size:0.7rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;padding:5px 14px;border-radius:20px;margin-bottom:16px;}
-#hai h2{font-size:clamp(1.9rem,3.4vw,2.7rem);font-weight:400;line-height:1.15;letter-spacing:-0.02em;color:var(--ink);margin-bottom:20px;}
-#hai h2 em{color:var(--blue);font-style:normal;}
-.hai-body{font-size:1.02rem;line-height:1.75;color:var(--ink-light);margin-bottom:16px;}
-.hai-body strong{color:var(--ink);font-weight:700;}
-.hai-note{font-size:0.8rem;line-height:1.7;color:rgba(14,27,46,0.42);}
-.hai-panel{background:white;border:1px solid var(--border-dark);border-radius:var(--radius);padding:30px 28px;box-shadow:0 6px 26px rgba(14,27,46,0.06);}
-.hai-panel-label{font-size:0.65rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:rgba(14,27,46,0.38);margin-bottom:18px;}
-.hai-row{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:13px 0;border-bottom:1px solid var(--border-dark);}
-.hai-row:last-of-type{border-bottom:none;}
-.hai-row-name{font-size:0.89rem;font-weight:700;color:var(--ink);}
-.hai-row-name span{display:block;font-size:0.76rem;font-weight:400;color:var(--ink-light);margin-top:3px;line-height:1.5;}
-.hai-row-w{font-size:0.82rem;font-weight:700;color:var(--blue);background:var(--blue-faint);border-radius:16px;padding:5px 11px;flex-shrink:0;}
-.hai-foot{margin-top:20px;padding-top:16px;border-top:1px solid var(--border-dark);font-size:0.78rem;color:rgba(14,27,46,0.45);line-height:1.65;}
+/* ===== USE CASES ===== */
+#usecases{background:var(--bg);border-top:1px solid var(--border);}
+.uc-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:52px;}
+.uc-card{background:white;border:1px solid var(--border-dark);border-radius:var(--radius);padding:28px 24px;display:flex;flex-direction:column;transition:all 0.25s;}
+.uc-card:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(37,99,235,0.08);border-color:rgba(37,99,235,0.22);}
+.uc-card h3{font-size:1rem;font-weight:700;color:var(--ink);margin-bottom:10px;line-height:1.3;}
+.uc-card p{font-size:0.84rem;color:var(--ink-light);line-height:1.7;margin-bottom:20px;}
+.uc-tag{margin-top:auto;font-size:0.7rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;padding:5px 11px;border-radius:8px;align-self:flex-start;}
+.uc-device{background:var(--teal-pale);color:var(--teal);}
+.uc-nodevice{background:rgba(14,27,46,0.05);color:rgba(14,27,46,0.42);}
+@media(max-width:1100px){.uc-grid{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:600px){.uc-grid{grid-template-columns:1fr;}}
 
 /* ===== WHERE WE STAND ===== */
 #traction{background:var(--bg2);border-top:1px solid var(--border);padding:72px var(--gutter);}
@@ -238,28 +211,23 @@ section{padding:100px var(--gutter);}
 @media(max-width:700px){#traction{padding:56px var(--gutter);}.stand-box{padding:26px 24px;}.stand-lead{font-size:1.08rem;}}
 
 /* ===== PRICING ===== */
-#pricing{background:var(--bg3);border-top:1px solid var(--border);}
-.pricing-grid{display:grid;grid-template-columns:1.15fr 0.85fr;gap:20px;margin-top:56px;align-items:stretch;max-width:900px;}
-.price-card{background:var(--bg);border:1px solid var(--border-dark);border-radius:var(--radius);padding:36px 30px;position:relative;transition:all 0.25s;display:flex;flex-direction:column;}
+#pricing{background:white;border-top:1px solid var(--border);}
+.pricing-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:52px;align-items:stretch;max-width:820px;}
+.price-card{background:var(--bg);border:1px solid var(--border-dark);border-radius:var(--radius);padding:34px 30px;transition:all 0.25s;display:flex;flex-direction:column;}
 .price-card:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(37,99,235,0.1);}
 .price-card.featured{background:var(--ink);border-color:var(--ink);box-shadow:0 8px 40px rgba(37,99,235,0.2);}
-.price-card.featured:hover{transform:translateY(-4px);}
 .price-tier{font-size:0.7rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink-light);margin-bottom:12px;}
 .price-card.featured .price-tier{color:rgba(255,255,255,0.4);}
-.price-main{font-size:1.8rem;font-weight:700;color:var(--ink);line-height:1.1;margin-bottom:4px;}
+.price-main{font-size:1.8rem;font-weight:700;color:var(--ink);line-height:1.1;margin-bottom:6px;}
 .price-card.featured .price-main{color:white;}
 .price-per{font-size:0.85rem;font-weight:400;color:var(--ink-light);}
 .price-card.featured .price-per{color:rgba(255,255,255,0.45);}
-.price-setup{font-size:0.78rem;color:var(--ink-light);margin-bottom:20px;line-height:1.6;}
-.price-setup em{display:block;font-style:normal;font-size:0.74rem;margin-top:3px;opacity:0.75;}
-.price-card.featured .price-setup{color:rgba(255,255,255,0.4);}
-.price-badge{font-size:0.75rem;font-weight:600;display:inline-block;padding:4px 12px;border-radius:20px;margin-bottom:20px;align-self:flex-start;}
-.pb-teal{color:var(--teal);background:var(--teal-pale);}
-.pb-blue{color:#93c5fd;background:rgba(37,99,235,0.2);}
+.price-setup{font-size:0.82rem;color:var(--ink-light);margin-bottom:22px;line-height:1.7;}
+.price-card.featured .price-setup{color:rgba(255,255,255,0.45);}
 .price-divider{height:1px;background:var(--border-dark);margin-bottom:20px;}
 .price-card.featured .price-divider{background:rgba(255,255,255,0.1);}
-.price-features{list-style:none;display:flex;flex-direction:column;gap:11px;}
-.price-features li{font-size:0.85rem;color:var(--ink-mid);display:flex;gap:9px;}
+.price-features{list-style:none;display:flex;flex-direction:column;gap:11px;margin-bottom:28px;}
+.price-features li{font-size:0.85rem;color:var(--ink-mid);display:flex;gap:9px;line-height:1.5;}
 .price-features li::before{content:'\2713';color:var(--blue);font-weight:700;flex-shrink:0;}
 .price-card.featured .price-features li{color:rgba(255,255,255,0.75);}
 .price-card.featured .price-features li::before{color:#93c5fd;}
@@ -269,18 +237,8 @@ section{padding:100px var(--gutter);}
 .pbf{background:var(--blue);color:white;}
 .pbf:hover{background:var(--blue-dark);}
 
-/* ===== DUAL BENEFIT ===== */
-
-#northstar{background:var(--bg);padding:100px var(--gutter);text-align:center;border-top:1px solid var(--border);position:relative;overflow:hidden;}
-.ns-inner{max-width:680px;margin:0 auto;position:relative;z-index:1;text-align:center;}
-.ns-pill{display:inline-block;font-size:0.7rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-light);background:white;border:1px solid var(--border);border-radius:24px;padding:6px 16px;margin-bottom:32px;}
-.ns-quote{font-size:clamp(1.8rem,3vw,2.6rem);font-weight:400;line-height:1.25;color:var(--ink);margin-bottom:24px;letter-spacing:-0.02em;}
-.ns-quote strong{font-weight:600;color:var(--blue);}
-.ns-body{font-size:0.97rem;line-height:1.75;color:var(--ink-light);margin-bottom:28px;}
-.ns-star{display:inline-flex;align-items:center;gap:9px;background:var(--blue-faint);border:1px solid rgba(37,99,235,0.2);border-radius:24px;padding:9px 18px;font-size:0.73rem;font-weight:700;text-transform:uppercase;color:var(--blue);}
-
 /* ===== REFERENCES ===== */
-#references{background:var(--bg);border-top:1px solid var(--border);padding:72px var(--gutter);}
+#references{background:var(--bg);border-top:1px solid var(--border);padding:64px var(--gutter);}
 .refs-label{font-size:0.68rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:rgba(14,27,46,0.35);margin-bottom:22px;}
 .refs-list{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:14px 40px;max-width:var(--max-w);}
 .refs-list li{font-size:0.78rem;color:rgba(14,27,46,0.5);line-height:1.7;padding-left:26px;position:relative;}
@@ -290,7 +248,8 @@ section{padding:100px var(--gutter);}
 .refs-note{margin-top:24px;font-size:0.76rem;color:rgba(14,27,46,0.38);line-height:1.7;max-width:820px;}
 @media(max-width:800px){.refs-list{grid-template-columns:1fr;}}
 
-#contact{background:linear-gradient(135deg,#0e1b2e 0%,#0e2a4a 50%,#0d2b2a 100%);border-top:1px solid rgba(37,99,235,0.2);text-align:center;padding:140px var(--gutter);position:relative;overflow:hidden;}
+/* ===== CONTACT ===== */
+#contact{background:linear-gradient(135deg,#0e1b2e 0%,#0e2a4a 50%,#0d2b2a 100%);border-top:1px solid rgba(37,99,235,0.2);text-align:center;padding:130px var(--gutter);position:relative;overflow:hidden;}
 #contact::before{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(37,99,235,0.12) 0%,transparent 65%);}
 .contact-pill{display:inline-flex;align-items:center;gap:8px;background:rgba(37,99,235,0.15);border:1px solid rgba(37,99,235,0.25);border-radius:24px;padding:6px 16px;font-size:0.7rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#93c5fd;margin-bottom:28px;}
 .contact-inner{position:relative;z-index:1;}
@@ -301,11 +260,12 @@ section{padding:100px var(--gutter);}
 .trust-badges{display:flex;justify-content:center;gap:20px;flex-wrap:wrap;margin-top:40px;}
 .trust-badge{background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:12px;padding:9px 16px;font-size:0.77rem;color:rgba(255,255,255,0.5);display:flex;align-items:center;gap:8px;}
 .tbdot{width:6px;height:6px;border-radius:50%;background:#5eead4;flex-shrink:0;}
+
 footer{background:#0a1628;border-top:1px solid rgba(255,255,255,0.06);padding:64px var(--gutter) 40px;}
 .footer-grid{max-width:var(--max-w);margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;margin-bottom:56px;}
 .footer-logo{font-size:1.1rem;font-weight:500;color:white;text-decoration:none;display:block;margin-bottom:12px;}
 .footer-logo span{color:#93c5fd;}
-.footer-tagline{font-size:0.83rem;color:rgba(255,255,255,0.4);line-height:1.65;max-width:270px;margin-bottom:20px;}
+.footer-tagline{font-size:0.83rem;color:rgba(255,255,255,0.4);line-height:1.65;max-width:290px;margin-bottom:20px;}
 .footer-social{display:flex;gap:10px;}
 .social-btn{width:34px;height:34px;border:1px solid rgba(255,255,255,0.12);border-radius:8px;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.4);text-decoration:none;font-size:0.78rem;font-weight:700;transition:all 0.2s;}
 .social-btn:hover{border-color:#93c5fd;color:#93c5fd;}
@@ -323,16 +283,10 @@ footer{background:#0a1628;border-top:1px solid rgba(255,255,255,0.06);padding:64
 a:focus-visible,button:focus-visible{outline:2px solid var(--blue);outline-offset:3px;border-radius:4px;}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;}html{scroll-behavior:auto;}}
 
-@media(max-width:1200px){
-  .nav-links{gap:20px;}
-  .nav-links a{font-size:0.82rem;}}
+@media(max-width:1200px){.nav-links{gap:20px;}.nav-links a{font-size:0.82rem;}}
 @media(max-width:1100px){
   .footer-grid{grid-template-columns:1fr 1fr;gap:36px;}
   .how-steps{grid-template-columns:repeat(2,1fr);}
-  .hai-inner{grid-template-columns:1fr;gap:40px;}
-  .rec-top{grid-template-columns:1fr;gap:32px;align-items:start;}
-  .win-top{grid-template-columns:1fr;gap:32px;align-items:start;}
-    .rec-grid{grid-template-columns:1fr;}
   .hw-step:nth-child(2){border-right:none;}
   .hw-step:nth-child(3){border-top:1px solid rgba(14,27,46,0.07);border-right:1px solid rgba(14,27,46,0.07);}
   .hw-step:nth-child(4){border-top:1px solid rgba(14,27,46,0.07);border-right:none;}}
@@ -356,7 +310,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--blue);outline-offse
   .how-steps{grid-template-columns:1fr;}
   .hw-step{border-right:none!important;border-top:1px solid rgba(14,27,46,0.07)!important;}
   .hw-step:first-child{border-top:none!important;}
-  .pricing-grid{grid-template-columns:1fr;max-width:420px;margin:40px auto 0;}
+  .pricing-grid{grid-template-columns:1fr;max-width:420px;}
   .cta-buttons{flex-direction:column;align-items:center;}
   .btn-outline{width:100%;max-width:320px;text-align:center;}
   .trust-badges{flex-direction:column;align-items:center;}
@@ -365,13 +319,12 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--blue);outline-offse
   .footer-bottom{flex-direction:column;align-items:flex-start;}
   .platform-embed-wrap iframe{height:480px;}
   .platform-embed-cta{flex-direction:column;align-items:flex-start;}
-    .win-highlight{padding:24px 22px;}
-  }
+  .highlight{padding:24px 22px;}}
 @media(max-width:480px){
   section{padding:60px var(--gutter);}
   .hero h1{font-size:clamp(1.8rem,8vw,2.4rem);}
-    .footer-grid{grid-template-columns:1fr;}
-  .win-stat-num{font-size:2.2rem;}
+  .footer-grid{grid-template-columns:1fr;}
+  .stat-num,.rec-stat-num{font-size:2.2rem;}
   .platform-embed-wrap iframe{height:360px;}}
 </style>
 </head>
@@ -380,12 +333,11 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--blue);outline-offse
 <nav id="mainNav">
   <a href="/" class="nav-logo">Play4<span>Health</span></a>
   <ul class="nav-links">
-    <li><a href="#window">The First 90 Days</a></li>
-    <li><a href="#dashboard">What You Buy</a></li>
+    <li><a href="#whystop">Why Patients Stop</a></li>
     <li><a href="#how">How It Works</a></li>
-    <li><a href="#usecases">Use Cases</a></li>
+    <li><a href="#dashboard">What You Buy</a></li>
     <li><a href="#recovery">Device Recovery</a></li>
-    <li><a href="#traction">Where We Stand</a></li>
+    <li><a href="#pricing">Pricing</a></li>
     <li><a href="/insight-series">Insight Series</a></li>
     <li><a href="/contact" class="nav-cta">Get a Snapshot</a></li>
   </ul>
@@ -395,12 +347,11 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--blue);outline-offse
 </nav>
 
 <nav class="mobile-menu" id="mobileMenu">
-  <a href="#window" class="mobile-menu-link">The First 90 Days <span class="arrow">&rarr;</span></a>
-  <a href="#dashboard" class="mobile-menu-link">What You Buy <span class="arrow">&rarr;</span></a>
+  <a href="#whystop" class="mobile-menu-link">Why Patients Stop <span class="arrow">&rarr;</span></a>
   <a href="#how" class="mobile-menu-link">How It Works <span class="arrow">&rarr;</span></a>
-  <a href="#usecases" class="mobile-menu-link">Use Cases <span class="arrow">&rarr;</span></a>
+  <a href="#dashboard" class="mobile-menu-link">What You Buy <span class="arrow">&rarr;</span></a>
   <a href="#recovery" class="mobile-menu-link">Device Recovery <span class="arrow">&rarr;</span></a>
-  <a href="#hai" class="mobile-menu-link">The Adherence Index <span class="arrow">&rarr;</span></a>
+  <a href="#usecases" class="mobile-menu-link">Use Cases <span class="arrow">&rarr;</span></a>
   <a href="#traction" class="mobile-menu-link">Where We Stand <span class="arrow">&rarr;</span></a>
   <a href="#pricing" class="mobile-menu-link">Pricing <span class="arrow">&rarr;</span></a>
   <a href="/insight-series" class="mobile-menu-link">Insight Series <span class="arrow">&rarr;</span></a>
@@ -415,30 +366,28 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--blue);outline-offse
   <div class="hero-blob blob3"></div>
 
   <div class="hero-inner">
-
     <div class="hero-copy">
 
-    <div class="not-tags">
-      <span class="not-active not-tag"><span class="not-dot"></span><span class="nt-label">From doses already happening</span></span>
-      <span class="not-tag"><span class="nt-label">App to download</span></span>
-      <span class="not-tag"><span class="nt-label">Chatbot</span></span>
-      <span class="not-tag"><span class="nt-label">Pill reminder</span></span>
-      <span class="not-tag"><span class="nt-label">Call centre</span></span>
-    </div>
+      <div class="not-tags">
+        <span class="not-active not-tag"><span class="not-dot"></span><span class="nt-label">From doses already happening</span></span>
+        <span class="not-tag"><span class="nt-label">App to download</span></span>
+        <span class="not-tag"><span class="nt-label">Chatbot</span></span>
+        <span class="not-tag"><span class="nt-label">Pill reminder</span></span>
+        <span class="not-tag"><span class="nt-label">Call centre</span></span>
+      </div>
 
-    <h1>
-      Treatment only works<br>
-      <em>if it continues.</em>
-    </h1>
+      <h1>
+        Treatment only works<br>
+        <em>if it continues.</em>
+      </h1>
 
-    <p class="hero-lines">Digital support more than doubles the odds it does. We verify that it did, dose by dose, from day 1 of initiation.</p>
-    <p class="hero-sub"><strong>A link on any phone. No app, no hardware, no field agents.</strong></p>
+      <p class="hero-lines">For patients who pay out of pocket, Play4Health makes chronic treatment visible between clinic visits: <strong>each dose confirmed from the patient's phone, each empty device returned at refill.</strong></p>
+      <p class="hero-sub">A link on any phone. No app, no hardware, no field agents. Sits on top of your existing programme.</p>
 
-    <div class="hero-actions">
-      <a href="/contact" class="btn-primary btn-large">Get a free Health Impact Snapshot</a>
-      <a href="#how" class="btn-ghost">See how it works <span class="arr">&rarr;</span></a>
-    </div>
-
+      <div class="hero-actions">
+        <a href="/contact" class="btn-primary btn-large">Get a free Health Impact Snapshot</a>
+        <a href="#how" class="btn-ghost">See how it works <span class="arr">&rarr;</span></a>
+      </div>
     </div>
 
     <div class="hero-visual">
@@ -451,7 +400,6 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--blue);outline-offse
         </div>
       </div>
     </div>
-
   </div>
 </section>
 
@@ -466,62 +414,99 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--blue);outline-offse
   <p class="logos-note">Recognitions awarded to Play for Earth, the venture behind Play4Health.</p>
 </div>
 
-<section id="glance">
-  <div class="gl-grid">
-    <div class="gl-col">
-      <span class="gl-tag">Who it is for</span>
-      <h3>Sponsors who need proof their programme worked</h3>
-      <ul class="gl-list">
-        <li>PSP and medical affairs teams</li>
-        <li>We start at initiation, then stay for the long run</li>
-        <li>ESG leads on device stewardship</li>
-      </ul>
+<section id="whystop">
+  <div class="section-inner">
+    <div class="section-eyebrow">Why patients stop</div>
+    <h2 class="section-title">Four problems.<br><em>One identical symptom.</em></h2>
+    <p class="section-sub">A patient who cannot afford the treatment, cannot use the device properly, stopped on a side effect, or could not find it in stock all look the same in your data. Opposite fixes, and today no way to tell them apart.</p>
+
+    <div class="why-grid">
+      <div class="why-card"><h3>Cost</h3><p>The daily controller costs more and relieves nothing today, so it waits. In Kenya, 6 in 10 asthma patients have no reimbursement at all.</p></div>
+      <div class="why-card"><h3>Technique</h3><p>The dose is taken but never reaches the lungs. Invisible to every prescription record.</p></div>
+      <div class="why-card"><h3>Side effects</h3><p>Stopped quietly between visits, surfaced months later if at all.</p></div>
+      <div class="why-card"><h3>Stock-out</h3><p>Not on the shelf that day. Recorded nowhere.</p></div>
     </div>
-    <div class="gl-col gl-teal">
-      <span class="gl-tag">What we do</span>
-      <h3>One photo a day. Verified.</h3>
-      <ul class="gl-list">
-        <li>Browser link, no app, no hardware</li>
-        <li>Timestamp and duplicate controls</li>
-        <li>Live from day 1 of initiation</li>
-      </ul>
+
+    <div class="highlight">
+      <p><strong>Prescription data tells you what was written down, not what happened.</strong> In a study across 19 sites in Kenya, 4 in 10 asthma patients were buying extra reliever over the counter, almost all of them on top of a prescription they already held. That consumption is invisible to the prescriber and to the sponsor. Play4Health captures the action itself, confirmed by the patient, so a stall is identifiable while the patient is still reachable.</p>
     </div>
-    <div class="gl-col gl-dark">
-      <span class="gl-tag">The KPIs you get</span>
-      <h3>7 metrics, patient by patient</h3>
-      <ul class="gl-kpis">
-        <li>Verified dose confirmation rate</li>
-        <li>Confirmation continuity at day 90</li>
-        <li>Adherence behavior score, 0 to 100</li>
-        <li>Behavior stalls surfaced monthly</li>
-        <li>Patient-reported side effects, structured</li>
-        <li>Visit readiness signal</li>
-        <li>Verified device return rate</li>
-      </ul>
+
+    <p class="note">SABINA III Kenya cohort, 405 patients, data collected 2019 [2]. Cited to describe the pattern. Not a Play4Health result.</p>
+  </div>
+</section>
+
+<section id="evidence">
+  <div class="section-inner">
+    <div class="ev-top">
+      <div>
+        <div class="section-eyebrow">Why early support pays</div>
+        <h2 class="section-title">Digital support doubles the odds.<br><em>Nobody verified it.</em></h2>
+        <p class="section-sub">9 randomised trials, more than twice the odds of adherence. Every one of them measured it by asking the patient. A patient who stops at month 3 of a 12-month therapy takes 9 months of treatment revenue with them, on top of acquisition spend already made. Play4Health supplies the missing half: photo-confirmed, timestamped, from day 1 of initiation.</p>
+      </div>
+      <div class="stat-box">
+        <div class="stat-num">OR 2.12</div>
+        <div class="stat-desc">Odds of adherence with app-delivered digital support versus comparator. 9 randomised trials, 988 participants, low heterogeneity. Outcome self-reported.</div>
+        <div class="stat-src">Armitage, Kassavou &amp; Sutton, <em>BMJ Open</em> 2020;10(1):e032045. <a href="https://bmjopen.bmj.com/content/10/1/e032045" target="_blank" rel="noopener">Read the study</a></div>
+      </div>
+    </div>
+    <p class="note">Trial populations covered cardiovascular disease, depression, Parkinson's disease, psoriasis and multimorbidity, at moderate evidence quality. Not a forecast for any specific programme, and not a Play4Health result.</p>
+  </div>
+</section>
+
+<section id="how">
+  <div class="section-inner">
+    <div class="section-eyebrow">How it works</div>
+    <h2 class="section-title">One photo.<br><em>Four verified outcomes.</em></h2>
+    <p class="section-sub">Patients participate directly. No app, no hardware, no clinic visit.</p>
+    <div class="how-steps">
+      <div class="hw-step">
+        <div class="hw-step-header"><div class="hw-num">01</div><h4>Patient takes a photo</h4></div>
+        <p>Dose or device return confirmed from a link. No login friction.</p>
+      </div>
+      <div class="hw-step">
+        <div class="hw-step-header"><div class="hw-num">02</div><h4>Verification runs automatically</h4></div>
+        <p>Timeframe rules, duplicate controls and photo context checked instantly.</p>
+      </div>
+      <div class="hw-step">
+        <div class="hw-step-header"><div class="hw-num">03</div><h4>Support at the right moment</h4></div>
+        <p>How to use the device, what to do when symptoms start, and progress signals that sustain the routine. No cash incentive tied to any prescription decision.</p>
+      </div>
+      <div class="hw-step">
+        <div class="hw-step-header"><div class="hw-num">04</div><h4>Data flows to your dashboard</h4></div>
+        <p>Live and export-ready for PSP and medical affairs reporting.</p>
+      </div>
     </div>
   </div>
 </section>
 
-<section id="window">
+<section id="dashboard">
   <div class="section-inner">
-    <div class="win-top">
-      <div>
-        <div class="section-eyebrow">Why Early Support Pays</div>
-        <h2 class="section-title">Digital support doubles the odds.<br><em>Nobody verified it.</em></h2>
-        <p class="section-sub">9 randomised trials, more than twice the odds of adherence. Every one of them measured it by asking the patient.</p>
+    <div class="section-eyebrow">What you buy</div>
+    <h2 class="section-title">Your programme. <em>Live.</em></h2>
+    <p class="section-sub">Seven metrics, patient by patient, across all cohorts.</p>
+    <ul class="kpi-list">
+      <li>Verified dose confirmation rate</li>
+      <li>Confirmation continuity at day 90</li>
+      <li>Behaviour score, 0 to 100</li>
+      <li>Behaviour stalls surfaced monthly</li>
+      <li>Patient-reported side effects</li>
+      <li>Visit readiness signal</li>
+      <li>Verified device return rate</li>
+    </ul>
+    <div class="platform-embed-wrap">
+      <div class="platform-embed-bar">
+        <div class="embed-dot" style="background:#ff5f57"></div>
+        <div class="embed-dot" style="background:#febc2e"></div>
+        <div class="embed-dot" style="background:#28c840"></div>
+        <span class="embed-label">play4health.org / demo</span>
+        <div class="embed-live"><div class="embed-pulse"></div>Demo</div>
       </div>
-      <div class="win-stat">
-        <div class="win-stat-num">OR 2.12</div>
-        <div class="win-stat-desc">Odds of adherence with app-delivered digital support versus comparator. 9 randomised trials, 988 participants, low heterogeneity. Outcome self-reported.</div>
-        <div class="win-stat-src">Armitage, Kassavou &amp; Sutton, <em>BMJ Open</em> 2020;10(1):e032045. <a href="https://bmjopen.bmj.com/content/10/1/e032045" target="_blank" rel="noopener">Read the study</a></div>
+      <iframe src="/demo" title="Play4Health PSP Manager Dashboard" scrolling="no" loading="lazy"></iframe>
+      <div class="platform-embed-cta">
+        <p><strong>Interactive demo with sample data.</strong> Click the tabs to explore.</p>
+        <a href="/demo" class="btn-embed-full" target="_blank">Open full dashboard &rarr;</a>
       </div>
     </div>
-
-    <div class="win-highlight">
-      <p><strong>A patient who stops at month 3 of a 12-month therapy takes 9 months of treatment revenue with them</strong>, on top of the acquisition spend already made. The support that keeps them has published evidence behind it. What no sponsor can show today is whether it worked in their own cohort. Play4Health supplies that half: photo-confirmed, timestamped, from day 1 of initiation.</p>
-    </div>
-
-    <p class="win-note">Trial populations covered cardiovascular disease, depression, Parkinson's disease, psoriasis and multimorbidity, at moderate evidence quality. Not a forecast for any specific programme, and not a Play4Health result.</p>
   </div>
 </section>
 
@@ -553,117 +538,38 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--blue);outline-offse
         <p>Returns count alongside dose confirmation. One dataset, not two reports.</p>
       </div>
     </div>
-    <p class="rec-note">We generate the verified return record. Collection and reprocessing stay with your logistics and waste partners.</p>
-  </div>
-</section>
-
-<section id="dashboard">
-  <div class="section-inner">
-  <div class="section-eyebrow">What You Buy</div>
-  <h2 class="section-title">Your programme. <em>Live.</em></h2>
-  <p class="section-sub" style="margin-bottom:40px;">Dose confirmations, behavior stages, device returns and side-effect signals, across all cohorts.</p>
-  <div class="platform-embed-wrap">
-    <div class="platform-embed-bar">
-      <div class="embed-dot" style="background:#ff5f57"></div>
-      <div class="embed-dot" style="background:#febc2e"></div>
-      <div class="embed-dot" style="background:#28c840"></div>
-      <span class="embed-label">play4health.org / demo</span>
-      <div class="embed-live"><div class="embed-pulse"></div>Demo</div>
-    </div>
-    <iframe src="/demo" title="Play4Health PSP Manager Dashboard" scrolling="no" loading="lazy"></iframe>
-    <div class="platform-embed-cta">
-      <p><strong>Interactive demo with sample data.</strong> Click the tabs to explore.</p>
-      <a href="/demo" class="btn-embed-full" target="_blank">Open full dashboard &rarr;</a>
-    </div>
-  </div>
-  </div>
-</section>
-
-<section id="how">
-  <div class="section-inner">
-  <div class="section-eyebrow">How It Works</div>
-  <h2 class="section-title">One photo.<br><em>Four verified outcomes.</em></h2>
-  <p class="section-sub">Patients participate directly. No app, no hardware, no clinic visit.</p>
-  <div class="how-steps">
-    <div class="hw-step">
-      <div class="hw-step-header"><div class="hw-num">01</div><h4>Patient takes a photo</h4></div>
-      <p>Dose or device return confirmed from a link. No login friction.</p>
-    </div>
-    <div class="hw-step">
-      <div class="hw-step-header"><div class="hw-num">02</div><h4>Verification runs automatically</h4></div>
-      <p>Timeframe rules, duplicate controls and photo context checked instantly.</p>
-    </div>
-    <div class="hw-step">
-      <div class="hw-step-header"><div class="hw-num">03</div><h4>Behavioral reinforcement</h4></div>
-      <p>Streaks and progress signals sustain daily engagement. No cash incentive tied to any prescription decision.</p>
-    </div>
-    <div class="hw-step">
-      <div class="hw-step-header"><div class="hw-num">04</div><h4>Data flows to your dashboard</h4></div>
-      <p>Live and export-ready for PSP and medical affairs reporting.</p>
-    </div>
-  </div>
-  </div>
-</section>
-
-<section id="hai">
-  <div class="hai-inner">
-    <div>
-      <div class="hai-eyebrow">The score behind the metrics</div>
-      <h2>Adherence is not one number.<br><em>The HAI scores the behavior behind it.</em></h2>
-      <p class="hai-body">A percentage tells you doses were missed. The Health Adherence Index tells you <strong>who has stopped engaging with the routine</strong>, while they are still reachable.</p>
-      <p class="hai-note">A behavioral signal for programme management. Not a diagnostic tool, and no replacement for clinical judgment.</p>
-    </div>
-    <div class="hai-panel">
-      <div class="hai-panel-label">What the index combines</div>
-      <div class="hai-row">
-        <div class="hai-row-name">Dose confirmation regularity<span>Consistency over time, not raw count</span></div>
-        <div class="hai-row-w">01</div>
-      </div>
-      <div class="hai-row">
-        <div class="hai-row-name">Side-effect reporting<span>Self-reported burden between visits</span></div>
-        <div class="hai-row-w">02</div>
-      </div>
-      <div class="hai-row">
-        <div class="hai-row-name">Visit readiness<span>Preparedness ahead of each appointment</span></div>
-        <div class="hai-row-w">03</div>
-      </div>
-      <div class="hai-row">
-        <div class="hai-row-name">Device return behavior<span>Inhalers and pens returned, verified</span></div>
-        <div class="hai-row-w">04</div>
-      </div>
-      <p class="hai-foot">0 to 100 per patient, refreshed monthly, mapped to 5 stages from Inactive to Internalized. Patients confirm facts, never score themselves.</p>
-    </div>
+    <p class="note">We generate the verified return record. Collection and reprocessing stay with your logistics and waste partners.</p>
   </div>
 </section>
 
 <section id="usecases">
   <div class="section-inner">
-  <div class="section-eyebrow">Where It Applies</div>
-  <h2 class="section-title">Built for treatments<br>taken <em>every day.</em></h2>
-  <p class="section-sub">Any regimen where a missed dose stays invisible until the next appointment. The four we start with.</p>
-  <div class="uc-grid">
-    <div class="uc-card">
-      <h3>Asthma</h3>
-      <p>Taken daily by patients who feel fine. Silent drop-off, discovered at the exacerbation.</p>
-      <span class="uc-tag uc-device">Inhaler return loop</span>
+    <div class="section-eyebrow">Where it applies</div>
+    <h2 class="section-title">Built for treatments<br>taken <em>every day.</em></h2>
+    <p class="section-sub">Any regimen where a missed dose stays invisible until the next appointment. The four we start with.</p>
+    <div class="uc-grid">
+      <div class="uc-card">
+        <h3>Asthma</h3>
+        <p>Taken daily by patients who feel fine. Silent drop-off, discovered at the exacerbation.</p>
+        <span class="uc-tag uc-device">Inhaler return loop</span>
+      </div>
+      <div class="uc-card">
+        <h3>COPD</h3>
+        <p>Multiple inhalers, older patients, complex technique. Hospitalisations track to interrupted therapy.</p>
+        <span class="uc-tag uc-device">Inhaler return loop</span>
+      </div>
+      <div class="uc-card">
+        <h3>Diabetes</h3>
+        <p>Injection pens, titration and side-effect burden. Discontinuation surfaces months after control is lost.</p>
+        <span class="uc-tag uc-device">Pen return loop</span>
+      </div>
+      <div class="uc-card">
+        <h3>Drug-resistant TB</h3>
+        <p>Long regimens, heavy side effects, resistance as the cost of interruption. Adherence is the outcome.</p>
+        <span class="uc-tag uc-nodevice">Adherence only, no device stream</span>
+      </div>
     </div>
-    <div class="uc-card">
-      <h3>COPD</h3>
-      <p>Multiple inhalers, older patients, complex technique. Hospitalisations track to interrupted therapy.</p>
-      <span class="uc-tag uc-device">Inhaler return loop</span>
-    </div>
-    <div class="uc-card">
-      <h3>Diabetes</h3>
-      <p>Injection pens, titration and side-effect burden. Discontinuation surfaces months after control is lost.</p>
-      <span class="uc-tag uc-device">Pen return loop</span>
-    </div>
-    <div class="uc-card">
-      <h3>Drug-resistant TB</h3>
-      <p>Long regimens, heavy side effects, resistance as the cost of interruption. Adherence is the outcome.</p>
-      <span class="uc-tag uc-nodevice">Adherence only, no device stream</span>
-    </div>
-  </div>
-  <p class="uc-note">We enter at initiation, because that is where a routine can still be shaped, and we stay for as long as the treatment lasts. Condition-agnostic: all it needs is a near-daily action a patient can confirm, and where a device is involved the return loop runs on the same action. The economics are sharpest on high-cost therapy, where a patient lost early is an immediate loss against an acquisition cost already spent.</p>
+    <p class="note">We enter at initiation, because that is where a routine can still be shaped, and we stay for as long as the treatment lasts. Condition-agnostic: all it needs is a near-daily action a patient can confirm.</p>
   </div>
 </section>
 
@@ -683,70 +589,44 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--blue);outline-offse
 
 <section id="pricing">
   <div class="section-inner">
-  <div class="section-eyebrow">Pricing</div>
-  <h2 class="section-title">Priced against <em>what a lost cohort costs.</em></h2>
-  <p class="section-sub">Compare the pilot to the revenue you lose when one patient stops early. On high-cost therapy, the comparison is short.</p>
-  <div class="pricing-grid">
-    <div class="price-card">
-      <div class="price-tier">Initiation Pilot</div>
-      <div class="price-main">$25,000<span class="price-per"> flat, 6 months</span></div>
-      <div class="price-setup">
-        1 brand, 1 country, up to 300 patients enrolled at initiation. Setup included.
-        <em>Beyond 300 patients the programme moves to annual scope, never to overage billing.</em>
+    <div class="section-eyebrow">Pricing</div>
+    <h2 class="section-title">Priced against <em>what a lost cohort costs.</em></h2>
+    <p class="section-sub">Compare the pilot to the revenue you lose when one patient stops early. On high-cost therapy, the comparison is short.</p>
+    <div class="pricing-grid">
+      <div class="price-card">
+        <div class="price-tier">Initiation pilot</div>
+        <div class="price-main">$25,000<span class="price-per"> flat, 6 months</span></div>
+        <div class="price-setup">1 brand, 1 country, up to 300 patients enrolled at initiation. Setup included. Success criteria agreed upfront, one primary metric, read at day 90.</div>
+        <div class="price-divider"></div>
+        <ul class="price-features">
+          <li>Verified adherence and device returns</li>
+          <li>Full 90-day read on the cohort</li>
+          <li>Side-effect capture and visit readiness</li>
+          <li>Raw data export</li>
+        </ul>
+        <a href="/contact" class="price-btn pbo">Start a pilot &rarr;</a>
       </div>
-      <span class="price-badge pb-teal">Start here</span>
-      <div class="price-divider"></div>
-     <ul class="price-features">
-        <li>Verified adherence and device returns</li>
-        <li>Full 90-day initiation read on the cohort</li>
-        <li>Side-effect self-report capture</li>
-        <li>Visit readiness signal</li>
-        <li>Behavior scoring and baseline report</li>
-        <li>Raw data export</li>
-        <li>Onboarding included</li>
-      </ul>
-      <div style="margin:20px 0;padding-top:16px;border-top:1px solid var(--border-dark);">
-        <div style="font-size:0.65rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-light);margin-bottom:10px;">Success criteria</div>
-        <div style="font-size:0.8rem;color:var(--ink-light);line-height:1.7;">Agreed upfront &nbsp;&middot;&nbsp; Quantitative &nbsp;&middot;&nbsp; One primary metric &nbsp;&middot;&nbsp; Read at day 90</div>
+      <div class="price-card featured">
+        <div class="price-tier">Annual programme</div>
+        <div class="price-main">On request<span class="price-per"> / year</span></div>
+        <div class="price-setup">Per indication, per market. Setup fee waived when a pilot converts. Price per programme drops with each additional market.</div>
+        <div class="price-divider"></div>
+        <ul class="price-features">
+          <li>Everything in the pilot</li>
+          <li>Long-term cover past day 90</li>
+          <li>Cohort analytics and caregiver circle</li>
+          <li>Monthly reporting</li>
+        </ul>
+        <a href="/contact" class="price-btn pbf">Request pricing &rarr;</a>
       </div>
-      <a href="/contact" class="price-btn pbo">Start a pilot &rarr;</a>
     </div>
-    <div class="price-card featured">
-      <div class="price-tier">Annual programme</div>
-      <div class="price-main">On request<span class="price-per"> / year</span></div>
-      <div class="price-setup">
-        Per indication, per market. Setup fee waived when a pilot converts.
-        <em>Price per programme drops with each additional market or indication.</em>
-      </div>
-      <span class="price-badge pb-blue">Expansion</span>
-      <div class="price-divider"></div>
-      <ul class="price-features">
-        <li>Everything in the pilot</li>
-        <li>Long-term cover once the cohort clears day 90</li>
-        <li>Full behavior score trends and cohort analytics</li>
-        <li>Caregiver circle activation</li>
-        <li>Real-world evidence methodology</li>
-        <li>Monthly reporting and priority support</li>
-      </ul>
-      <a href="/contact" class="price-btn pbf">Request pricing &rarr;</a>
-    </div>
-  </div>
-  <p style="font-size:0.8rem;color:var(--ink-light);margin-top:32px;max-width:760px;">Every contract includes the full system. Only scope changes. Device recovery volumes are reported in both tiers; collection and reprocessing are scoped separately, on their own budget line.</p>
-  </div>
-</section>
-
-<section id="northstar">
-  <div class="section-inner ns-inner">
-    <div class="ns-pill">Our North Star</div>
-    <p class="ns-quote">Healthcare without waste.<br><strong>Better outcomes for patients.<br>Better outcomes for the planet.</strong></p>
-    <p class="ns-body">We start with adherence and device returns, because that is where outcomes are real and regulatory pressure is building today.</p>
-    <div class="ns-star">&#11088; &nbsp;Small actions. Real health impact. Less waste.</div>
+    <p class="note">Every contract includes the full system. Only scope changes. Collection and reprocessing of returned devices are scoped separately, on their own budget line.</p>
   </div>
 </section>
 
 <section id="contact">
   <div class="section-inner contact-inner">
-    <div class="contact-pill">Work With Us</div>
+    <div class="contact-pill">Work with us</div>
     <h2>Your patients are already taking their meds.<br><em>Now capture the proof.</em></h2>
     <p>Start with a free Health Impact Snapshot. We map what your programme could measure, and what it cannot today.</p>
     <div class="cta-buttons">
@@ -766,8 +646,9 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--blue);outline-offse
     <div class="refs-label">References</div>
     <ul class="refs-list">
       <li><span class="rn">1.</span>Armitage LC, Kassavou A, Sutton S. Do mobile device apps designed to support medication adherence demonstrate efficacy? A systematic review of randomised controlled trials, with meta-analysis. <em>BMJ Open</em> 2020;10(1):e032045. <a href="https://bmjopen.bmj.com/content/10/1/e032045" target="_blank" rel="noopener">Read</a></li>
-      <li><span class="rn">2.</span>Trends in 1-year persistence and adherence among initiators of high-potency GLP-1 receptor agonists. <em>J Manag Care Spec Pharm</em> 2026;32(3):281. <a href="https://www.jmcp.org/doi/10.18553/jmcp.2026.32.3.281" target="_blank" rel="noopener">Read</a></li>
+      <li><span class="rn">2.</span>Chakaya J, Mecha J, Beekman M, et al. Over-prescription of short-acting beta2-agonists remains a serious health concern in Kenya: results from the SABINA III study. <em>BMC Primary Care</em> 2023;24:63. <a href="https://bmcprimcare.biomedcentral.com/articles/10.1186/s12875-023-02016-6" target="_blank" rel="noopener">Read</a></li>
       <li><span class="rn">3.</span>IPCC Sixth Assessment Report, 2021, Working Group I, Chapter 7. 100-year global warming potential values.</li>
+      <li><span class="rn">4.</span>Trends in 1-year persistence and adherence among initiators of high-potency GLP-1 receptor agonists. <em>J Manag Care Spec Pharm</em> 2026;32(3):281. <a href="https://www.jmcp.org/doi/10.18553/jmcp.2026.32.3.281" target="_blank" rel="noopener">Read</a></li>
     </ul>
     <p class="refs-note">Cited to describe the general pattern of persistence loss after initiation. These are not Play4Health results. No patient cohort has been deployed yet.</p>
   </div>
@@ -780,17 +661,16 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--blue);outline-offse
       <p class="footer-tagline">Verified adherence, side-effect signals, visit readiness and device returns for pharma PSP teams.</p>
       <div class="footer-social">
         <a href="https://www.linkedin.com/company/playforearth" target="_blank" rel="noopener" class="social-btn">in</a>
-        <a href="/cdn-cgi/l/email-protection#6d05080101022d1d010c145905080c01190543021f0a" class="social-btn">&#9993;</a>
+        <a href="mailto:clement@play4health.org" class="social-btn">&#9993;</a>
       </div>
     </div>
     <div class="footer-col">
       <h5>Platform</h5>
       <ul>
-        <li><a href="#window">The First 90 Days</a></li>
-        <li><a href="#dashboard">Live Dashboard</a></li>
+        <li><a href="#whystop">Why Patients Stop</a></li>
         <li><a href="#how">How It Works</a></li>
+        <li><a href="#dashboard">Live Dashboard</a></li>
         <li><a href="#recovery">Device Recovery</a></li>
-        <li><a href="#hai">The Adherence Index</a></li>
         <li><a href="#pricing">Pricing</a></li>
         <li><a href="/insight-series">Insight Series</a></li>
       </ul>
@@ -822,7 +702,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--blue);outline-offse
   </div>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
 window.addEventListener('scroll',()=>{
   document.getElementById('mainNav').style.background=window.scrollY>60?'rgba(247,248,252,0.98)':'rgba(247,248,252,0.94)';
 });
