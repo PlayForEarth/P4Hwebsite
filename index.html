@@ -267,15 +267,16 @@ section{padding:100px var(--gutter);}
 .pbt{border:1.5px solid var(--teal);color:var(--teal);}
 .pbt:hover{background:var(--teal);color:white;}
 @media(max-width:1100px){.pricing-grid{grid-template-columns:1fr 1fr;}}
-.roi{margin-top:36px;max-width:560px;background:var(--blue-faint);border:1px solid rgba(37,99,235,0.15);border-left:3px solid var(--blue);border-radius:var(--radius);padding:26px 30px;}
-.roi-row{display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding:12px 0;border-bottom:1px solid rgba(37,99,235,0.12);}
+.roi{margin-top:36px;max-width:720px;background:var(--blue-faint);border:1px solid rgba(37,99,235,0.15);border-left:3px solid var(--blue);border-radius:var(--radius);padding:26px 30px;}
+.roi-row{display:grid;grid-template-columns:1.1fr 1fr 1fr;align-items:baseline;gap:16px;padding:12px 0;border-bottom:1px solid rgba(37,99,235,0.12);}
+.roi-head strong{font-size:0.72rem!important;font-weight:700!important;letter-spacing:0.08em;text-transform:uppercase;color:var(--ink-light)!important;}
 .roi-row span{font-size:0.9rem;color:var(--ink-light);}
 .roi-row strong{font-size:1rem;font-weight:600;color:var(--ink);text-align:right;}
 .roi-total{border-bottom:none;padding-top:16px;}
 .roi-total span{color:var(--ink);font-weight:600;}
-.roi-total strong{font-size:1.35rem;font-weight:700;color:var(--blue);}
+.roi-total strong{font-size:1.1rem;font-weight:700;color:var(--blue);}
 .roi-foot{margin-top:8px;font-size:0.84rem;color:var(--ink-mid);line-height:1.6;}
-@media(max-width:480px){.roi{padding:22px 20px;}.roi-total{flex-direction:column;align-items:flex-start;gap:4px;}.roi-total strong{text-align:left;}}
+@media(max-width:600px){.roi{padding:20px 16px;}.roi-row{gap:10px;}.roi-row span,.roi-row strong{font-size:0.8rem!important;}.roi-total strong{font-size:0.9rem!important;}}
 
 /* ===== REFERENCES ===== */
 #references{background:var(--bg);border-top:1px solid var(--border);padding:64px var(--gutter);}
@@ -512,7 +513,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--blue);outline-offse
       <li>A patient support service your teams can bring to prescribers</li>
       <li>Real-world data for market access</li>
       <li>Access and affordability support where patients pay</li>
-      <li>Device returns, for inhalers and pens</li>
+      <li>Empty-pack checks and device returns</li>
     </ul>
     <div class="out-cta"><a href="/contact" class="btn-primary">Book a demo</a></div>
   </div>
@@ -527,7 +528,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--blue);outline-offse
       <li>Dose confirmation rate</li>
       <li>Continuity at day 90</li>
       <li>Side-effect reports</li>
-      <li>Device returns, where relevant</li>
+      <li>Verified returns</li>
     </ul>
     <div class="platform-embed-wrap">
       <div class="platform-embed-bar">
@@ -550,13 +551,13 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--blue);outline-offse
   <div class="section-inner">
     <div class="rec-top">
       <div>
-        <div class="rec-eyebrow">Option &middot; For inhalers and pens</div>
-        <h2 class="section-title">Adherence tools stop at the dose.<br><em>We recover the device.</em></h2>
-        <p class="section-sub">Every tool tracks whether the medicine was taken. None track what happens to the device afterwards.</p>
+        <div class="rec-eyebrow">Option &middot; Take-back</div>
+        <h2 class="section-title">Adherence tools stop at the dose.<br><em>We recover what is left.</em></h2>
+        <p class="section-sub">For tablets, the empty pack is checked at refill: proof the pack was finished. For inhalers and pens, the device is returned at the pharmacy and kept out of the waste stream.</p>
       </div>
       <div class="rec-stat">
         <div class="rec-stat-num">1,530x</div>
-        <div class="rec-stat-desc">The warming potential of HFA-134a relative to CO2, the propellant in most metered-dose inhalers. Most discarded inhalers still hold some.</div>
+        <div class="rec-stat-desc">The warming potential of HFA-134a relative to CO2, the propellant in most metered-dose inhalers. The most extreme case of what is thrown away after treatment.</div>
         <div class="rec-stat-src">IPCC Sixth Assessment Report, 2021, 100-year GWP [2].</div>
       </div>
     </div>
@@ -574,7 +575,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--blue);outline-offse
         <p>Returns count alongside dose confirmation. One dataset, not two reports.</p>
       </div>
     </div>
-    <p class="note">We generate the verified return record. Collection and reprocessing stay with your logistics and waste partners.</p>
+    <p class="note">We generate the verified return record, usable for sustainability and packaging responsibility reporting. Collection and reprocessing stay with your logistics and waste partners.</p>
   </div>
 </section>
 
@@ -589,21 +590,21 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--blue);outline-offse
         <h3>Cardiometabolic</h3>
         <div class="uc-conditions">Hypertension, dyslipidaemia, type 2 diabetes</div>
         <p>Silent conditions, often in the same patient. Discontinuation surfaces months after control is lost.</p>
-        <span class="uc-tag uc-device">Pen return loop for injectables</span>
+        <span class="uc-tag uc-device">Empty-pack check, pen returns</span>
       </div>
       <div class="uc-card">
         <div class="uc-atc">ATC R03</div>
         <h3>Respiratory</h3>
         <div class="uc-conditions">Asthma, COPD</div>
         <p>Taken daily by patients who feel fine. Silent drop-off, discovered at the exacerbation. Multiple inhalers and complex technique in COPD.</p>
-        <span class="uc-tag uc-device">Inhaler return loop</span>
+        <span class="uc-tag uc-device">Inhaler returns</span>
       </div>
       <div class="uc-card">
         <div class="uc-atc">ATC J04, J05</div>
         <h3>Chronic infectious</h3>
         <div class="uc-conditions">Drug-resistant TB, HIV</div>
-        <p>Long regimens, heavy side effects, resistance as the cost of interruption. Adherence is the outcome.</p>
-        <span class="uc-tag uc-nodevice">Adherence only, no device stream</span>
+        <p>Long regimens, heavy side effects, resistance as the cost of interruption. Every dose and every finished pack, verified.</p>
+        <span class="uc-tag uc-device">Empty-pack check</span>
       </div>
     </div>
     <p class="note">A patient on several medicines in the same area counts as one patient. We enter at initiation, because that is where a routine can still be shaped, and we stay for as long as the treatment lasts. Condition-agnostic: all it needs is a near-daily action a patient can confirm.</p>
@@ -628,14 +629,8 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--blue);outline-offse
   <div class="section-inner">
     <div class="section-eyebrow">Pricing</div>
     <h2 class="section-title">It pays for itself.<br><em>In refills you were losing.</em></h2>
-    <p class="section-sub">About half of patients on long-term therapy do not take it as prescribed [4]. Every month one of them stays on treatment is a pack sold. A few extra packs per patient per year cover the programme.</p>
-    <div class="roi">
-      <div class="roi-row"><span>Programme cost</span><strong>$6 / patient / month</strong></div>
-      <div class="roi-row"><span>Pack price (example)</span><strong>$20</strong></div>
-      <div class="roi-row roi-total"><span>Break-even</span><strong>4 extra packs / patient / year</strong></div>
-      <p class="roi-foot">Every refill beyond that is extra revenue, and better outcomes.</p>
-    </div>
-    <p class="note" style="margin-top:14px;">Illustrative. $30,000 + 1,000 &times; $3.50 &times; 12 = $72,000 a year. Pack price is an example; we run the calculation on your product in the demo.</p>
+    <p class="section-sub">About half of patients on long-term therapy do not take it as prescribed [4]. Every month one of them stays on treatment is a pack sold. A few extra packs per patient per year cover the programme. We run the numbers on your product in the demo.</p>
+    <div class="out-cta" style="margin-top:28px;"><a href="/contact" class="btn-primary">See the numbers on your product</a></div>
     <div class="not-tags">
       <span class="not-active not-tag"><span class="not-dot"></span><span class="nt-label">Paid by the sponsor</span></span>
       <span class="not-tag"><span class="nt-label">Patient</span></span>
@@ -649,7 +644,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--blue);outline-offse
         <div class="price-setup">Prove it on up to 300 patients. Setup included. Success criteria agreed upfront, first read at day 90.</div>
         <div class="price-divider"></div>
         <ul class="price-features">
-          <li>Verified adherence and device returns</li>
+          <li>Verified adherence and returns</li>
           <li>Full 90-day read on the cohort</li>
           <li>Side-effect capture</li>
           <li>Raw data export</li>
@@ -663,21 +658,23 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--blue);outline-offse
         <div class="price-divider"></div>
         <ul class="price-features">
           <li>You pay only for active patients: at least one verified dose in the month</li>
+          <li>Access tier for generics and access programmes: $1.50 per active patient / month</li>
           <li>No patient cap</li>
           <li>Additional country, same area: $20,000 / year fixed fee</li>
           <li>New programme without a pilot: $10,000 setup</li>
+          <li>Empty-pack check at refill, included</li>
           <li>Cohort analytics and monthly reporting</li>
         </ul>
         <a href="/contact" class="price-btn pbf">Request a proposal &rarr;</a>
       </div>
       <div class="price-card option">
-        <div class="price-tier">Option &middot; Take-back</div>
-        <div class="price-main">$4<span class="price-per"> per verified return</span></div>
+        <div class="price-tier">Option &middot; Device take-back</div>
+        <div class="price-main">$4<span class="price-per"> per inhaler or pen returned</span></div>
         <div class="price-setup">Invoiced quarterly. Often funded from a sustainability budget, separate from the patient support contract.</div>
         <div class="price-divider"></div>
         <ul class="price-features">
           <li>Photo-verified returns at partner pharmacies</li>
-          <li>CO2e avoided, reported as a range</li>
+          <li>CO2e avoided, reported as a range, where relevant</li>
           <li>Returns feed the same patient score</li>
         </ul>
         <a href="/contact" class="price-btn pbt">Add take-back &rarr;</a>
