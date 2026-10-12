@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Play4Health - Treatment only works if it continues.</title>
-<meta name="description" content="For patients who pay out of pocket, Play4Health makes chronic treatment visible between clinic visits: each dose confirmed from the patient's phone, each refill on track. No app, no hardware, no field agents.">
+<meta name="description" content="For patients who pay out of pocket, Play4Health makes chronic treatment visible between clinic visits: each dose confirmed from the patient's phone, each refill on track. Nothing to download, no hardware, no field agents.">
 <meta property="og:title" content="Play4Health – Treatment only works if it continues.">
 <meta property="og:description" content="Each dose confirmed from the patient's phone. Each refill on track. Built for markets where patients pay out of pocket.">
 <meta property="og:image" content="https://www.play4health.org/og-image.png">
@@ -167,6 +167,8 @@ section{padding:100px var(--gutter);}
 .hw-step{padding:28px 22px;border-right:1px solid rgba(14,27,46,0.07);transition:background 0.25s;}
 .hw-step:last-child{border-right:none;}
 .hw-step:hover{background:var(--blue-faint);}
+.how-visual{margin:44px auto 0;max-width:880px;}
+.how-visual img{display:block;width:100%;height:auto;}
 .hw-step-header{display:flex;align-items:baseline;gap:10px;margin-bottom:12px;}
 .hw-num{font-size:0.95rem;font-weight:700;color:var(--blue);opacity:0.45;line-height:1;flex-shrink:0;}
 .hw-step h4{font-size:0.95rem;font-weight:700;color:var(--ink);line-height:1.3;}
@@ -239,7 +241,7 @@ section{padding:100px var(--gutter);}
 
 /* ===== THERAPEUTIC AREAS ===== */
 #usecases{background:var(--bg);border-top:1px solid var(--border);}
-.uc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:52px;}
+.uc-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:52px;}
 .uc-card{background:white;border:1px solid var(--border-dark);border-radius:var(--radius);padding:28px 24px;display:flex;flex-direction:column;transition:all 0.25s;}
 .uc-card:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(37,99,235,0.08);border-color:rgba(37,99,235,0.22);}
 .uc-atc{font-size:0.7rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--blue);opacity:0.7;margin-bottom:8px;}
@@ -256,7 +258,7 @@ section{padding:100px var(--gutter);}
 @media(max-width:600px){.uc-grid{grid-template-columns:1fr;}}
 
 /* ===== WHERE WE STAND ===== */
-.pilot-box{max-width:none;margin:40px 0 0;box-shadow:none;}
+.stand-box.pilot-box{max-width:none;margin:40px 0 0;box-shadow:none;}
 .stand-box{max-width:820px;margin:0 auto;background:white;border:1px solid var(--border-dark);border-left:3px solid var(--blue);border-radius:var(--radius);padding:34px 36px;box-shadow:0 4px 20px rgba(14,27,46,0.05);}
 .stand-label{font-size:0.68rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:rgba(14,27,46,0.4);margin-bottom:14px;}
 .stand-lead{font-size:1.25rem;font-weight:400;color:var(--ink);line-height:1.4;letter-spacing:-0.01em;margin-bottom:22px;}
@@ -458,7 +460,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--blue);outline-offse
       <ul class="hero-usp">
         <li><span><strong>Verified, not declared.</strong> Every dose photo-confirmed, not self-reported.</span></li>
         <li><span><strong>Built for out-of-pocket markets.</strong> On the phone patients already have.</span></li>
-        <li><span><strong>Priced by patient band.</strong> Covered by the refills you were losing.</span></li>
+        <li><span><strong>1 contract per country.</strong> Add brands as you go, priced by patient band.</span></li>
       </ul>
 
       <div class="hero-actions">
@@ -483,7 +485,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--blue);outline-offse
 <div class="logos-strip">
   <div class="logos-inner">
     <span class="logos-label">Recognized by</span>
-    <span class="logo-item">ERIA <sup>HITS4KIDS Finalist</sup></span>
+    <span class="logo-item">ERIA <sup>HITS4KIDS Finalist &middot; 2025</sup></span>
     <span class="logo-item">L&rsquo;Or&eacute;al <sup>Big Bang SAPMENA Finalist</sup></span>
     <span class="logo-item">MDX <sup>Nature Positive Accelerator</sup></span>
     <span class="logo-item">African Impact Challenge <sup>Cohort 6 &middot; 2026</sup></span>
@@ -500,7 +502,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--blue);outline-offse
       <p class="beat">She did nothing wrong. Nobody told her the treatment works precisely because nothing happens.</p>
     </div>
     <p class="story-note">Adam is a composite, not a real patient. The pattern is the same with a blood pressure pill, a diabetes pen or a TB regimen.</p>
-    <p class="section-sub" style="margin-top:44px;">A patient who cannot afford the treatment, does not take it as prescribed, stopped on a side effect, or could not find it in stock all look the same in your data. Opposite fixes, and today no way to tell them apart.</p>
+    <p class="section-sub" style="margin-top:44px;">Cost, how it is taken, a side effect, a stock-out. In your data they all look the same.</p>
 
     <div class="why-grid">
       <div class="why-card"><h3>Cost</h3><p>Chronic treatment is paid month after month, often out of pocket. When money is short, the next pack waits.</p></div>
@@ -510,21 +512,9 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--blue);outline-offse
     </div>
 
     <div class="highlight">
-      <p><strong>Prescription data tells you what was written down, not what happened.</strong> Between 2 visits, a patient can skip doses, stretch a pack, switch brand or stop. None of it reaches the prescriber or the sponsor. Play4Health captures the action itself, confirmed by the patient, so a stall is identifiable while the patient is still reachable.</p>
+      <p><strong>Prescription data tells you what was written down, not what happened.</strong> Play4Health captures the action itself, so a stall is visible while the patient is still reachable.</p>
     </div>
 
-    <div class="ev-top" style="margin-top:56px;">
-      <div>
-        <h3 class="ev-title">Digital support doubles the odds. <em>Nobody verified it.</em></h3>
-        <p class="section-sub">9 randomised trials, more than 2x the odds of adherence. Every one of them measured it by asking the patient. A patient who stops at month 3 of a 12-month therapy takes 9 months of treatment revenue with them. Play4Health supplies the missing half: photo-confirmed, timestamped, from day 1 of initiation.</p>
-      </div>
-      <div class="stat-box">
-        <div class="stat-num">OR 2.12</div>
-        <div class="stat-desc">Odds of adherence with app-delivered digital support versus comparator. 9 randomised trials, 988 participants, low heterogeneity. Outcome self-reported.</div>
-        <div class="stat-src">Armitage, Kassavou &amp; Sutton, <em>BMJ Open</em> 2020;10(1):e032045 [1]. <a href="https://bmjopen.bmj.com/content/10/1/e032045" target="_blank" rel="noopener">Read the study</a></div>
-      </div>
-    </div>
-    <p class="note">Trial populations covered cardiovascular disease, depression, Parkinson's disease, psoriasis and multimorbidity, at moderate evidence quality. Not a forecast for any specific programme, and not a Play4Health result.</p>
 
   </div>
 </section>
@@ -534,6 +524,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--blue);outline-offse
     <div class="section-eyebrow">How it works</div>
     <h2 class="section-title">1 photo per dose.<br><em>Verified in seconds.</em></h2>
     <p class="section-sub">Patients participate directly. Nothing to download, no hardware, no clinic visit.</p>
+    <div class="how-visual"><img src="/app-screens.webp" alt="Play4Health patient app: streak, today's doses, breathing journey and family guides" width="2070" height="1221" loading="lazy"></div>
     <div class="how-steps">
       <div class="hw-step">
         <div class="hw-step-header"><div class="hw-num">01</div><h4>Patient takes a photo</h4></div>
@@ -545,7 +536,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--blue);outline-offse
       </div>
       <div class="hw-step">
         <div class="hw-step-header"><div class="hw-num">03</div><h4>Support at the right moment</h4></div>
-        <p>How to take the treatment, what to do when symptoms change, and progress signals that sustain the routine. No cash incentive tied to any prescription decision.</p>
+        <p>The right answer when symptoms change, and progress that keeps the routine going.</p>
       </div>
       <div class="hw-step">
         <div class="hw-step-header"><div class="hw-num">04</div><h4>Data flows to your dashboard</h4></div>
@@ -553,9 +544,6 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--blue);outline-offse
       </div>
     </div>
 
-    <div class="highlight">
-      <p><strong>Reminder apps report what patients tap. Play4Health reports what patients show.</strong> A photo, a timestamp and a duplicate check on every dose, so your adherence figure holds up when medical affairs, a payer or a regulator asks how it was measured.</p>
-    </div>
   </div>
 </section>
 
@@ -608,11 +596,11 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--blue);outline-offse
 <section id="usecases">
   <div class="section-inner">
     <div class="section-eyebrow">Therapeutic areas</div>
-    <h2 class="section-title">1 platform.<br><em>1 programme per therapeutic area, per country.</em></h2>
-    <p class="section-sub">Areas follow the WHO ATC classification of medicines. What changes is the patient journey. The verification layer stays the same.</p>
+    <h2 class="section-title">1 platform.<br><em>Any long-term treatment.</em></h2>
+    <p class="section-sub">What changes is the patient journey. The verification layer stays the same.</p>
     <div class="uc-grid">
       <div class="uc-card">
-        <div class="uc-atc">ATC C02 to C10, A10</div>
+        
         <h3>Cardiometabolic</h3>
         <div class="uc-conditions">Hypertension, dyslipidaemia, type 2 diabetes</div>
         <div class="uc-split">
@@ -622,7 +610,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--blue);outline-offse
         <span class="uc-tag uc-device">Empty-pack check, pen returns</span>
       </div>
       <div class="uc-card">
-        <div class="uc-atc">ATC R03</div>
+        
         <h3>Respiratory</h3>
         <div class="uc-conditions">Asthma, COPD</div>
         <div class="uc-split">
@@ -632,7 +620,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--blue);outline-offse
         <span class="uc-tag uc-device">Inhaler returns</span>
       </div>
       <div class="uc-card">
-        <div class="uc-atc">ATC J04, J05</div>
+        
         <h3>Chronic infectious</h3>
         <div class="uc-conditions">Drug-resistant TB, HIV</div>
         <div class="uc-split">
@@ -641,19 +629,28 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--blue);outline-offse
         </div>
         <span class="uc-tag uc-device">Empty-pack check</span>
       </div>
+      <div class="uc-card">
+        <h3>Sickle cell disease</h3>
+        <div class="uc-conditions">From newborn screening to adult care</div>
+        <div class="uc-split">
+          <div><span class="uc-who">For families</span>Daily penicillin and hydroxyurea, danger signs explained, the whole family in the loop.</div>
+          <div><span class="uc-who">For programmes</span>Who reached care after diagnosis, who stays on treatment, crises and admissions.</div>
+        </div>
+        <span class="uc-tag uc-nodevice">Family follow-up</span>
+      </div>
     </div>
-    <p class="note">A patient on several medicines in the same area counts as 1 patient. We enter at initiation, because that is where a routine can still be shaped, and we stay for as long as the treatment lasts. Condition-agnostic: all it needs is a near-daily action a patient can confirm.</p>
+    <p class="note">A patient on several medicines counts as 1 patient. Condition-agnostic: all it needs is a near-daily action a patient can confirm.</p>
 
     <div class="takeback">
       <div class="takeback-copy">
         <div class="rec-eyebrow">Option &middot; Take-back</div>
         <h3>Adherence tools stop at the dose. <em>We recover what is left.</em></h3>
-        <p>For tablets, the empty pack is checked at refill: proof the pack was finished. For inhalers and pens, the device is returned at a partner pharmacy, photo-verified, and kept out of the waste stream. Returns feed the same patient record as doses: 1 dataset, not 2 reports.</p>
+        <p>For tablets, the empty pack is checked at refill. Inhalers and pens are returned at a partner pharmacy, photo-verified, and kept out of the waste stream. Same patient record as the doses.</p>
       </div>
       <div class="rec-stat">
         <div class="rec-stat-num">1,530x</div>
         <div class="rec-stat-desc">The warming potential of HFA-134a relative to CO2, the propellant in most metered-dose inhalers.</div>
-        <div class="rec-stat-src">IPCC Sixth Assessment Report, 2021, 100-year GWP [2].</div>
+        <div class="rec-stat-src">IPCC Sixth Assessment Report, 2021, 100-year GWP [1].</div>
       </div>
     </div>
     <p class="note">We generate the verified return record, usable for sustainability and packaging responsibility reporting. Collection and reprocessing stay with your logistics and waste partners.</p>
@@ -680,7 +677,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--blue);outline-offse
       </div>
       <div class="out-card">
         <h3>The patient stays in control</h3>
-        <p>Patients can export or delete their data at any time. Designed around Kenya's Data Protection Act and GDPR principles.</p>
+        <p>Patients can export or delete their data at any time. Designed around the Kenya and Uganda data protection acts and GDPR principles.</p>
       </div>
     </div>
     <p class="note">Play4Health supplies data and infrastructure. The sponsor keeps full clinical, regulatory and pharmacovigilance responsibility.</p>
@@ -690,10 +687,10 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--blue);outline-offse
 <section id="pricing">
   <div class="section-inner">
     <div class="section-eyebrow">Pricing</div>
-    <h2 class="section-title">It pays for itself.<br><em>In refills you were losing.</em></h2>
-    <p class="section-sub">On long-term therapy, patients take about 50% of their doses [4]. Every extra month a patient stays on treatment is a pack sold. A few extra packs per patient per year cover the programme. 1 flat fee per year, by patient band. We run the numbers on your product in the demo.</p>
+    <h2 class="section-title">Built to pay for itself.<br><em>In refills you were losing.</em></h2>
+    <p class="section-sub">On long-term therapy, patients take about 50% of their doses [2]. On a branded therapy at scale, about 1 extra pack per patient per year covers the programme. We run the numbers on your product in the demo.</p>
     <div class="not-tags">
-      <span class="not-active not-tag"><span class="not-dot"></span><span class="nt-label">Paid by the sponsor</span></span>
+      <span class="not-active not-tag"><span class="not-dot"></span><span class="nt-label">Fee and patient rewards paid by the sponsor</span></span>
       <span class="not-tag"><span class="nt-label">Patient</span></span>
       <span class="not-tag"><span class="nt-label">Prescriber</span></span>
       <span class="not-tag"><span class="nt-label">Pharmacy</span></span>
@@ -702,10 +699,10 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--blue);outline-offse
       <div class="price-card">
         <div class="price-tier">Step 1 &middot; Prove it</div>
         <div class="price-main">$25,000<span class="price-per"> once, 6 months</span></div>
-        <div class="price-setup">Prove it on up to 300 patients. Setup included. Success criteria agreed upfront, first read at day 90.</div>
+        <div class="price-setup"><strong>No patient cap</strong>, because patient rewards are paid by the sponsor on top. 1 brand, setup included. Success criteria agreed upfront, first read at day 90.</div>
         <div class="price-divider"></div>
         <ul class="price-features">
-          <li>Verified adherence</li>
+          <li>Verified doses</li>
           <li>Side-effect capture</li>
           <li>Raw data export</li>
         </ul>
@@ -714,12 +711,12 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--blue);outline-offse
       <div class="price-card featured">
         <div class="price-tier">Step 2 &middot; Scale it</div>
         <div class="price-main">On request<span class="price-per"> / year</span><span class="price-plus">1 flat fee<span class="price-per"> by patient band</span></span></div>
-        <div class="price-setup">Per therapeutic area, per country. Setup waived when a pilot converts.</div>
+        <div class="price-setup">1 contract per sponsor per country. Each additional brand adds a yearly fee (more teams, more safety routing). Setup waived on the pilot brand when it converts.</div>
         <div class="price-divider"></div>
         <ul class="price-features">
           <li>1 number per contract, no per-patient metering</li>
-          <li>Enrol as many patients as your band allows</li>
-          <li>Access tier for generics and access programmes</li>
+          <li>Unlimited patients: rewards paid by the sponsor</li>
+          <li>Discount from the 2nd country</li>
         </ul>
         <a href="/contact" class="price-btn pbf">Book a demo &rarr;</a>
       </div>
@@ -744,7 +741,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--blue);outline-offse
         <li>20,000+ field actions already captured on the Play for Earth verification engine, the same layer Play4Health runs on.</li>
       </ul>
     </div>
-    <p class="note">Every contract includes the full system. Only scope changes. Collection and reprocessing of returned devices are scoped separately, on their own budget line. Access benefits on medicines, where a sponsor funds them, are configured per programme within local rules.</p>
+    <p class="note"><strong>Patient rewards</strong> (airtime, data, status rewards) are paid by the sponsor on top of the fee, in Bronze, Silver or Gold packages that we manage. That is why the number of patients is never capped. Every contract includes the full system. Only scope changes. Collection and reprocessing of returned devices are scoped separately, on their own budget line. Access benefits on medicines, where a sponsor funds them, are configured per programme within local rules.</p>
   </div>
 </section>
 
@@ -758,9 +755,9 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--blue);outline-offse
       <a href="https://www.linkedin.com/company/playforearth" target="_blank" rel="noopener" class="btn-outline">Connect on LinkedIn</a>
     </div>
     <div class="trust-badges">
-      <span class="trust-badge"><span class="tbdot"></span>Respiratory &middot; Cardiometabolic &middot; Chronic infectious</span>
+      <span class="trust-badge"><span class="tbdot"></span>Respiratory &middot; Cardiometabolic &middot; Chronic infectious &middot; Sickle cell</span>
       <span class="trust-badge"><span class="tbdot"></span>Fully digital, no hardware</span>
-      <span class="trust-badge"><span class="tbdot"></span>Southeast Asia &middot; Africa &middot; Global-ready</span>
+      <span class="trust-badge"><span class="tbdot"></span>East Africa first &middot; Global-ready</span>
     </div>
   </div>
 </section>
@@ -769,12 +766,8 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--blue);outline-offse
   <div class="section-inner">
     <div class="refs-label">References</div>
     <ul class="refs-list">
-      <li><span class="rn">1.</span>Armitage LC, Kassavou A, Sutton S. Do mobile device apps designed to support medication adherence demonstrate efficacy? A systematic review of randomised controlled trials, with meta-analysis. <em>BMJ Open</em> 2020;10(1):e032045. <a href="https://bmjopen.bmj.com/content/10/1/e032045" target="_blank" rel="noopener">Read</a></li>
-
-      <li><span class="rn">2.</span>IPCC Sixth Assessment Report, 2021, Working Group I, Chapter 7. 100-year global warming potential values.</li>
-      <li><span class="rn">3.</span>Trends in 1-year persistence and adherence among initiators of high-potency GLP-1 receptor agonists. <em>J Manag Care Spec Pharm</em> 2026;32(3):281. <a href="https://www.jmcp.org/doi/10.18553/jmcp.2026.32.3.281" target="_blank" rel="noopener">Read</a></li>
-      <li><span class="rn">4.</span>World Health Organization. <em>Adherence to long-term therapies: evidence for action.</em> Geneva: WHO, 2003. <a href="https://www.paho.org/en/documents/who-adherence-long-term-therapies-evidence-action-2003" target="_blank" rel="noopener">Read</a></li>
-      <li><span class="rn">5.</span>WHO Collaborating Centre for Drug Statistics Methodology. ATC/DDD Index. <a href="https://atcddd.fhi.no/atc_ddd_index/" target="_blank" rel="noopener">Read</a></li>
+      <li><span class="rn">1.</span>IPCC Sixth Assessment Report, 2021, Working Group I, Chapter 7. 100-year global warming potential values.</li>
+      <li><span class="rn">2.</span>World Health Organization. <em>Adherence to long-term therapies: evidence for action.</em> Geneva: WHO, 2003. <a href="https://www.paho.org/en/documents/who-adherence-long-term-therapies-evidence-action-2003" target="_blank" rel="noopener">Read</a></li>
     </ul>
     <p class="refs-note">Cited to describe the general pattern of persistence loss after initiation. These are not Play4Health results. No patient cohort has been deployed yet.</p>
   </div>
@@ -808,6 +801,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--blue);outline-offse
         <li><a href="#usecases">Respiratory</a></li>
         <li><a href="#usecases">Cardiometabolic</a></li>
         <li><a href="#usecases">Chronic infectious</a></li>
+        <li><a href="#usecases">Sickle cell disease</a></li>
       </ul>
     </div>
     <div class="footer-col">
