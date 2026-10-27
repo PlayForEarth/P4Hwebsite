@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Play4Health: For patients</title>
+<meta name="description" content="Support for your daily treatment, on the phone you already have. Asthma, diabetes, sickle cell, epilepsy. A web link, nothing to install, works offline.">
+<link rel="canonical" href="https://www.play4health.org/patients">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<!-- No analytics on this page: the form collects a phone number and a health condition. -->
+<style>
+:root{
+  --bg:#f7f8fc;--ink:#0e1b2e;--ink-mid:#2d4263;--ink-light:#5a7099;
+  --blue:#2563eb;--blue-dark:#1d4ed8;--blue-faint:#eff6ff;
+  --teal:#0d9488;--teal-pale:#ccfbf1;--danger:#b91c1c;
+  --border:rgba(14,27,46,0.12);--sans:'DM Sans',sans-serif;--radius:16px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:var(--sans);background:var(--bg);color:var(--ink);line-height:1.55;}
+a{color:var(--blue-dark);}
+.wrap{max-width:560px;margin:0 auto;padding:24px 16px 56px;}
+.logo{font-weight:700;font-size:20px;text-decoration:none;color:var(--ink);}
+.logo span{color:var(--blue);}
+h1{font-size:clamp(28px,7vw,40px);line-height:1.15;margin:32px 0 12px;letter-spacing:-0.02em;}
+.lead{color:var(--ink-mid);font-size:17px;}
+ul.points{list-style:none;margin:24px 0 8px;display:grid;gap:10px;}
+ul.points li{background:white;border:1px solid var(--border);border-radius:12px;padding:12px 14px;font-weight:500;}
+ul.points li::before{content:"";display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--teal);margin-right:10px;vertical-align:middle;}
+.areas{color:var(--ink-light);font-size:14px;margin-top:8px;}
+form{background:white;border:1px solid var(--border);border-radius:var(--radius);padding:20px;margin-top:28px;display:grid;gap:16px;}
+form h2{font-size:20px;}
+label.field{display:grid;gap:6px;font-weight:600;font-size:15px;}
+select,input[type=tel]{font:inherit;font-size:16px;min-height:48px;border:1px solid var(--border);border-radius:12px;padding:0 12px;background:white;color:var(--ink);width:100%;}
+select:focus,input:focus{outline:2px solid var(--blue);outline-offset:1px;}
+.consent{display:flex;gap:10px;align-items:flex-start;font-size:14px;color:var(--ink-mid);}
+.consent input{width:22px;height:22px;margin-top:2px;flex-shrink:0;accent-color:var(--blue);}
+button{font:inherit;font-weight:700;font-size:16px;min-height:52px;border:0;border-radius:999px;background:var(--blue);color:white;cursor:pointer;}
+button:hover{background:var(--blue-dark);}
+button:disabled{opacity:.6;cursor:default;}
+.hp{position:absolute;left:-9999px;}
+#status{font-size:15px;font-weight:600;min-height:1.5em;}
+#status.ok{color:var(--teal);}
+#status.err{color:var(--danger);}
+.note{font-size:13px;color:var(--ink-light);margin-top:16px;}
+footer{margin-top:40px;font-size:13px;color:var(--ink-light);display:flex;gap:16px;flex-wrap:wrap;}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a href="/" class="logo">Play4<span>Health</span></a>
+
+  <h1>Support for your daily treatment, on your phone.</h1>
+  <p class="lead">For patients and families living with a long-term condition.</p>
+
+  <ul class="points">
+    <li>A reminder at the right time, every day</li>
+    <li>Your family can follow and help</li>
+    <li>A web link, nothing to install. Works offline.</li>
+    <li>Free for patients in partner programmes</li>
+  </ul>
+  <p class="areas">Asthma &middot; Diabetes &middot; Sickle cell &middot; Epilepsy &middot; and more</p>
+
+  <form id="interest" novalidate>
+    <h2>Tell us about you</h2>
+    <p class="lead" style="font-size:15px">Leave your number. We will contact you when a programme is open for your condition near you.</p>
+
+    <label class="field">My condition
+      <select name="condition" id="condition" required>
+        <option value="" disabled selected>Choose one</option>
+        <option value="asthma">Asthma</option>
+        <option value="diabetes">Diabetes</option>
+        <option value="sickle_cell">Sickle cell</option>
+        <option value="epilepsy">Epilepsy</option>
+        <option value="other">Other</option>
+      </select>
+    </label>
+
+    <label class="field">My phone number
+      <input type="tel" name="phone" id="phone" inputmode="tel" autocomplete="tel" placeholder="+254 7XX XXX XXX" required>
+    </label>
+
+    <!-- Spam trap: people never see it, bots fill it in. -->
+    <input type="text" name="_gotcha" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+
+    <label class="consent">
+      <input type="checkbox" name="consent" id="consent" required>
+      <span>I agree that Play for Earth, which runs Play4Health, keeps my phone number and the condition I chose, only to contact me about Play4Health programmes. I can ask for them to be deleted at any time. <a href="/privacy">Privacy notice</a></span>
+    </label>
+
+    <button type="submit" id="send">Send</button>
+    <p id="status" role="status" aria-live="polite"></p>
+  </form>
+
+  <p class="note">This form is not for emergencies. If you or someone near you is very unwell, call 999 or 112, or go to the nearest health facility.</p>
+
+  <footer>
+    <a href="/">Play4Health</a>
+    <a href="/privacy">Privacy</a>
+    <a href="/terms">Terms</a>
+    <a href="/contact">For partners</a>
+  </footer>
+</div>
+
+<script>
+(function () {
+// Same form service as the rest of the site (Formspree). A dedicated form id for patients is better: see the PR.
+var FORM_ENDPOINT = 'https://formspree.io/f/xaqpowav';
+var form = document.getElementById('interest');
+var statusEl = document.getElementById('status');
+function say(text, kind) { statusEl.textContent = text; statusEl.className = kind || ''; }
+form.addEventListener('submit', async function (e) {
+  e.preventDefault();
+  var condition = document.getElementById('condition').value;
+  var phone = document.getElementById('phone').value.trim();
+  var digits = phone.replace(/[^0-9]/g, '');
+  if (!condition) return say('Please choose your condition.', 'err');
+  if (digits.length < 9 || digits.length > 15) return say('Please check your phone number.', 'err');
+  if (!document.getElementById('consent').checked) return say('Please tick the box to agree, so we can contact you.', 'err');
+  var btn = document.getElementById('send');
+  btn.disabled = true; say('Sending...');
+  try {
+    var res = await fetch(FORM_ENDPOINT, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({
+        source: 'p4h-patient-interest',
+        condition: condition,
+        phone: phone,
+        consent: 'yes',
+        consent_text: 'patients-page-2026-10-20',
+        _gotcha: form._gotcha.value
+      })
+    });
+    if (!res.ok) throw new Error(String(res.status));
+    form.reset();
+    say('Thank you. We will contact you when a programme is open for you.', 'ok');
+  } catch (err) {
+    say('We could not send this. Please try again in a moment.', 'err');
+  } finally {
+    btn.disabled = false;
+  }
+});
+})();
+</script>
+</body>
+</html>
