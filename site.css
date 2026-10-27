@@ -94,6 +94,14 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--blue);outline-offse
 .page-lead{font-size:1.05rem;color:var(--ink-light);line-height:1.75;max-width:620px;}
 .page-body{max-width:var(--max-w);margin:0 auto;padding:0 var(--gutter) 96px;}
 
+/* ===== COOKIE CHOICE (site.js; below the mobile menu, never over the nav) ===== */
+.cookie-banner{position:fixed;left:16px;right:16px;bottom:16px;z-index:498;max-width:760px;margin:0 auto;display:flex;align-items:center;gap:20px;background:#0a1628;border:1px solid rgba(255,255,255,0.1);border-radius:var(--radius);padding:18px 22px;box-shadow:0 12px 40px rgba(14,27,46,0.3);font-family:var(--sans);font-size:16px;}
+.cookie-banner[hidden]{display:none;}
+.cookie-banner p{flex:1;font-size:0.88em;line-height:1.6;color:rgba(255,255,255,0.75);}
+.cookie-banner a{color:#93c5fd;font-weight:600;}
+.cookie-actions{display:flex;gap:10px;flex-shrink:0;}
+.cookie-actions .btn-outline{background:none;cursor:pointer;font-family:var(--sans);font-size:0.9em;font-weight:600;padding:11px 24px;min-width:104px;min-height:44px;}
+
 @media(max-width:1200px){.nav-links{gap:20px;}.nav-links a{font-size:0.82rem;}}
 @media(max-width:1100px){.footer-grid{grid-template-columns:1fr 1fr;gap:36px;}}
 @media(max-width:900px){
@@ -108,3 +116,6 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--blue);outline-offse
 @media(max-width:480px){
   section{padding:60px var(--gutter);}
   .footer-grid{grid-template-columns:1fr;}}
+@media(max-width:600px){
+  .cookie-banner{left:0;right:0;bottom:0;border-radius:16px 16px 0 0;flex-direction:column;align-items:stretch;gap:14px;padding:18px var(--gutter) calc(18px + env(safe-area-inset-bottom));}
+  .cookie-actions .btn-outline{flex:1;}}
