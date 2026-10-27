@@ -7,19 +7,8 @@
 <link rel="icon" href="/favicon-32.png" type="image/png" sizes="32x32">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <title>Play4Health: PSP Manager Dashboard</title>
-<!-- Google Analytics only when the demo is opened directly, not inside the home page iframe (home visits count once) -->
-<script>
-  if (window.self === window.top) {
-    var ga = document.createElement('script');
-    ga.async = true; ga.src = 'https://www.googletagmanager.com/gtag/js?id=G-7JM995K277';
-    document.head.appendChild(ga);
-    window.dataLayer = window.dataLayer || [];
-    window.gtag = function(){dataLayer.push(arguments);};
-    gtag('js', new Date());
-    gtag('config', 'G-7JM995K277');
-  }
-</script>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/site.css">
 <style>
 :root {
   --green:#16a34a;--green-dark:#166534;--green-lt:#dcfce7;--green-bd:rgba(22,163,74,.2);
@@ -830,5 +819,6 @@ function initDevChart() {
   });
 }
 </script>
+<script src="/site.js"></script>
 </body>
 </html>
