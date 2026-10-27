@@ -7,254 +7,81 @@
 <meta name="description" content="Get in touch with Play4Health. Start a pilot, request a Health Impact Snapshot, or ask us anything.">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://www.play4health.org/contact">
+<meta property="og:title" content="Play4Health: Contact">
+<meta property="og:description" content="Get in touch with Play4Health. Start a pilot, request a Health Impact Snapshot, or ask us anything.">
+<meta property="og:image" content="https://www.play4health.org/og-image.png">
+<meta property="og:url" content="https://www.play4health.org/contact">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
-
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/site.css">
 <style>
-:root {
-  --bg: #f7f8fc;
-  --ink: #0e1b2e;
-  --ink-light: #5a7099;
-  --ink-mid: #2d4263;
-  --blue: #2563eb;
-  --blue-dark: #1d4ed8;
-  --blue-pale: #dbeafe;
-  --blue-faint: #eff6ff;
-  --teal: #0d9488;
-  --teal-pale: #ccfbf1;
-  --border: rgba(37,99,235,0.12);
-  --border-dark: rgba(14,27,46,0.09);
-  --sans: 'DM Sans', sans-serif;
-  --serif: 'Instrument Serif', Georgia, serif;
-  --radius: 20px;
-}
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
-body { font-family: var(--sans); background: var(--bg); color: var(--ink); overflow-x: hidden; }
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;max-width:960px;animation:fadeUp 0.7s ease 0.25s both;}
+.contact-card{background:white;border:1px solid var(--border-dark);border-radius:var(--radius);padding:36px 32px;position:relative;overflow:hidden;transition:all 0.25s;box-shadow:0 2px 12px rgba(14,27,46,0.05);}
+.contact-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--blue),#60a5fa);}
+.contact-card.teal::before{background:linear-gradient(90deg,var(--teal),#34d399);}
+.contact-card.dark{background:var(--ink);border-color:transparent;box-shadow:0 8px 40px rgba(14,27,46,0.18);}
+.contact-card.dark::before{background:linear-gradient(90deg,#60a5fa,var(--teal));}
+.contact-card:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(37,99,235,0.08);border-color:rgba(37,99,235,0.22);}
+.contact-card.dark:hover{box-shadow:0 14px 48px rgba(14,27,46,0.25);}
+.contact-icon{font-size:2rem;margin-bottom:20px;display:block;}
+.contact-card h2{font-size:var(--fs-h3);font-weight:700;line-height:1.3;letter-spacing:-0.01em;color:var(--ink);margin-bottom:10px;}
+.contact-card.dark h2{color:white;}
+.contact-card p{font-size:0.88rem;color:var(--ink-light);line-height:1.7;margin-bottom:28px;}
+.contact-card.dark p{color:rgba(255,255,255,0.6);}
+.contact-card .btn-outline{padding:14px 32px;font-size:0.95rem;font-weight:600;}
 
-/* background */
-.page-bg {
-  position: fixed; inset: 0; z-index: -2;
-  background:
-    radial-gradient(ellipse 70% 55% at 85% 15%, rgba(37,99,235,0.09) 0%, transparent 60%),
-    radial-gradient(ellipse 50% 45% at 5% 85%, rgba(13,148,136,0.09) 0%, transparent 55%),
-    var(--bg);
-}
-.page-grid {
-  position: fixed; inset: 0; z-index: -1; pointer-events: none;
-  background-image:
-    linear-gradient(rgba(37,99,235,0.04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(37,99,235,0.04) 1px, transparent 1px);
-  background-size: 58px 58px;
-}
-
-/* NAV */
-nav {
-  position: fixed; top: 0; left: 0; right: 0; z-index: 500;
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 18px 5%;
-  background: rgba(247,248,252,0.92);
-  backdrop-filter: blur(16px);
-  border-bottom: 1px solid var(--border);
-}
-.nav-logo {
-  font-family: var(--sans); font-size: 1.15rem; font-weight: 500;
-  color: var(--ink); text-decoration: none;
-  display: flex; align-items: center; gap: 9px;
-}
-.nav-logo img { height: 30px; width: auto; }
-.nav-logo em { color: var(--blue); font-style: normal; }
-.nav-links { display: flex; list-style: none; gap: 36px; align-items: center; }
-.nav-links a {
-  font-size: 0.875rem; font-weight: 500; color: var(--ink-light);
-  text-decoration: none; transition: color 0.2s;
-}
-.nav-links a:hover, .nav-links a.active { color: var(--blue); }
-.nav-cta {
-  background: var(--blue) !important; color: white !important;
-  padding: 9px 20px; border-radius: 24px; font-weight: 600 !important;
-}
-.nav-cta:hover { background: var(--blue-dark) !important; }
-@media (max-width: 900px) { .nav-links { display: none; } }
-
-/* PAGE */
-.page-wrapper { padding-top: 90px; }
-
-/* HERO */
-.page-hero { padding: 72px 5% 56px; max-width: 960px; }
-.page-eyebrow {
-  display: inline-flex; align-items: center; gap: 8px;
-  font-size: 0.72rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
-  color: var(--blue); background: var(--blue-faint);
-  padding: 5px 14px; border-radius: 24px; border: 1px solid rgba(37,99,235,0.2);
-  margin-bottom: 24px;
-}
-.eyebrow-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--blue); animation: pulse 2s ease-in-out infinite; }
-@keyframes pulse { 0%,100% { opacity: 0.5; } 50% { opacity: 1; } }
-
-.page-hero h1 {
-  font-family: var(--serif); font-size: clamp(2.4rem, 4vw, 3.6rem);
-  font-weight: 400; line-height: 1.08; letter-spacing: -0.02em;
-  margin-bottom: 16px;
-}
-.page-hero h1 em { color: var(--blue); font-style: italic; }
-.page-hero p { font-size: 1.05rem; color: var(--ink-light); line-height: 1.75; max-width: 580px; }
-
-/* GRID */
-.contact-grid {
-  display: grid; grid-template-columns: 1fr 1fr;
-  gap: 20px; max-width: 960px; padding: 0 5% 80px;
-}
-@media (max-width: 700px) { .contact-grid { grid-template-columns: 1fr; } }
-
-/* CARDS */
-.contact-card {
-  background: white; border: 1px solid var(--border-dark); border-radius: var(--radius);
-  padding: 40px 32px; position: relative; overflow: hidden;
-  transition: all 0.25s; box-shadow: 0 2px 12px rgba(14,27,46,0.05);
-  text-decoration: none; display: block;
-}
-.contact-card::before {
-  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px;
-  background: linear-gradient(90deg, var(--blue), #60a5fa);
-}
-.contact-card.teal::before { background: linear-gradient(90deg, var(--teal), #34d399); }
-.contact-card.dark { background: var(--ink); border-color: transparent; box-shadow: 0 8px 40px rgba(14,27,46,0.18); }
-.contact-card.dark::before { background: linear-gradient(90deg, #60a5fa, var(--teal)); }
-
-.contact-card:hover { transform: translateY(-3px); box-shadow: 0 10px 32px rgba(14,27,46,0.1); }
-.contact-card.dark:hover { box-shadow: 0 14px 48px rgba(14,27,46,0.25); }
-
-.contact-icon { font-size: 2rem; margin-bottom: 20px; display: block; }
-
-.contact-card h2 {
-  font-family: var(--serif); font-size: 1.5rem; font-weight: 400;
-  margin-bottom: 12px; color: var(--ink); line-height: 1.2;
-}
-.contact-card.dark h2 { color: white; }
-
-.contact-card p { font-size: 0.88rem; color: var(--ink-light); line-height: 1.75; margin-bottom: 28px; }
-.contact-card.dark p { color: rgba(255,255,255,0.5); }
-
-/* buttons */
-.btn-blue {
-  display: inline-flex; align-items: center; gap: 8px;
-  background: var(--blue); color: white;
-  padding: 12px 24px; border-radius: 32px;
-  font-size: 0.88rem; font-weight: 600; text-decoration: none;
-  transition: all 0.2s; margin-bottom: 16px;
-}
-.btn-blue:hover { background: var(--blue-dark); transform: translateY(-1px); }
-
-.btn-teal {
-  display: inline-flex; align-items: center; gap: 8px;
-  background: var(--teal); color: white;
-  padding: 12px 24px; border-radius: 32px;
-  font-size: 0.88rem; font-weight: 600; text-decoration: none;
-  transition: all 0.2s; margin-bottom: 16px;
-}
-.btn-teal:hover { background: #0f766e; transform: translateY(-1px); }
-
-.btn-ghost {
-  display: inline-flex; align-items: center; gap: 8px;
-  background: rgba(255,255,255,0.1); color: white;
-  padding: 12px 24px; border-radius: 32px; border: 1px solid rgba(255,255,255,0.2);
-  font-size: 0.88rem; font-weight: 600; text-decoration: none;
-  transition: all 0.2s; margin-bottom: 16px;
-}
-.btn-ghost:hover { background: rgba(255,255,255,0.18); transform: translateY(-1px); }
-
-/* pills */
-.contact-pills { display: flex; flex-direction: column; gap: 8px; margin-top: 4px; }
-.contact-pill {
-  display: flex; align-items: center; gap: 10px;
-  font-size: 0.83rem; color: var(--ink-light); text-decoration: none;
-  padding: 9px 14px; border: 1px solid var(--border-dark); border-radius: 10px;
-  transition: all 0.2s;
-}
-.contact-pill:hover { border-color: rgba(37,99,235,0.3); color: var(--blue); background: var(--blue-faint); }
-.contact-pill.dark-pill {
-  border-color: rgba(255,255,255,0.12); color: rgba(255,255,255,0.5);
-  background: transparent;
-}
-.contact-pill.dark-pill:hover { border-color: rgba(255,255,255,0.3); color: white; background: rgba(255,255,255,0.07); }
-.pill-icon { font-size: 1rem; flex-shrink: 0; }
-
-/* INFO */
-.contact-info { max-width: 960px; padding: 0 5% 80px; }
-.info-row {
-  display: flex; align-items: flex-start; gap: 16px;
-  padding: 20px 0; border-bottom: 1px solid var(--border-dark);
-}
-.info-row:last-child { border-bottom: none; }
-.info-icon {
-  width: 40px; height: 40px; background: var(--blue-faint); border-radius: 10px;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 1rem; flex-shrink: 0; border: 1px solid rgba(37,99,235,0.12);
-}
-.info-label { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--blue); margin-bottom: 3px; }
-.info-value { font-size: 0.9rem; color: var(--ink); font-weight: 500; }
-.info-value a { color: var(--ink); text-decoration: none; }
-.info-value a:hover { color: var(--blue); }
-
-/* FOOTER */
-footer { background: var(--ink); border-top: 1px solid rgba(255,255,255,0.06); padding: 52px 5% 36px; }
-.footer-inner { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 32px; margin-bottom: 40px; }
-.footer-brand a { font-family: var(--sans); font-size: 1.1rem; font-weight: 500; color: white; text-decoration: none; display: block; margin-bottom: 8px; }
-.footer-brand a em { color: #93c5fd; font-style: normal; }
-.footer-brand p { font-size: 0.82rem; color: rgba(255,255,255,0.35); max-width: 240px; line-height: 1.65; }
-.footer-links { display: flex; gap: 40px; flex-wrap: wrap; }
-.footer-col h5 { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.11em; text-transform: uppercase; color: rgba(255,255,255,0.28); margin-bottom: 16px; }
-.footer-col ul { list-style: none; }
-.footer-col li { margin-bottom: 10px; }
-.footer-col a { font-size: 0.84rem; color: rgba(255,255,255,0.45); text-decoration: none; transition: color 0.2s; }
-.footer-col a:hover { color: #93c5fd; }
-.footer-bottom { border-top: 1px solid rgba(255,255,255,0.07); padding-top: 24px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
-.footer-copy { font-size: 0.77rem; color: rgba(255,255,255,0.25); }
-.footer-legal { display: flex; gap: 20px; }
-.footer-legal a { font-size: 0.77rem; color: rgba(255,255,255,0.25); text-decoration: none; }
-.footer-legal a:hover { color: rgba(255,255,255,0.5); }
-
-/* animations */
-@keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-.page-hero { animation: fadeUp 0.7s ease 0.1s both; }
-.contact-grid { animation: fadeUp 0.7s ease 0.25s both; }
-.contact-info { animation: fadeUp 0.7s ease 0.35s both; }
+.contact-info{max-width:960px;margin-top:56px;animation:fadeUp 0.7s ease 0.35s both;}
+.info-row{display:flex;align-items:flex-start;gap:16px;padding:20px 0;border-bottom:1px solid var(--border-dark);}
+.info-row:last-child{border-bottom:none;}
+.info-icon{width:40px;height:40px;background:var(--blue-faint);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1rem;font-weight:700;color:var(--blue);flex-shrink:0;border:1px solid rgba(37,99,235,0.12);}
+.info-label{font-size:0.7rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--blue);margin-bottom:3px;}
+.info-value{font-size:0.9rem;color:var(--ink);font-weight:500;}
+.info-value a{color:var(--ink);text-decoration:none;}
+.info-value a:hover{color:var(--blue);}
+@media(max-width:700px){.contact-grid{grid-template-columns:1fr;}.contact-card{padding:32px 26px;}}
 </style>
 </head>
 <body>
-
 <div class="page-bg"></div>
 <div class="page-grid"></div>
 
-<!-- NAV -->
 <nav id="mainNav">
-  <a href="/" class="nav-logo">
-    <img src="/logo.png" alt="Play4Health" onerror="this.style.display='none'">
-    Play4<em>Health</em>
-  </a>
+  <a href="/" class="nav-logo">Play4<span>Health</span></a>
   <ul class="nav-links">
-    <li><a href="/#forpharma">For Pharma</a></li>
-    <li><a href="/#hai">HAI Index</a></li>
-    <li><a href="/#traction">Traction</a></li>
+    <li><a href="/#whystop">Why Patients Stop</a></li>
+    <li><a href="/#how">How It Works</a></li>
+    <li><a href="/#outcomes">Outcomes</a></li>
+    <li><a href="/#usecases">Therapeutic Areas</a></li>
     <li><a href="/#pilot">Pilot</a></li>
-    <li><a href="/contact" class="nav-cta active">Contact</a></li>
+    <li><a href="/insight-series">Insight Series</a></li>
+    <li><a href="/contact" class="nav-cta">Book a demo</a></li>
   </ul>
+  <button class="nav-hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
 
-<div class="page-wrapper">
+<nav class="mobile-menu" id="mobileMenu">
+  <a href="/#whystop" class="mobile-menu-link">Why Patients Stop <span class="arrow">&rarr;</span></a>
+  <a href="/#how" class="mobile-menu-link">How It Works <span class="arrow">&rarr;</span></a>
+  <a href="/#outcomes" class="mobile-menu-link">Outcomes <span class="arrow">&rarr;</span></a>
+  <a href="/#usecases" class="mobile-menu-link">Therapeutic Areas <span class="arrow">&rarr;</span></a>
+  <a href="/#trust" class="mobile-menu-link">Compliance <span class="arrow">&rarr;</span></a>
+  <a href="/#pilot" class="mobile-menu-link">Pilot <span class="arrow">&rarr;</span></a>
+  <a href="/insight-series" class="mobile-menu-link">Insight Series <span class="arrow">&rarr;</span></a>
+  <a href="/contact" class="mobile-menu-cta">Book a 20-min demo &rarr;</a>
+</nav>
 
-  <!-- HERO -->
-  <div class="page-hero">
-    <div class="page-eyebrow">
-      <span class="eyebrow-dot"></span>
-      Get in touch
-    </div>
-    <h1>Let's <em>talk.</em></h1>
-    <p>A pilot, a question, or a programme to strengthen. We reply within 24 hours.</p>
-  </div>
+<main>
+<div class="page-hero">
+  <div class="section-eyebrow">Get in touch</div>
+  <h1>Let's <em>talk.</em></h1>
+  <p class="page-lead">A pilot, a question, or a programme to strengthen. We reply within 24 hours.</p>
+</div>
 
-  <!-- CARDS -->
+<div class="page-body">
   <div class="contact-grid">
 
     <!-- Card 1: Book demo -->
@@ -262,15 +89,15 @@ footer { background: var(--ink); border-top: 1px solid rgba(255,255,255,0.06); p
       <span class="contact-icon">📅</span>
       <h2>Book a 30-min demo</h2>
       <p>See how patients confirm treatment on their own phone, and what your programme sees in return.</p>
-      <a href="https://calendly.com/play4health/30min" target="_blank" class="btn-blue">Book on Calendly →</a>
+      <a href="https://calendly.com/play4health/30min" target="_blank" class="btn-primary">Book on Calendly →</a>
     </div>
 
-    <!-- Card 2: Dark, start a pilot -->
+    <!-- Card 2: dark, start a pilot -->
     <div class="contact-card dark">
       <span class="contact-icon">🚀</span>
       <h2>Start a pilot</h2>
       <p>For pharma brands, access programmes and funders. We scope it together, no hardware, no new headcount.</p>
-      <a href="mailto:clement@play4health.org?subject=Pilot%20Request%20-%20Play4Health" class="btn-ghost">Email us →</a>
+      <a href="mailto:clement@play4health.org?subject=Pilot%20Request%20-%20Play4Health" class="btn-outline">Email us →</a>
     </div>
 
     <!-- Card 3: Partner -->
@@ -278,7 +105,7 @@ footer { background: var(--ink); border-top: 1px solid rgba(255,255,255,0.06); p
       <span class="contact-icon">🤝</span>
       <h2>Partner with us</h2>
       <p>Pharmacy networks, NGOs, research teams and health programmes working on treatment continuity or real-world evidence.</p>
-      <a href="mailto:clement@play4health.org?subject=Partnership%20Enquiry%20-%20Play4Health" class="btn-teal">Send a note →</a>
+      <a href="mailto:clement@play4health.org?subject=Partnership%20Enquiry%20-%20Play4Health" class="btn-primary">Send a note →</a>
     </div>
 
     <!-- Card 4: Health Impact Snapshot -->
@@ -286,12 +113,11 @@ footer { background: var(--ink); border-top: 1px solid rgba(255,255,255,0.06); p
       <span class="contact-icon">📊</span>
       <h2>Free Health Impact Snapshot</h2>
       <p>What's achievable in your country and condition area: use case, continuation estimate, pilot outline. Delivered in days, no commitment.</p>
-      <a href="/health-impact-snapshot" class="btn-blue">Request snapshot →</a>
+      <a href="/health-impact-snapshot" class="btn-primary">Request snapshot →</a>
     </div>
 
   </div>
 
-  <!-- INFO -->
   <div class="contact-info">
     <div class="info-row">
       <div class="info-icon">📍</div>
@@ -322,48 +148,60 @@ footer { background: var(--ink); border-top: 1px solid rgba(255,255,255,0.06); p
       </div>
     </div>
   </div>
-
 </div>
+</main>
 
-<!-- FOOTER -->
 <footer>
-  <div class="footer-inner">
-    <div class="footer-brand">
-      <a href="/">Play4<em>Health</em></a>
-      <p>Adherence you can verify. Returns you can track. One action. One photo. One proof.</p>
+  <div class="footer-grid">
+    <div>
+      <a href="/" class="footer-logo">Play4<span>Health</span></a>
+      <p class="footer-tagline">Verified adherence and side-effect signals for pharma patient support programmes.</p>
+      <div class="footer-social">
+        <a href="https://www.linkedin.com/company/playforearth" target="_blank" rel="noopener" class="social-btn">in</a>
+        <a href="mailto:clement@play4health.org" class="social-btn">&#9993;</a>
+      </div>
     </div>
-    <div class="footer-links">
-      <div class="footer-col">
-        <h5>Platform</h5>
-        <ul>
-          <li><a href="/#forpharma">For Pharma</a></li>
-          <li><a href="/#hai">HAI Index</a></li>
-          <li><a href="/#traction">Traction</a></li>
-          <li><a href="/health-impact-snapshot">Impact Snapshot</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h5>Company</h5>
-        <ul>
-          <li><a href="/contact">Contact</a></li>
-          <li><a href="https://www.playforearth.org">Play for Earth</a></li>
-          <li><a href="/terms">Terms</a></li>
-          <li><a href="/privacy">Privacy</a></li>
-        </ul>
-      </div>
+    <div class="footer-col">
+      <h5>Platform</h5>
+      <ul>
+        <li><a href="/#whystop">Why Patients Stop</a></li>
+        <li><a href="/#how">How It Works</a></li>
+        <li><a href="/#outcomes">Outcomes</a></li>
+        <li><a href="/#dashboard">Live Dashboard</a></li>
+        <li><a href="/#usecases">Device Take-back</a></li>
+        <li><a href="/#pilot">Pilot</a></li>
+        <li><a href="/insight-series">Insight Series</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Therapeutic areas</h5>
+      <ul>
+        <li><a href="/#usecases">Asthma</a></li>
+        <li><a href="/#usecases">Diabetes and cardiometabolic</a></li>
+        <li><a href="/#usecases">Sickle cell disease</a></li>
+        <li><a href="/#usecases">Epilepsy</a></li>
+        <li><a href="/patients">For patients</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Company</h5>
+      <ul>
+        <li><a href="/#pilot">Why a Pilot</a></li>
+        <li><a href="/#trust">Compliance</a></li>
+        <li><a href="/#references">References</a></li>
+        <li><a href="https://www.playforearth.org">Play for Earth</a></li>
+        <li><a href="/contact">Contact</a></li>
+        <li><a href="/terms">Terms</a></li>
+        <li><a href="/privacy">Privacy</a></li>
+      </ul>
     </div>
   </div>
   <div class="footer-bottom">
-    <span class="footer-copy">© 2026 Play4Health / Play for Earth. Nairobi, Kenya. All rights reserved.</span>
+    <span class="footer-copy">&copy; 2026 Play4Health / Play for Earth. All rights reserved.</span>
     <div class="footer-legal"><a href="/terms">Terms</a><a href="/privacy">Privacy</a></div>
   </div>
 </footer>
 
-<script>
-window.addEventListener('scroll', () => {
-  document.getElementById('mainNav').style.background =
-    window.scrollY > 60 ? 'rgba(247,248,252,0.98)' : 'rgba(247,248,252,0.92)';
-});
-</script>
+<script src="/site.js"></script>
 </body>
 </html>
