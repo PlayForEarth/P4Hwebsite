@@ -178,6 +178,39 @@
 /* ===== PILOT ===== */
 #pilot{background:white;border-top:1px solid var(--border);}
 
+/* ===== PRICING ===== */
+#pilot .not-tags{margin:28px 0 0;animation:none;}
+.pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:40px;align-items:stretch;max-width:var(--max-w);}
+.price-card{background:var(--bg);border:1px solid var(--border-dark);border-radius:var(--radius);padding:34px 30px;transition:all 0.25s;display:flex;flex-direction:column;}
+.price-card:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(37,99,235,0.1);}
+.price-card.featured{background:var(--blue-faint);border:2px solid var(--blue);box-shadow:0 8px 32px rgba(37,99,235,0.12);}
+.price-card.option .price-tier{color:var(--teal);}
+.price-card.option .price-features li::before{color:var(--teal);}
+.price-tier{font-size:0.7rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink-light);margin-bottom:12px;}
+.price-card.featured .price-tier{color:var(--blue);}
+.price-main{font-size:1.8rem;font-weight:700;color:var(--ink);line-height:1.1;margin-bottom:6px;}
+.price-card.featured .price-main{color:var(--ink);}
+.price-plus{display:block;font-size:1.15rem;font-weight:600;margin-top:6px;}
+.price-per{font-size:0.85rem;font-weight:400;color:var(--ink-light);}
+.price-card.featured .price-per{color:var(--ink-light);}
+.price-setup{font-size:0.82rem;color:var(--ink-light);margin:10px 0 22px;line-height:1.7;}
+.price-card.featured .price-setup{color:var(--ink-light);}
+.price-divider{height:1px;background:var(--border-dark);margin-bottom:20px;}
+.price-card.featured .price-divider{background:rgba(37,99,235,0.15);}
+.price-features{list-style:none;display:flex;flex-direction:column;gap:11px;margin-bottom:28px;}
+.price-features li{font-size:0.85rem;color:var(--ink-mid);display:flex;gap:9px;line-height:1.5;}
+.price-features li::before{content:'\2713';color:var(--blue);font-weight:700;flex-shrink:0;}
+.price-card.featured .price-features li{color:var(--ink-mid);}
+.price-card.featured .price-features li::before{color:var(--blue);}
+.price-btn{display:block;margin-top:auto;text-align:center;padding:12px 20px;border-radius:24px;font-size:0.88rem;font-weight:600;text-decoration:none;transition:all 0.2s;}
+.pbo{border:1.5px solid var(--blue);color:var(--blue);}
+.pbo:hover{background:var(--blue);color:white;}
+.pbf{background:var(--blue);color:white;}
+.pbf:hover{background:var(--blue-dark);}
+.pbt{border:1.5px solid var(--teal);color:var(--teal);}
+.pbt:hover{background:var(--teal);color:white;}
+@media(max-width:1100px){.pricing-grid{grid-template-columns:1fr 1fr;}}
+
 /* ===== REFERENCES ===== */
 #references{background:var(--bg);border-top:1px solid var(--border);padding:64px var(--gutter);}
 .refs-label{font-size:0.68rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:rgba(14,27,46,0.35);margin-bottom:22px;}
@@ -222,6 +255,8 @@
   .how-steps{grid-template-columns:1fr;}
   .hw-step{border-right:none!important;border-top:1px solid rgba(14,27,46,0.07)!important;}
   .hw-step:first-child{border-top:none!important;}
+  #pilot .not-tags{justify-content:flex-start;}
+  .pricing-grid{grid-template-columns:1fr;max-width:420px;}
   .cta-buttons{flex-direction:column;align-items:center;}
   .btn-outline{width:100%;max-width:320px;text-align:center;}
   .trust-badges{flex-direction:column;align-items:center;}
@@ -243,7 +278,7 @@
     <li><a href="#how">How It Works</a></li>
     <li><a href="#outcomes">Outcomes</a></li>
     <li><a href="#usecases">Therapeutic Areas</a></li>
-    <li><a href="#pilot">Pilot</a></li>
+    <li><a href="#pilot">Pricing</a></li>
     <li><a href="/insight-series">Insight Series</a></li>
     <li><a href="/contact" class="nav-cta">Book a demo</a></li>
   </ul>
@@ -258,7 +293,7 @@
   <a href="#outcomes" class="mobile-menu-link">Outcomes <span class="arrow">&rarr;</span></a>
   <a href="#usecases" class="mobile-menu-link">Therapeutic Areas <span class="arrow">&rarr;</span></a>
   <a href="#trust" class="mobile-menu-link">Compliance <span class="arrow">&rarr;</span></a>
-  <a href="#pilot" class="mobile-menu-link">Pilot <span class="arrow">&rarr;</span></a>
+  <a href="#pilot" class="mobile-menu-link">Pricing <span class="arrow">&rarr;</span></a>
   <a href="/insight-series" class="mobile-menu-link">Insight Series <span class="arrow">&rarr;</span></a>
   <a href="/contact" class="mobile-menu-cta">Book a 20-min demo &rarr;</a>
 </nav>
@@ -519,23 +554,62 @@
 
 <section id="pilot">
   <div class="section-inner">
-    <div class="section-eyebrow">Pilot</div>
-    <h2 class="section-title">Start with a pilot.<br><em>Prove it on your product.</em></h2>
-    <p class="section-sub">Paid by the sponsor. Free for patients, prescribers and pharmacies.</p>
+    <div class="section-eyebrow">Pricing</div>
+    <h2 class="section-title">Built to pay for itself.<br><em>In refills you were losing.</em></h2>
+    <p class="section-sub">On long-term therapy, patients take about 50% of their doses [2]. We run the numbers on your product in the demo.</p>
+    <div class="not-tags">
+      <span class="not-active not-tag"><span class="not-dot"></span><span class="nt-label">Paid by the sponsor</span></span>
+      <span class="not-tag"><span class="nt-label">Patient</span></span>
+      <span class="not-tag"><span class="nt-label">Prescriber</span></span>
+      <span class="not-tag"><span class="nt-label">Pharmacy</span></span>
+    </div>
+    <div class="pricing-grid">
+      <div class="price-card">
+        <div class="price-tier">Step 1 &middot; Prove it</div>
+        <div class="price-main">$25,000<span class="price-per"> once, 6 months</span></div>
+        <div class="price-setup"><strong>No patient cap.</strong> 1 brand, setup included. Success criteria agreed upfront, first read at day 90.</div>
+        <div class="price-divider"></div>
+        <ul class="price-features">
+          <li>Verified doses</li>
+          <li>Side-effect capture</li>
+          <li>Raw data export</li>
+        </ul>
+        <a href="/contact" class="price-btn pbo">Start a pilot &rarr;</a>
+      </div>
+      <div class="price-card featured">
+        <div class="price-tier">Step 2 &middot; Scale it</div>
+        <div class="price-main">On request<span class="price-per"> / year</span><span class="price-plus">1 flat fee<span class="price-per"> sized to your programme</span></span></div>
+        <div class="price-setup">1 contract per sponsor per country. Each additional brand adds a yearly fee (more teams, more safety routing). Setup waived on the pilot brand when it converts.</div>
+        <div class="price-divider"></div>
+        <ul class="price-features">
+          <li>Fee set by patient range, no per-patient metering</li>
+          <li>No patient cap</li>
+          <li>Discount from the 2nd country</li>
+        </ul>
+        <a href="/contact" class="price-btn pbf">Book a demo &rarr;</a>
+      </div>
+      <div class="price-card option">
+        <div class="price-tier">Option &middot; Device take-back</div>
+        <div class="price-main">$4<span class="price-per"> per inhaler or pen returned</span></div>
+        <div class="price-setup">Often funded from a sustainability budget.</div>
+        <div class="price-divider"></div>
+        <ul class="price-features">
+          <li>Photo-verified returns at partner pharmacies</li>
+          <li>CO2e avoided, where relevant</li>
+        </ul>
+        <a href="/contact" class="price-btn pbt">Add take-back &rarr;</a>
+      </div>
+    </div>
     <div class="stand-box pilot-box">
-      <div class="stand-label">How a pilot works</div>
+      <div class="stand-label">Why start with a pilot</div>
       <p class="stand-lead">Play4Health is <strong>pre-commercial</strong>. The pilot exists to prove it on your product, before you commit.</p>
       <ul class="stand-list">
-        <li>1 brand, 1 country, setup included.</li>
-        <li>Success criteria agreed upfront, first read at day 90.</li>
-        <li>Verified doses, side-effect capture, data export.</li>
         <li>No patient cohort deployed yet. Nothing on this page is a Play4Health result.</li>
+        <li>Success criteria agreed upfront, first read at day 90.</li>
         <li>20,000+ field actions already captured on the Play for Earth verification engine, the same layer Play4Health runs on.</li>
       </ul>
     </div>
-    <div class="cta-buttons" style="margin-top:28px">
-      <a href="/contact" class="btn-primary btn-large">Talk about a pilot</a>
-    </div>
+    <p class="note">Patient rewards are designed with each sponsor, for each programme. Every contract includes the full system. Only scope changes. Collection and reprocessing of returned devices are scoped separately, on their own budget line. Access benefits on medicines, where a sponsor funds them, are configured per programme within local rules.</p>
   </div>
 </section>
 
@@ -585,7 +659,7 @@
         <li><a href="#outcomes">Outcomes</a></li>
         <li><a href="#dashboard">Live Dashboard</a></li>
         <li><a href="#usecases">Device Take-back</a></li>
-        <li><a href="#pilot">Pilot</a></li>
+        <li><a href="#pilot">Pricing</a></li>
         <li><a href="/insight-series">Insight Series</a></li>
         <li><a href="/health-impact-snapshot">Health Impact Snapshot</a></li>
       </ul>
