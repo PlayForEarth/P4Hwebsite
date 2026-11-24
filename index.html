@@ -29,25 +29,36 @@
 .blob3{width:180px;height:180px;background:rgba(251,146,60,0.09);bottom:18%;right:18%;animation-delay:5s;}
 
 .hero{display:block;padding:0;position:relative;overflow:hidden;background:var(--bg);}
-.hero-inner{display:grid;grid-template-columns:1.05fr 0.95fr;gap:56px;align-items:center;width:100%;max-width:var(--max-w);margin:0 auto;padding:130px var(--gutter) 100px;position:relative;z-index:2;}
+.hero-inner{display:grid;grid-template-columns:1.1fr 0.9fr;gap:48px;align-items:center;width:100%;max-width:var(--max-w);margin:0 auto;padding:130px var(--gutter) 100px;position:relative;z-index:2;}
 .hero-copy{display:flex;flex-direction:column;align-items:flex-start;text-align:left;}
 .hero-visual{position:relative;animation:fadeUp 0.8s ease 0.5s both;}
 .hero-visual img{display:block;width:100%;height:auto;border-radius:20px;border:1px solid rgba(234,88,12,0.15);box-shadow:0 20px 60px rgba(31,22,17,0.14);}
 .hero-visual::after{content:'';position:absolute;inset:-14px;border-radius:26px;border:1px solid rgba(234,88,12,0.1);pointer-events:none;}
+.hero-card{position:absolute;top:18px;right:18px;width:min(260px,46%);background:#fff;border-radius:16px;box-shadow:0 14px 36px rgba(31,22,17,0.28);padding:14px 16px 6px;animation:fadeUp 0.8s ease 0.9s both;}
+.hc-hd{display:flex;justify-content:space-between;align-items:center;margin-bottom:2px;}
+.hc-hd b{font-size:0.8rem;color:var(--ink);}
+.hc-pill{font-size:0.66rem;font-weight:700;color:var(--accent-text);background:#fff1e4;border:1px solid #fed7aa;border-radius:20px;padding:2px 8px;}
+.hc-m{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:9px 0;border-top:1px solid #f4e6da;}
+.hc-hd+.hc-m{border-top:none;}
+.hc-m b{display:block;font-size:0.8rem;color:var(--ink);}
+.hc-m i{font-style:normal;font-size:0.68rem;color:var(--ink-light);}
+.hc-m svg{flex-shrink:0;}
+@media(max-width:600px){.hero-card{width:60%;top:10px;right:10px;padding:10px 12px 2px;}.hc-m+.hc-m{display:none;}.hero-chip strong{font-size:0.74rem!important;}.hero-chip span{font-size:0.66rem!important;}}
 .hero-chip{position:absolute;left:18px;bottom:18px;display:flex;align-items:center;gap:10px;background:rgba(31,22,17,0.92);backdrop-filter:blur(8px);border-radius:14px;padding:12px 18px;box-shadow:0 8px 24px rgba(31,22,17,0.3);animation:fadeUp 0.8s ease 1s both;}
 .chip-dot{width:8px;height:8px;border-radius:50%;background:#4ade80;flex-shrink:0;animation:pulse 2s ease-in-out infinite;}
 .chip-text{display:flex;flex-direction:column;gap:2px;}
 .chip-text strong{font-size:0.82rem;font-weight:700;color:white;line-height:1.3;}
 .chip-text span{font-size:0.74rem;color:rgba(255,255,255,0.65);line-height:1.3;}
-.hero h1{font-size:clamp(2.2rem,4.2vw,3.5rem);font-weight:400;line-height:1.1;letter-spacing:-0.03em;margin-bottom:28px;color:var(--ink);animation:fadeUp 0.8s ease 0.35s both;}
-.hero h1 em{color:var(--blue);font-style:normal;}
-.hero-lines{font-size:1.15rem;line-height:1.8;color:var(--ink-mid);max-width:600px;margin-bottom:10px;font-weight:400;animation:fadeUp 0.8s ease 0.5s both;}
+.hero h1{font-size:clamp(2rem,3.1vw,2.6rem);font-weight:700;line-height:1.1;letter-spacing:-0.025em;margin-bottom:28px;color:var(--ink);animation:fadeUp 0.8s ease 0.35s both;}
+.hero h1 em{font-style:normal;display:inline-block;margin-top:10px;color:#fff;background:var(--ink);padding:0 18px 6px;border-radius:14px;margin-left:-4px;}
+.hero-lines{font-size:1.1rem;line-height:1.7;color:var(--ink-light);max-width:560px;margin-bottom:40px;font-weight:400;animation:fadeUp 0.8s ease 0.5s both;}
 .hero-sub{font-size:1.35rem;line-height:1.5;color:var(--ink);font-weight:600;max-width:600px;margin-bottom:12px;animation:fadeUp 0.8s ease 0.4s both;}
 .hero-lines strong{color:var(--ink);font-weight:600;}
 .hero-usp{list-style:none;display:flex;flex-direction:column;gap:12px;margin:14px 0 40px;max-width:560px;animation:fadeUp 0.8s ease 0.55s both;}
 .hero-usp li{font-size:1rem;line-height:1.55;color:var(--ink-light);display:flex;gap:12px;align-items:flex-start;text-align:left;}
 .hero-usp li::before{content:'\2713';color:var(--blue);font-weight:700;flex-shrink:0;}
 .hero-usp strong{color:var(--ink);font-weight:700;}
+.hero-cred{margin-top:28px;font-size:0.78rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--ink-light);animation:fadeUp 0.8s ease 0.75s both;}
 .hero-actions{display:flex;gap:20px;align-items:center;flex-wrap:wrap;justify-content:flex-start;animation:fadeUp 0.8s ease 0.65s both;}
 .not-tags{display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-start;margin-bottom:28px;animation:fadeUp 0.8s ease 0.3s both;}
 .not-tag{display:inline-flex;align-items:center;gap:9px;border:1px solid rgba(31,22,17,0.14);border-radius:32px;padding:8px 16px;font-size:0.82rem;font-weight:500;color:rgba(31,22,17,0.3);}
@@ -103,6 +114,9 @@
 #trust{background:white;border-top:1px solid var(--border);}
 .out-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:52px;}
 .out-grid.four{grid-template-columns:repeat(4,1fr);}
+.out-grid.five{grid-template-columns:repeat(5,1fr);gap:14px;}
+.out-ico{width:48px;height:48px;border-radius:14px;background:linear-gradient(135deg,#ea580c,#c2410c);box-shadow:0 6px 16px rgba(234,88,12,0.28);color:#fff;display:flex;align-items:center;justify-content:center;margin-bottom:16px;}
+.out-cta{display:flex;gap:24px;align-items:center;flex-wrap:wrap;}
 .out-card{background:var(--bg);border:1px solid var(--border-dark);border-radius:var(--radius);padding:28px 24px;transition:all 0.25s;}
 .out-card:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(234,88,12,0.08);border-color:rgba(234,88,12,0.22);}
 .out-card h3{font-size:1rem;font-weight:700;color:var(--ink);margin-bottom:10px;line-height:1.3;}
@@ -112,8 +126,8 @@
 .out-list li::before{content:'\2713';color:var(--blue);font-weight:700;flex-shrink:0;}
 .out-cta{margin-top:40px;}
 @media(max-width:700px){.out-list{grid-template-columns:1fr;}}
-@media(max-width:1100px){.out-grid,.out-grid.four{grid-template-columns:repeat(2,1fr);}}
-@media(max-width:600px){.out-grid,.out-grid.four{grid-template-columns:1fr;}}
+@media(max-width:1100px){.out-grid,.out-grid.four,.out-grid.five{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:600px){.out-grid,.out-grid.four,.out-grid.five{grid-template-columns:1fr;}}
 
 /* ===== DASHBOARD ===== */
 #dashboard{background:var(--bg2);border-top:1px solid var(--border);padding:100px var(--gutter);}
@@ -130,7 +144,7 @@
 .platform-embed-cta{display:flex;align-items:center;justify-content:space-between;padding:18px 24px;background:var(--blue-faint);border-top:1px solid var(--border);flex-wrap:wrap;gap:12px;}
 .platform-embed-cta p{font-size:0.88rem;color:var(--ink-light);line-height:1.5;}
 .platform-embed-cta p strong{color:var(--ink);}
-.btn-embed-full{display:inline-flex;align-items:center;gap:7px;background:var(--blue);color:white;padding:10px 22px;border-radius:24px;font-size:0.86rem;font-weight:600;text-decoration:none;white-space:nowrap;transition:background 0.2s;flex-shrink:0;}
+.btn-embed-full{display:inline-flex;align-items:center;gap:7px;background:var(--btn);color:white;padding:10px 22px;border-radius:24px;font-size:0.86rem;font-weight:600;text-decoration:none;white-space:nowrap;transition:background 0.2s;flex-shrink:0;}
 .btn-embed-full:hover{background:var(--blue-dark);}
 
 /* ===== RECOVERY ===== */
@@ -141,7 +155,7 @@
 .rec-stat-src{margin-top:14px;padding-top:12px;border-top:1px solid var(--border-dark);font-size:0.72rem;color:rgba(31,22,17,0.38);line-height:1.6;}
 
 /* ===== TAKE-BACK (inside therapeutic areas) ===== */
-.takeback{display:grid;grid-template-columns:1.1fr 0.9fr;gap:40px;align-items:center;margin-top:48px;background:white;border:1px solid var(--border-dark);border-left:3px solid var(--teal);border-radius:var(--radius);padding:32px 30px;}
+.takeback{display:block;max-width:880px;gap:40px;align-items:center;margin-top:48px;background:white;border:1px solid var(--border-dark);border-left:3px solid var(--teal);border-radius:var(--radius);padding:32px 30px;}
 .takeback h3{font-size:clamp(1.3rem,2.2vw,1.7rem);font-weight:400;line-height:1.2;letter-spacing:-0.02em;color:var(--ink);margin-bottom:14px;}
 .takeback h3 em{color:var(--teal);font-style:normal;}
 .takeback p{font-size:0.92rem;color:var(--ink-light);line-height:1.75;}
@@ -203,9 +217,9 @@
 .price-card.featured .price-features li{color:var(--ink-mid);}
 .price-card.featured .price-features li::before{color:var(--blue);}
 .price-btn{display:block;margin-top:auto;text-align:center;padding:12px 20px;border-radius:24px;font-size:0.88rem;font-weight:600;text-decoration:none;transition:all 0.2s;}
-.pbo{border:1.5px solid var(--blue);color:var(--blue);}
-.pbo:hover{background:var(--blue);color:white;}
-.pbf{background:var(--blue);color:white;}
+.pbo{border:1.5px solid var(--btn);color:var(--accent-text);}
+.pbo:hover{background:var(--btn);color:white;}
+.pbf{background:var(--btn);color:white;}
 .pbf:hover{background:var(--blue-dark);}
 .pbt{border:1.5px solid var(--teal);color:var(--teal);}
 .pbt:hover{background:var(--teal);color:white;}
@@ -308,50 +322,33 @@
   <div class="hero-inner">
     <div class="hero-copy">
 
-      <div class="not-tags">
-        <span class="not-active not-tag"><span class="not-dot"></span><span class="nt-label">From doses already happening</span></span>
-        <span class="not-tag"><span class="nt-label">App to download</span></span>
-        <span class="not-tag"><span class="nt-label">Chatbot</span></span>
-        <span class="not-tag"><span class="nt-label">Pill reminder</span></span>
-        <span class="not-tag"><span class="nt-label">Call centre</span></span>
-      </div>
-
       <h1>
         Patients stay on treatment.<br>
         <em>Sponsors see it.</em>
       </h1>
 
       <p class="hero-sub">Every dose confirmed, every outcome measured.</p>
-      <p class="hero-lines">The <strong>verified patient support platform</strong> for out-of-pocket markets. Asthma, diabetes, sickle cell, epilepsy.</p>
-<ul class="hero-usp">
-  <li><span><strong>Verified, not declared.</strong> Every dose photo-confirmed.</span></li>
-  <li><span><strong>On the phone patients already have.</strong> A web link, nothing to install. Works offline.</span></li>
-  <li><span><strong>No discount needed.</strong> Patients who continue come back for the next pack, at full price.</span></li>
-</ul>
+      <p class="hero-lines">Verified patient support for long-term treatment. Asthma, diabetes, sickle cell, epilepsy.</p>
 
       <div class="hero-actions">
         <a href="/contact" class="btn-primary btn-large">Book a 20-min demo</a>
         <a href="#how" class="btn-ghost">See how it works <span class="arr">&rarr;</span></a>
       </div>
+      <p class="hero-cred">ERIA HITS4KIDS finalist &middot; 2025</p>
     </div>
 
     <div class="hero-visual">
-      <img src="/hero-visual.webp" alt="Patient app showing a verified dose and asthma control, linked to a sponsor report with day-90 persistence and clinical outcome" width="1200" height="1040" loading="eager">
-      
+      <img src="/hero-patient.webp" alt="A woman confirms her treatment on her phone while two girls from her family look on" width="1300" height="1175" loading="eager">
+      <div class="hero-card" aria-hidden="true">
+        <div class="hc-hd"><b>Sponsor report</b><span class="hc-pill">&#10003; Verified</span></div>
+        <div class="hc-m"><div><b>Persistence</b><i>Day 90, verified</i></div><svg width="64" height="20" viewBox="0 0 110 34"><rect x="2" y="13" width="106" height="8" rx="4" fill="#fbeee3"/><rect x="2" y="13" width="84" height="8" rx="4" fill="#ea580c"/></svg></div>
+        <div class="hc-m"><div><b>Clinical outcome</b><i>Linked to doses</i></div><svg width="64" height="20" viewBox="0 0 110 34"><polyline points="2,28 30,24 58,17 84,12 108,6" fill="none" stroke="#16a34a" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      </div>
+      <div class="hero-chip"><div class="chip-dot"></div><div class="chip-text"><strong>Dose verified &middot; <span id="chip-ago">23</span> sec ago</strong><span>Photo-confirmed &middot; sponsor report updated</span></div></div>
     </div>
   </div>
 </section>
 
-<div class="logos-strip">
-  <div class="logos-inner">
-    <span class="logos-label">Recognized by</span>
-    <span class="logo-item">ERIA <sup>HITS4KIDS Finalist &middot; 2025</sup></span>
-    <span class="logo-item">L&rsquo;Or&eacute;al <sup>Big Bang SAPMENA Finalist</sup></span>
-    <span class="logo-item">MDX <sup>Nature Positive Accelerator</sup></span>
-    <span class="logo-item">African Impact Challenge <sup>Cohort 6 &middot; 2026</sup></span>
-  </div>
-  <p class="logos-note">ERIA HITS4KIDS was awarded to Play4Health. Other recognitions went to Play for Earth, the venture behind Play4Health.</p>
-</div>
 
 <section id="whystop">
   <div class="section-inner">
@@ -382,7 +379,7 @@
 <section id="how">
   <div class="section-inner">
     <div class="section-eyebrow">How it works</div>
-    <h2 class="section-title">1 photo per dose.<br><em>Logged on the spot.</em></h2>
+    <h2 class="section-title">From the patient&rsquo;s phone.<br><em>To your report.</em></h2>
     <p class="section-sub">Patients take part directly. A web link, nothing to install, works offline. No hardware, no clinic visit.</p>
     <div class="how-visual"><img src="/app-screens.webp" alt="Play4Health patient app: streak, today's doses, breathing journey and family guides" width="2070" height="1221" loading="lazy"></div>
     <div class="how-steps">
@@ -409,48 +406,17 @@
 
 <section id="outcomes">
   <div class="section-inner">
-    <div class="section-eyebrow">What a sponsor sees</div>
-    <h2 class="section-title">Patients who continue<br><em>come back for the next pack.</em></h2>
-    <p class="section-sub">What your programme sees, week by week.</p>
-    <ul class="out-list">
-      <li>Who continues, and who has gone quiet</li>
-      <li>Why doses stop: cost, stock-out, side effect</li>
-      <li>Attacks, crises and fevers reported from home</li>
-      <li>Side-effect reports routed to your PV team</li>
-      <li>A patient support service your teams can bring to prescribers</li>
-      <li>Real-world data for market access</li>
-      <li>Access and affordability support where patients pay</li>
-      <li>Optional: device returns at refill</li>
-    </ul>
-    <div class="out-cta"><a href="/contact" class="btn-primary">Book a demo</a></div>
-  </div>
-</section>
-
-<section id="dashboard">
-  <div class="section-inner">
-    <div class="section-eyebrow">Live dashboard</div>
-    <h2 class="section-title">Your programme,<br><em>in 1 dashboard.</em></h2>
-    <p class="section-sub">The core metrics, updated as patients confirm.</p>
-    <ul class="kpi-list">
-      <li>Dose confirmation rate</li>
-      <li>Continuity at day 90</li>
-      <li>Side-effect reports</li>
-      <li>Verified returns</li>
-    </ul>
-    <div class="platform-embed-wrap">
-      <div class="platform-embed-bar">
-        <div class="embed-dot" style="background:#ff5f57"></div>
-        <div class="embed-dot" style="background:#febc2e"></div>
-        <div class="embed-dot" style="background:#28c840"></div>
-        <span class="embed-label">play4health.org / demo</span>
-        <div class="embed-live"><div class="embed-pulse"></div>Demo</div>
-      </div>
-      <iframe src="/demo" title="Play4Health PSP Manager Dashboard" scrolling="no" loading="lazy"></iframe>
-      <div class="platform-embed-cta">
-        <p><strong>Interactive demo with sample data.</strong> Click the tabs to explore.</p>
-        <a href="/demo" class="btn-embed-full" target="_blank">Open full dashboard &rarr;</a>
-      </div>
+    <div class="section-eyebrow">What sponsors see</div>
+    <h2 class="section-title">5 outcomes.<br><em>1 verified record.</em></h2>
+    <p class="section-sub">Each one built on doses patients confirmed, not doses they declared.</p>
+    <div class="out-grid five">
+      <div class="out-card"><div class="out-ico"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="3 12 7 12 10 5 14 19 17 12 21 12"/></svg></div><h3>Clinical response</h3><p>Tell &ldquo;not taken&rdquo; from &ldquo;not working&rdquo;. Clinical markers read against verified doses.</p></div>
+      <div class="out-card"><div class="out-ico"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18h6"/><path d="M10 21h4"/><path d="M12 3a6 6 0 0 0-3.5 10.9c.6.4 1 1.1 1 1.8V16h5v-.3c0-.7.4-1.4 1-1.8A6 6 0 0 0 12 3z"/></svg></div><h3>Patient capacity</h3><p>Patients who understand their treatment, and why every dose counts.</p></div>
+      <div class="out-card"><div class="out-ico"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c.6-3.6 3.3-5.5 6.5-5.5s5.9 1.9 6.5 5.5"/><path d="M19 8v6"/><path d="M16 11h6"/></svg></div><h3>Patient recruitment</h3><p>Families screened, more patients diagnosed and brought into care.</p></div>
+      <div class="out-card"><div class="out-ico"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="3 17 9 11 13 15 21 7"/><polyline points="15 7 21 7 21 13"/></svg></div><h3>ROI</h3><p>Patients who stay on treatment longer pay for the programme.</p></div>
+      <div class="out-card"><div class="out-ico"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg></div><h3>Local evidence</h3><p>Country-by-country data for prescribers and payers.</p></div>
     </div>
+    <div class="out-cta"><a href="/contact" class="btn-primary">Book a demo</a> <a href="/demo" class="btn-ghost" target="_blank">See a sample sponsor dashboard <span class="arr">&rarr;</span></a></div>
   </div>
 </section>
 
@@ -505,16 +471,10 @@
     <div class="takeback">
       <div class="takeback-copy">
         <div class="rec-eyebrow">Option &middot; Take-back</div>
-        <h3>Adherence tools stop at the dose. <em>We recover what is left.</em></h3>
-        <p>Inhalers and pens can be returned at the pharmacy at refill, photo-verified, and kept out of the waste stream. Same patient record as the doses.</p>
-      </div>
-      <div class="rec-stat">
-        <div class="rec-stat-num">1,530x</div>
-        <div class="rec-stat-desc">The warming potential of HFA-134a relative to CO2, the propellant in most metered-dose inhalers.</div>
-        <div class="rec-stat-src">IPCC Sixth Assessment Report, 2021, 100-year GWP [1].</div>
+        <h3>Empty inhalers and pens, <em>back at refill.</em></h3>
+        <p>Returned at the pharmacy, photo-verified, on the same patient record as the doses. A verified return record for your sustainability reporting.</p>
       </div>
     </div>
-    <p class="note">We generate the verified return record, usable for sustainability and packaging responsibility reporting. Collection and reprocessing stay with your logistics and waste partners.</p>
   </div>
 </section>
 
@@ -549,7 +509,7 @@
   <div class="section-inner">
     <div class="section-eyebrow">Pricing</div>
     <h2 class="section-title">Built to pay for itself.<br><em>In refills you were losing.</em></h2>
-    <p class="section-sub">On long-term therapy, patients take about 50% of their doses [2]. We run the numbers on your product in the demo.</p>
+    <p class="section-sub">On long-term therapy, patients take about 50% of their doses [1]. We run the numbers on your product in the demo.</p>
     <div class="not-tags">
       <span class="not-active not-tag"><span class="not-dot"></span><span class="nt-label">Paid by the sponsor</span></span>
       <span class="not-tag"><span class="nt-label">Patient</span></span>
@@ -627,8 +587,7 @@
   <div class="section-inner">
     <div class="refs-label">References</div>
     <ul class="refs-list">
-      <li><span class="rn">1.</span>IPCC Sixth Assessment Report, 2021, Working Group I, Chapter 7. 100-year global warming potential values.</li>
-      <li><span class="rn">2.</span>World Health Organization. <em>Adherence to long-term therapies: evidence for action.</em> Geneva: WHO, 2003. <a href="https://www.paho.org/en/documents/who-adherence-long-term-therapies-evidence-action-2003" target="_blank" rel="noopener">Read</a></li>
+      <li><span class="rn">1.</span>World Health Organization. <em>Adherence to long-term therapies: evidence for action.</em> Geneva: WHO, 2003. <a href="https://www.paho.org/en/documents/who-adherence-long-term-therapies-evidence-action-2003" target="_blank" rel="noopener">Read</a></li>
     </ul>
     <p class="refs-note">Cited to describe the general pattern of persistence loss after initiation. These are not Play4Health results. No patient cohort has been deployed yet.</p>
   </div>
@@ -650,7 +609,7 @@
         <li><a href="#whystop">Why Patients Stop</a></li>
         <li><a href="#how">How It Works</a></li>
         <li><a href="#outcomes">Outcomes</a></li>
-        <li><a href="#dashboard">Live Dashboard</a></li>
+        <li><a href="/demo">Sample Dashboard</a></li>
         <li><a href="#usecases">Device Take-back</a></li>
         <li><a href="#pilot">Pricing</a></li>
         <li><a href="/insight-series">Insight Series</a></li>
@@ -699,5 +658,6 @@ if (dashIframe) {
   });
 }
 </script>
+<script>(function(){var el=document.getElementById('chip-ago');if(!el)return;var n=23;setInterval(function(){n=n>=59?3:n+1;el.textContent=n;},1000);})();</script>
 </body>
 </html>
